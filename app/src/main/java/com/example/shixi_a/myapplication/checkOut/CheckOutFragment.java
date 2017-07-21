@@ -28,6 +28,7 @@ public class CheckOutFragment extends Fragment implements CheckOutContract.View 
     private TextView address;
 
     private EditText memo;
+    //git
 
     @Override
     public void setPresenter(CheckOutContract.Presenter presenter) {
