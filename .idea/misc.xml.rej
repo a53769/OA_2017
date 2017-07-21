@@ -1,0 +1,9 @@
+diff a/OA_Android/.idea/misc.xml b/OA_Android/.idea/misc.xml	(rejected hunks)
+@@ -27,7 +27,6 @@
+       </value>
+     </option>
+   </component>
+-    <OptionsSetting value="true" id="Update" />
+   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>

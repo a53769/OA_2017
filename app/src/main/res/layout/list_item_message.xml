@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+
+        <ImageView
+            android:id="@+id/Im_title"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/menu_margin_image_size"
+            android:layout_height="@dimen/menu_margin_image_size"
+            android:src="@drawable/waichu" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请假审批通知"
+                android:textSize="18sp"
+                android:textColor="@color/dark_grey"
+                android:ellipsize="end"
+                android:maxLines="1" />
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="。。。。。。"
+                android:textColor="@color/gray"
+                android:ellipsize="end"
+                android:maxLines="1" />
+        </LinearLayout>
+        <ImageView
+            android:layout_width="@dimen/menu_next_width"
+            android:layout_height="@dimen/menu_next_height"
+            android:src="@drawable/next"
+            android:layout_gravity="center"/>
+
+</LinearLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/process_refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/processContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/processLL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#ECF2F2">
+
+            <ListView
+                android:id="@+id/process_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:dividerHeight="10dp"
+                android:divider="#ECF2F2"
+                android:scrollbars="none"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/noProcess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/noItemsIcon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_assignment_turned_in_24dp" />
+
+            <TextView
+                android:id="@+id/noItemMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="没有流程"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/noItemAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="添加一个流程吧"
+                android:textColor="@color/colorPrimaryDark"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+</com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout>

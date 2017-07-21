@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:background="@color/white"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/taskinputtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/task_name" />
+
+            <EditText
+                android:id="@+id/et_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/input_task_name"
+                android:inputType="text"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/taskinputtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/task_goal" />
+
+            <EditText
+                android:id="@+id/et_goal"
+                style="@style/taskinputcontent"
+                android:layout_width="match_parent"
+                android:ems="10"
+                android:hint="@string/input_task_goal"
+                android:inputType="textMultiLine" />
+
+            <TextView
+                android:id="@+id/textView3"
+                style="@style/taskinputtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/excutemethod" />
+
+            <EditText
+                android:id="@+id/et_method"
+                style="@style/taskinputcontent"
+                android:layout_width="match_parent"
+                android:ems="10"
+                android:hint="@string/input_task_excute"
+                android:inputType="textMultiLine" />
+
+            <ImageView
+                android:id="@+id/link"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:contentDescription="zhijiu"
+                android:src="@drawable/link" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:background="@color/defaultBack" />
+
+            <LinearLayout
+                android:id="@+id/task_item_pro"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center|left"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="所属项目" />
+
+                <TextView
+                    android:id="@+id/pro_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/textTitle"
+                    android:text="请选择"/>
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/task_item_milestone"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center|left"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    style="@style/textTitle"
+                    android:text="里程碑" />
+
+                <TextView
+                    android:id="@+id/milestone_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/textTitle"
+                    android:text="请选择"/>
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/task_item_cla"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center|left"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    style="@style/textTitle"
+                    android:text="任务分类" />
+
+                <TextView
+                    android:id="@+id/cla_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/textTitle"
+                    android:text="请选择"/>
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/task_item_time"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center|left"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    style="@style/textTitle"
+                    android:text="开始时间" />
+
+                <TextView
+                    android:id="@+id/picktime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/textTitle"
+                    android:textColor="@color/gray" />
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/task_item_process"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center|left"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    style="@style/textTitle"
+                    android:text="任务流程" />
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/task_item_pri"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center|left"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    style="@style/textTitle"
+                    android:text="优先级" />
+
+                <TextView
+                    android:id="@+id/tv_priority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/textTitle"
+                    android:text="请选择"/>
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/task_item_meno"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center|left"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    style="@style/textTitle"
+                    android:text="备注" />
+
+                <TextView
+                    android:id="@+id/tv_memo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@color/defaultBack" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

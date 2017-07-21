@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/task_detail_refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true">
+        <ScrollView
+            android:id="@+id/task_detail_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/task_detail_Container"
+                android:paddingBottom="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/detail"
+                    android:padding="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="创建人"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="发布于 2017-06-08 11:21:08"
+                        android:layout_alignBottom="@id/textView"
+                        android:layout_toRightOf="@id/textView"
+                        android:textColor="@color/gray"
+                        android:layout_marginLeft="10dp" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="任务名称"
+                        android:layout_below="@id/textView"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="测试项目"
+                        android:textColor="@color/gray"
+                        android:layout_below="@id/textView5"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="5dp"/>
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="任务目标"
+                        android:textSize="16sp"
+                        android:layout_below="@id/textView6"
+                        />
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Qwwqwwq"
+                        android:textColor="@color/gray"
+                        android:layout_below="@id/textView7"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="5dp"/>
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="执行方法"
+                        android:textSize="16sp"
+                        android:layout_below="@id/textView8" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Wqqwwq"
+                        android:textColor="@color/gray"
+                        android:layout_below="@id/textView9"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"/>
+                    <ImageView
+                        android:id="@+id/link"
+                        android:layout_below="@id/textView10"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginBottom="5dp"
+                        android:contentDescription="zhijiu"
+                        android:src="@drawable/link" />
+
+                </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="#ECF2F2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/process"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:orientation="horizontal"
+                        android:paddingLeft="16dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="查看流程"
+                            android:textSize="18sp"/>
+
+                        <ImageView
+                            android:layout_width="11dp"
+                            android:layout_height="22dp"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/next" />
+
+                    </LinearLayout>
+
+                    <ExpandableListView
+                        android:id="@+id/logs_List"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/score"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:padding="16dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+                    <TextView
+                        android:id="@+id/task_assess"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="任务评价"/>
+                    <TextView
+                        android:id="@+id/quality"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/task_assess"
+                        android:text="质        量"/>
+                    <TextView
+                        android:id="@+id/efficient"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/quality"
+                        android:text="效        率" />
+                    <TextView
+                        android:id="@+id/attitude"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/efficient"
+                        android:text="态        度"/>
+                    <TextView
+                        android:id="@+id/memo"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/attitude"
+                        android:text="留        言"/>
+
+                    <TextView
+                        android:id="@+id/memo_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/memo"
+                        android:layout_toRightOf="@id/memo"
+                        android:text="说说对我的评价吧"
+                        android:textSize="12sp"
+                        android:textColor="@color/gray"/>
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:numStars="5"
+                        android:rating="0"
+                        android:stepSize="1"
+                        style="?android:ratingBarStyleSmall"
+                        android:layout_alignBottom="@id/quality"
+                        android:layout_toRightOf="@id/quality"
+                        />
+                    <RatingBar
+                        android:id="@+id/ratingBar1"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_marginLeft="20dp"
+                        android:layout_alignBottom="@id/efficient"
+                        android:layout_toRightOf="@id/efficient"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:rating="0"
+                        android:stepSize="1"/>
+                    <RatingBar
+                        android:id="@+id/ratingBar2"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_marginLeft="20dp"
+                        android:layout_alignBottom="@id/attitude"
+                        android:layout_toRightOf="@id/attitude"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:rating="0"
+                        android:stepSize="1"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/buttonView"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_bg"
+                android:text="拒绝"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/white"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/button_bg"
+                android:text="接收"
+                android:textColor="@color/white"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout>

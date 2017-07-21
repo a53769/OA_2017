@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/defaultBack">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="vertical"
+        android:background="@color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/place"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="签到时间"
+                android:layout_marginLeft="10dp"
+                android:textSize="16sp"
+                android:textColor="@color/gray"
+                />
+
+            <TextView
+                android:id="@+id/check_out_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                style="@style/textTitle"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/place"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="签到地点"
+                android:layout_marginLeft="10dp"
+                android:textSize="16sp"
+                android:textColor="@color/gray"
+                />
+
+            <TextView
+                android:id="@+id/check_out_addr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="未获取到地理位置"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:layout_marginLeft="10dp"
+                style="@style/textTitle"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/memo"
+            android:gravity="start"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/normal_bg"
+            android:hint="请填写签到备注"
+            android:textSize="16sp"
+            android:textColorHint="@color/gray"/>
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:paddingTop="10dp">-->
+            <!--<ImageView-->
+                <!--android:layout_width="100dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:src="@drawable/ic_add_black_24dp"/>-->
+        <!--</LinearLayout>-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:gravity="bottom"
+        android:layout_weight="1">
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="提   交"
+            android:textColor="@color/white"
+            android:background="@drawable/button_bg"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="78dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/task_item_bg">
+
+
+    <View
+        android:id="@+id/lab"
+        android:layout_width="5dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/lab_bg" />
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/im_lab"
+                android:layout_width="50dp"
+                android:layout_height="24dp"
+                android:src="@drawable/state_2"/>
+            <TextView
+                android:id="@+id/task_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="ATS集群崩溃的稳定性测试"
+                style="@style/textTitle"
+                android:ellipsize="end"
+                android:maxLines="1" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/task_timestamp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="陈晨  发布于2016年2月23日14:25"
+            style="@style/textContentt"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/task_edit"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="bottom"
+        android:scaleType="centerInside"
+        android:src="@drawable/edit"/>
+    <ImageView
+        android:id="@+id/task_delete"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="bottom"
+        android:src="@drawable/delete"/>
+
+
+</LinearLayout>

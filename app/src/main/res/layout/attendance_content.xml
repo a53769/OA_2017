@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:orientation="vertical">
+        <ScrollView
+            android:id="@+id/state_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/defaultBack">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/normal_bg"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="外出次数"
+                        android:textSize="18sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/out_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_marginRight="20dp"
+                        android:text="3"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/normal_bg">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="请假次数"
+                        android:textSize="18sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/oa_aff_c"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_marginRight="20dp"
+                        android:text="3"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/normal_bg"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="请假天数"
+                        android:textSize="18sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/oa_off_d"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_marginRight="20dp"
+                        android:text="3"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/normal_bg">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="正常打卡天数"
+                        android:textSize="18sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/local_days"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_marginRight="20dp"
+                        android:text="3"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/normal_bg"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="异常打卡天数"
+                        android:textSize="18sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/other_days"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_marginRight="20dp"
+                        android:text="3"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/normal_bg">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="缺卡天数"
+                        android:textSize="18sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/need_days"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_marginRight="20dp"
+                        android:text="3"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/normal_bg"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="迟到天数"
+                        android:textSize="18sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/late_days"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:layout_marginRight="20dp"
+                        android:textColor="@color/dark_grey"
+                        android:text="3"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/normal_bg">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="早退天数"
+                        android:textSize="18sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/early_days"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_marginRight="20dp"
+                        android:text="3"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+</com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/defaultBack">
+
+            <ListView
+                android:id="@+id/milestone_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:dividerHeight="10dp"
+                android:divider="#ECF2F2"
+                android:scrollbars="none"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+</com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout>

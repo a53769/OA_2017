@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:toolbar="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        toolbar:navigationIcon="@drawable/ic_navigate_before_black_24dp">
+        <TextView
+            android:id="@+id/pro_add_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="任务评分"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/score_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginRight="20dp"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:focusableInTouchMode="true">
+        <RelativeLayout
+            android:id="@+id/score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="16dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/task_assess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="任务评价"/>
+            <TextView
+                android:id="@+id/quality"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/task_assess"
+                android:text="质        量"/>
+            <TextView
+                android:id="@+id/efficient"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/quality"
+                android:text="效        率" />
+            <TextView
+                android:id="@+id/attitude"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/efficient"
+                android:text="态        度"/>
+            <TextView
+                android:id="@+id/memo"
+                android:layout_marginTop="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/attitude"
+                android:text="留        言"/>
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:numStars="5"
+                android:rating="0"
+                android:stepSize="1"
+                style="?android:ratingBarStyleIndicator"
+                android:layout_below="@id/task_assess"
+                android:layout_toRightOf="@id/quality"
+                android:isIndicator="false"
+                />
+            <RatingBar
+                android:id="@+id/ratingBar1"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_marginLeft="20dp"
+                android:layout_below="@id/ratingBar"
+                android:layout_toRightOf="@id/efficient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="0"
+                android:stepSize="1"
+                android:isIndicator="false"/>
+            <RatingBar
+                android:id="@+id/ratingBar2"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_marginLeft="20dp"
+                android:layout_below="@id/ratingBar1"
+                android:layout_toRightOf="@id/attitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="0"
+                android:stepSize="1"
+                android:isIndicator="false"/>
+
+            <EditText
+                android:id="@+id/memo_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ratingBar2"
+                android:layout_toRightOf="@id/memo"
+                android:hint="说说对我的评价吧"
+                android:textSize="12sp"
+                android:textColor="@color/gray"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

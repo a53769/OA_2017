@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pro_refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/tasksContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/projectsLL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#ECF2F2">
+
+            <ListView
+                android:id="@+id/projects_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:divider="#00000000"
+                android:dividerHeight="10dp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout>

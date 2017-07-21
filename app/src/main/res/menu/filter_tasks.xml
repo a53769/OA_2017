@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/no_start"
+        android:title="@string/no_start_task" />
+    <item
+        android:id="@+id/process_on"
+        android:title="@string/process_on_task" />
+    <item
+        android:id="@+id/participate"
+        android:title="@string/participate_task" />
+    <item
+        android:id="@+id/completed"
+        android:title="@string/completed_task" />
+    <item
+        android:id="@+id/createdTask"
+        android:title="@string/created_task" />
+</menu>
