@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/name"
         android:gravity="start"
-        android:layout_width="70dp"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:text="renshi"
         android:textSize="18sp"
@@ -19,13 +19,11 @@
         />
     <TextView
         android:id="@+id/state"
-        android:gravity="center"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="20dp"
         android:text="上班"
+        android:gravity="center"
         android:layout_weight="1"
         android:textColor="@color/color_red"/>
     <TextView
@@ -34,6 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
+
         android:text="2017-07-06 17:39"
         android:textColor="@color/dark_grey"
        />

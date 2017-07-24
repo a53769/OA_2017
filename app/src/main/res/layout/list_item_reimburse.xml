@@ -10,30 +10,28 @@
     <TextView
         android:id="@+id/name"
         android:gravity="center"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:text="人事"
         android:textSize="18sp"
         android:textColor="@color/dark_grey"
-        android:layout_weight="1"/>
+        />
     <TextView
         android:id="@+id/state"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="20dp"
         android:text="辩解中"
-        android:textColor="@color/color_red"/>
+        android:textColor="@color/color_red"
+        android:layout_weight="1"/>
     <TextView
         android:id="@+id/time"
         android:gravity="center"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:text="2017-07-06 17:39"
-        android:textColor="@color/dark_grey"
-        android:layout_weight="1"/>
+        android:text="业务招待报销"
+        android:textColor="@color/dark_grey" />
 
 </LinearLayout>

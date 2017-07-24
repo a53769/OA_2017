@@ -56,9 +56,12 @@ public interface IBaseModel {
     String ATTENDANCELOCAATION  ="/admin/my/now_time";//获取wifi范围
     String ATTENDANCELIST       ="/admin/my/attendance_rows";//获取考勤打卡事件列表
     String ATTENDANCEADD        ="/admin/my/attendance_add";//添加考勤打卡事件
-    String USERINFO             ="/admin/index/info";//获取用户信息
     String ATTENDANCESTATE      ="/admin/me/attendance_stat";//考勤状态
+
+    String USERINFO             ="/admin/index/info";//获取用户信息
+
     String GETMESSAGELIST       ="/admin/event/pending";//获取消息列表
+
     String GETEGRESSLIST        ="/admin/my/out";//获取外出列表
     String ADDOUT               ="/admin/my/out";//添加外出申请
     String GETEGRESS            ="/admin/my/out";//获取外出详情
@@ -73,6 +76,11 @@ public interface IBaseModel {
     String CAMCELLEAVE          ="/admin/my/off";//取消请假申请
     String AUDITLEAVE           ="/admin/my/off";//审批请假
     String EDITLEAVE            ="/admin/my/off";//编辑请假
+
+
+    String GETREIMBURSE         ="/admin/my/reimburse";//获取报销列表
+    String GETREIMBURSETYPE     ="/admin/my/reimburse";//获取报销类型列表
+
 
     String UPLOADTOKEN           = "/admin/index/upload_token";// 关联token
 }

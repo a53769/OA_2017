@@ -3,6 +3,7 @@ package com.example.shixi_a.myapplication.applyleave;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 
 import com.example.myokhttp.response.JsonResponseHandler;
 import com.example.shixi_a.myapplication.bean.Leave;
@@ -77,14 +78,26 @@ public class ApplyLeavePresenter implements ApplyLeaveContract.Presenter {
 
 
     @Override
-    public void submitLeave(String stime, String etime, String is_handle, String reason) {
+    public void submitLeave(@NonNull String stime,@NonNull String etime, String is_handle,@NonNull String reason) {
         if (is_handle == null)
             is_handle = "";
         if (handeoverId == null)
             handeoverId = "";
+        if(typeId == null){
+            ToastUtils.showShort(context,"请选择请假类型");
+            return;
+        }
+
+        if(reason.equals(""))
+        {
+            ToastUtils.showShort(context,"请填写请假原因");
+            return;
+        }
+
 
         if(leave == null) {
             mRepository.applyLeave(context, typeId, stime, etime, is_handle, handeoverId, reason, new JsonResponseHandler() {
+
                 @Override
                 public void onSuccess(int statusCode, JSONObject response) throws JSONException {
                     if (response.getBoolean("rt")) {

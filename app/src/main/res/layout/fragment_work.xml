@@ -27,7 +27,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/menu_height"
-        android:background="@color/white">
+        android:background="@drawable/menu_item_bg">
 
         <ImageView
             android:layout_width="@dimen/menu_margin_image_size"
@@ -68,16 +68,13 @@
             android:layout_gravity="center"/>
 
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimary" />
+
     <LinearLayout
         android:id="@+id/ly_task"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/menu_height"
-        android:background="@color/white">
+        android:background="@drawable/menu_item_bg">
 
         <ImageView
             android:layout_width="@dimen/menu_margin_image_size"
@@ -117,16 +114,13 @@
             android:layout_gravity="center"/>
 
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimary" />
+
     <LinearLayout
         android:id="@+id/ly_business"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/menu_height"
-        android:background="@color/white">
+        android:background="@drawable/menu_item_bg">
 
         <ImageView
             android:layout_width="@dimen/menu_margin_image_size"
@@ -167,16 +161,13 @@
             android:layout_gravity="center"/>
 
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimary" />
+
     <LinearLayout
         android:id="@+id/ly_administration"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/menu_height"
-        android:background="@color/white">
+        android:background="@drawable/menu_item_bg">
 
         <ImageView
             android:layout_width="@dimen/menu_margin_image_size"
@@ -217,10 +208,7 @@
             android:layout_gravity="center"/>
 
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimary" />
+
 
 
 </LinearLayout>

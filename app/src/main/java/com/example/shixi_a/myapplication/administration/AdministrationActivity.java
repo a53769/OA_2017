@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.egress.EgressActivity;
 import com.example.shixi_a.myapplication.leave.LeaveActivity;
+import com.example.shixi_a.myapplication.reimbursement.ReimbursementActivity;
 import com.example.shixi_a.myapplication.util.ToastUtils;
 
 /**
@@ -49,7 +50,9 @@ public class AdministrationActivity extends AppCompatActivity implements View.On
 //                ToastUtils.showShort(this,"请假");
                 break;
             case R.id.baoxiao:
-                ToastUtils.showShort(this,"报销");
+                Intent intent2 = new Intent(this, ReimbursementActivity.class);
+                startActivity(intent2);
+//                ToastUtils.showShort(this,"报销");
                 break;
             case R.id.waichu:
                 Intent intent = new Intent(this, EgressActivity.class);
