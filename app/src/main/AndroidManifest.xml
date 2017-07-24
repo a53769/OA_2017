@@ -72,13 +72,14 @@
         <activity android:name=".milestone.MileStoneActivity"/>
         <activity android:name=".egressDetail.EgressDetailActivity"/>
         <activity android:name=".leave.LeaveActivity"/>
-        <activity android:name=".applyleave.ApplyLeaveActivity"/>
+        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".applyleave.ApplyLeaveActivity"/>
         <activity android:name=".leaveDetail.LeaveDetailActivity"/>
         <activity android:name=".leaveType.LeaveTypeActivity"/>
         <activity android:name=".leaveLogs.LeaveLogsActivity"/>
         <activity android:name=".linkMan.LinkManActivity"/>
         <activity android:name=".reimbursement.ReimbursementActivity"/>
         <activity android:name=".reimburseType.ReimburseTypeActivity"/>
+        <activity android:name=".normalReimburse.NormalReimburseActivity"/>
     </application>
 
 </manifest>

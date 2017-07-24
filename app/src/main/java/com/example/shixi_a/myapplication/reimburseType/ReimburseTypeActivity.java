@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.model.reimbursement.ReimbursementRepository;
+import com.example.shixi_a.myapplication.normalReimburse.NormalReimburseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,7 +102,7 @@ public class ReimburseTypeActivity extends AppCompatActivity implements Reimburs
     }
 
     private void showNormalReimburse() {
-        Intent intent = new Intent();
+        Intent intent = new Intent(this, NormalReimburseActivity.class);
         startActivity(intent);
         finish();
     }
