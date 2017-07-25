@@ -13,38 +13,7 @@
             android:background="@color/defaultBack"
             android:paddingBottom="60dp">
 
-            <LinearLayout
-                android:id="@+id/leave_type"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:background="@drawable/menu_item_bg"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="16dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    style="@style/textTitle"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="请假类型"
-                    android:textColor="@color/dark_grey"/>
-
-                <TextView
-                    android:id="@+id/type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/textTitle"
-                    android:text="请选择"
-                    android:textColor="@color/gray"/>
-
-                <ImageView
-                    android:layout_width="11dp"
-                    android:layout_height="22dp"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/next" />
-
-            </LinearLayout>
             <LinearLayout
                 android:id="@+id/leave_start"
                 android:layout_width="match_parent"
@@ -59,7 +28,7 @@
                     style="@style/textTitle"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="开始时间"
+                    android:text="请假开始时间"
                     android:textColor="@color/dark_grey"/>
 
                 <TextView
@@ -92,7 +61,7 @@
                     style="@style/textTitle"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="结束时间"
+                    android:text="请假结束时间"
                     android:textColor="@color/dark_grey"/>
 
                 <TextView
@@ -111,6 +80,143 @@
                     android:src="@drawable/next" />
 
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/leave_type"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="请假类型"
+                    android:textColor="@color/dark_grey"/>
+
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/textTitle"
+                    android:text="请选择"
+                    android:textColor="@color/gray"/>
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/offset"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <LinearLayout
+                    android:id="@+id/extra_work_start"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@drawable/menu_item_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        style="@style/textTitle"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="加班开始时间"
+                        android:textColor="@color/dark_grey"/>
+
+                    <TextView
+                        android:id="@+id/OffStime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/textTitle"
+                        android:hint="请选择"
+                        android:textColorHint="@color/gray"
+                        android:textColor="@color/gray"/>
+
+                    <ImageView
+                        android:layout_width="11dp"
+                        android:layout_height="22dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/next" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/extra_work_end"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@drawable/menu_item_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        style="@style/textTitle"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="加班结束时间"
+                        android:textColor="@color/dark_grey"/>
+
+                    <TextView
+                        android:id="@+id/OffEtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/textTitle"
+                        android:hint="请选择"
+                        android:textColorHint="@color/gray"
+                        android:textColor="@color/gray"/>
+
+                    <ImageView
+                        android:layout_width="11dp"
+                        android:layout_height="22dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/next" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/extra_work_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@drawable/menu_item_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        style="@style/textTitle"
+                        android:layout_height="wrap_content"
+
+                        android:text="加班内容"
+                        android:textColor="@color/dark_grey"/>
+
+                    <EditText
+                        android:id="@+id/offcontent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:layout_marginRight="10dp"
+                        android:hint="请输入加班内容"
+                        android:textColorHint="@color/gray"
+                        android:background="@drawable/normal_bg"
+                        android:textSize="16sp"/>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -212,7 +318,8 @@
                     android:id="@+id/leave_matter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:gravity="end"
+                    android:layout_marginRight="10dp"
                     android:hint="请输入请假原因"
                     android:textColorHint="@color/gray"
                     android:background="@drawable/normal_bg"

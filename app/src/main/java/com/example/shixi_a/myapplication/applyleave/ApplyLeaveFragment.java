@@ -39,7 +39,12 @@ public class ApplyLeaveFragment extends Fragment implements ApplyLeaveContract.V
     private TextView is_personnel;
     private TextView handover_person;
 
+    private TextView offsetStart;
+    private TextView offsetEnd;
+
     private EditText reason;
+
+    private EditText offsetcontent;
 
     private Button submit;
     private String typeName;
@@ -48,6 +53,8 @@ public class ApplyLeaveFragment extends Fragment implements ApplyLeaveContract.V
     private LinearLayout lv_type;
     private LinearLayout personnel;
     private LinearLayout handover;
+
+    private LinearLayout offset;
 
 
     @Override
@@ -113,6 +120,8 @@ public class ApplyLeaveFragment extends Fragment implements ApplyLeaveContract.V
         });
         endTime = (TextView) root.findViewById(R.id.Etime);
 
+        offset = (LinearLayout) root.findViewById(R.id.offset);
+
         personnel = (LinearLayout) root.findViewById(R.id.leave_renshi_edit);
         personnel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +146,11 @@ public class ApplyLeaveFragment extends Fragment implements ApplyLeaveContract.V
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(offset.getVisibility() == View.VISIBLE){
+                    ApplyLeavePresenter.extraWorkStart = offsetStart.getText().toString();
+                    ApplyLeavePresenter.extraWorkEnd = offsetEnd.getText().toString();
+                    ApplyLeavePresenter.extraWorkContent = offsetcontent.getText().toString().trim();
+                }
                 mPresenter.submitLeave(getStime(),getEtime(),is_handle,getReason());
             }
         });
@@ -230,6 +244,69 @@ public class ApplyLeaveFragment extends Fragment implements ApplyLeaveContract.V
     public void initView(String sort_show, String handover_name) {
         type.setText(sort_show);
         handover_person.setText(handover_name);
+    }
+
+    @Override
+    public void showOffset() {
+        offset.setVisibility(View.VISIBLE);
+        LinearLayout overworkstart = (LinearLayout) offset.findViewById(R.id.extra_work_start);
+        overworkstart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showoverstratpicker();
+            }
+        });
+        LinearLayout overworkend = (LinearLayout) offset.findViewById(R.id.extra_work_end);
+        overworkend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                overendpicker();
+            }
+        });
+        offsetStart = (TextView) offset.findViewById(R.id.OffStime);
+        offsetEnd = (TextView) offset.findViewById(R.id.OffEtime);
+        offsetcontent = (EditText) offset.findViewById(R.id.offcontent);
+    }
+
+    @Override
+    public void hideoffset() {
+        offset.setVisibility(View.GONE);
+        ApplyLeavePresenter.extraWorkStart = "";
+        ApplyLeavePresenter.extraWorkEnd = "";
+        ApplyLeavePresenter.extraWorkContent = "";
+
+    }
+
+    @Override
+    public void initOffset(String off_start, String offset_end, String offset_memo) {
+        offsetStart.setText(off_start);
+        offsetEnd.setText(offset_end);
+        offsetcontent.setText(offset_memo);
+        ApplyLeavePresenter.extraWorkStart = off_start;
+        ApplyLeavePresenter.extraWorkEnd = offset_end;
+        ApplyLeavePresenter.extraWorkContent = offset_memo;
+    }
+
+    private void overendpicker() {
+        TimePickerView pvTime = new TimePickerView.Builder(getActivity(), new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                offsetEnd.setText(getDate(date,"yyyy-MM-dd HH:mm:ss"));
+            }
+        }).setLabel("","月","日","时","分","秒").build();
+        pvTime.setDate(Calendar.getInstance());
+        pvTime.show();
+    }
+
+    private void showoverstratpicker() {
+        TimePickerView pvTime = new TimePickerView.Builder(getActivity(), new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                offsetStart.setText(getDate(date,"yyyy-MM-dd HH:mm:ss"));
+            }
+        }).setLabel("","月","日","时","分","秒").build();
+        pvTime.setDate(Calendar.getInstance());
+        pvTime.show();
     }
 
     @Override

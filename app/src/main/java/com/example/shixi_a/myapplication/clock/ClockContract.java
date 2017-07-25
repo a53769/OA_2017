@@ -17,6 +17,8 @@ public interface ClockContract {
         void hideClockOut(String time);
 
         void setLoadingIndicator(final boolean active);
+
+        void hideClockInWithUnCheck();
     }
     interface Presenter extends BasePresenter {
 

@@ -19,6 +19,12 @@ public interface ApplyLeaveContract {
         void coverClick();
 
         void initView(String sort_show, String handover_name);
+
+        void showOffset();
+
+        void hideoffset();
+
+        void initOffset(String off_start, String offset_end, String offset_memo);
     }
     interface Presenter extends BasePresenter {
 

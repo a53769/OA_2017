@@ -29,11 +29,11 @@
                     android:textColor="@color/dark_grey"/>
 
                 <TextView
-                    android:id="@+id/type"
+                    android:id="@+id/admin_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/textTitle"
-                    android:text="renshi"
+                    android:text=""
                     android:textColor="@color/gray"
                     android:layout_marginRight="31dp"/>
 
@@ -87,7 +87,7 @@
                     style="@style/textTitle"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="浪费时间"
+                    android:text="消费时间"
                     android:textColor="@color/dark_grey"/>
 
                 <TextView
@@ -120,7 +120,7 @@
                     android:layout_width="wrap_content"
                     style="@style/textTitle"
                     android:layout_height="wrap_content"
-                    android:text="请假原因"
+                    android:text="总费用（元）"
                     android:textColor="@color/dark_grey"/>
 
                 <EditText

@@ -80,6 +80,7 @@
         <activity android:name=".reimbursement.ReimbursementActivity"/>
         <activity android:name=".reimburseType.ReimburseTypeActivity"/>
         <activity android:name=".normalReimburse.NormalReimburseActivity"/>
+        <activity android:name=".extraWork.ExtraWorkActivity"/>
     </application>
 
 </manifest>

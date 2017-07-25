@@ -27,10 +27,13 @@
                 android:id="@+id/et_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:ems="10"
                 android:hint="@string/input_task_name"
+                android:textColorHint="@color/gray"
                 android:inputType="text"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:background="@drawable/normal_bg"/>
 
             <TextView
                 android:id="@+id/textView2"
@@ -45,7 +48,10 @@
                 android:layout_width="match_parent"
                 android:ems="10"
                 android:hint="@string/input_task_goal"
-                android:inputType="textMultiLine" />
+                android:padding="10dp"
+                android:textColorHint="@color/gray"
+                android:inputType="textMultiLine"
+                android:background="@drawable/normal_bg"/>
 
             <TextView
                 android:id="@+id/textView3"
@@ -58,9 +64,12 @@
                 android:id="@+id/et_method"
                 style="@style/taskinputcontent"
                 android:layout_width="match_parent"
+                android:padding="10dp"
                 android:ems="10"
                 android:hint="@string/input_task_excute"
-                android:inputType="textMultiLine" />
+                android:textColorHint="@color/gray"
+                android:inputType="textMultiLine"
+                android:background="@drawable/normal_bg"/>
 
             <ImageView
                 android:id="@+id/link"
@@ -96,8 +105,9 @@
                     android:id="@+id/pro_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/textTitle"
-                    android:text="请选择"/>
+                    android:hint="请选择"
+                    android:textSize="16sp"
+                    android:textColorHint="@color/gray"/>
 
                 <ImageView
                     android:layout_width="11dp"
@@ -127,8 +137,9 @@
                     android:id="@+id/milestone_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/textTitle"
-                    android:text="请选择"/>
+                    android:hint="请选择"
+                    android:textSize="16sp"
+                    android:textColorHint="@color/gray"/>
 
                 <ImageView
                     android:layout_width="11dp"
@@ -158,8 +169,9 @@
                     android:id="@+id/cla_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/textTitle"
-                    android:text="请选择"/>
+                    android:hint="请选择"
+                    android:textSize="16sp"
+                    android:textColorHint="@color/gray"/>
 
                 <ImageView
                     android:layout_width="11dp"
@@ -244,8 +256,9 @@
                     android:id="@+id/tv_priority"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/textTitle"
-                    android:text="请选择"/>
+                    android:hint="请选择"
+                    android:textSize="16sp"
+                    android:textColorHint="@color/gray"/>
 
                 <ImageView
                     android:layout_width="11dp"

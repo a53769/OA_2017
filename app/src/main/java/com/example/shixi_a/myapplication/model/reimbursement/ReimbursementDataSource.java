@@ -15,4 +15,6 @@ public interface ReimbursementDataSource {
     void getReimburses(Context context, GsonResponseHandler<RowsNoPage<Reimbursement>> gsonResponseHandler);
 
     void getReimburseType(Context context, JsonResponseHandler jsonResponseHandler);
+
+    void appluReimbursement(Context context, JsonResponseHandler callback);
 }

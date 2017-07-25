@@ -18,7 +18,7 @@ public interface LeaveDataSource {
 
     void getTypeList(Context context, JsonResponseHandler gsonResponseHandler);
 
-    void applyLeave(Context context, String typeId, String stime, String etime, String is_handle, String handeoverId, String reason, JsonResponseHandler callback);
+    void applyLeave(Context context, String id, String stime1, String s, String typeId, String stime, String etime, String is_handle, String handeoverId, String reason, JsonResponseHandler callback);
 
     void cancelLeave(Context context, String leaveId, JsonResponseHandler callback);
 
@@ -26,5 +26,5 @@ public interface LeaveDataSource {
 
     void editHRLeave(Context context, String leaveId, String opt, String stime, String etime, JsonResponseHandler jsonResponseHandler);
 
-    void editLeave(Context context, String leaveId, String typeId, String stime, String etime, String is_handle, String handeoverId, String reason, JsonResponseHandler jsonResponseHandler);
+    void editLeave(Context context, String leaveId, String typeId, String stime, String etime, String is_handle, String handeoverId, String reason, String offstart, String offend, String offcontent, JsonResponseHandler jsonResponseHandler);
 }

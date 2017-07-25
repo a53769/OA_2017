@@ -14,7 +14,9 @@ import com.example.shixi_a.myapplication.util.ActivityUtils;
  */
 
 public class ApplyLeaveActivity extends AppCompatActivity {
+
     private ApplyLeavePresenter mPresenter;
+
     private LeaveRepository mRepository;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,7 @@ public class ApplyLeaveActivity extends AppCompatActivity {
         TextView title = (TextView) findViewById(R.id.toolbarTitle);
 
         Leave leave = (Leave) getIntent().getSerializableExtra("leave");
+
         if(leave != null){
             title.setText("编辑请假");
         }

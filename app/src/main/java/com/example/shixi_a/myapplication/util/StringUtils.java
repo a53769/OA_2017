@@ -25,7 +25,7 @@ public class StringUtils {
     }
 
     public static String getSubDate(String str){
-        return str.substring(0,str.length() - 3);
+        return str.substring(5,str.length() - 3);
     }
 
 }

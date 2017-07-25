@@ -81,7 +81,7 @@ public class LeaveTypeActivity extends AppCompatActivity implements LeaveTypeCon
     private void showApplyLeave(String typeId,String value) {
         Intent intent = new Intent();
         intent.putExtra("id", typeId);
-        intent.putExtra("value",value);
+        intent.putExtra("value", value);
         setResult(Activity.RESULT_OK, intent);
         finish();
     }

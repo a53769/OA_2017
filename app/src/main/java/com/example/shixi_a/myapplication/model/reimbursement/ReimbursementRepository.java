@@ -33,4 +33,9 @@ public class ReimbursementRepository extends BaseModel implements ReimbursementD
 
         sendPostRequest(context,BASE + GETREIMBURSETYPE, params, jsonResponseHandler);
     }
+
+    @Override
+    public void appluReimbursement(Context context, JsonResponseHandler callback) {
+
+    }
 }

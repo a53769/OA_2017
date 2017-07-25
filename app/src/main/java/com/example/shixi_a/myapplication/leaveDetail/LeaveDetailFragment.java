@@ -38,6 +38,7 @@ public class LeaveDetailFragment extends Fragment implements LeaveDetailContract
     private TextView turnover_person;
     private TextView reason;
     private LinearLayout deal;
+    private LinearLayout offset;
     private Button button;
     private Button button1;
 
@@ -88,6 +89,8 @@ public class LeaveDetailFragment extends Fragment implements LeaveDetailContract
         is_personnel = (TextView) root.findViewById(R.id.renshi_change);
         turnover_person = (TextView) root.findViewById(R.id.over_person);
         reason = (TextView) root.findViewById(R.id.leave_reason);
+
+        offset = (LinearLayout) root.findViewById(R.id.offset);
 
         deal = (LinearLayout) root.findViewById(R.id.buttonView);
         button = (Button) deal.findViewById(R.id.button);
@@ -219,5 +222,15 @@ public class LeaveDetailFragment extends Fragment implements LeaveDetailContract
             turnover_person.setText(leave.getHandover_name());
         }
         reason.setText(leave.getReason());
+
+        if(leave.getSort().equals("6")){
+            offset.setVisibility(View.VISIBLE);
+            TextView start = (TextView) offset.findViewById(R.id.OffStime);
+            TextView end = (TextView) offset.findViewById(R.id.OffEtime);
+            TextView content = (TextView) offset.findViewById(R.id.Offcontent);
+            start.setText(leave.getOffset_start());
+            end.setText(leave.getOffset_end());
+            content.setText(leave.getOffset_memo());
+        }
     }
 }

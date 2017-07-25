@@ -42,6 +42,8 @@ public class ClockPresenter implements ClockContract.Presenter {
     private double latitude = 0;
     private double altitude = 0;
 
+    private static boolean Flag = false;
+
 
     public ClockPresenter(AttendanceRepository mAttendanceRepository, ClockFragment clockFragment, Context context) {
 
@@ -84,28 +86,6 @@ public class ClockPresenter implements ClockContract.Presenter {
         String sort;
         startStr = str + " 00:00:00";
         endStr = str + " 23:59:59";
-        sort = "1";
-        mRepository.getAttendances(context, sort,startStr, endStr, new GsonResponseHandler<RowsNoPage<Attendance>>() {
-            @Override
-            public void onSuccess(int statusCode, RowsNoPage<Attendance> response) {
-                List<Attendance> attendances = response.rows;
-
-                if (attendances.size() == 0) {
-
-                } else {
-                    Attendance attendance = attendances.get(0);
-                    String time = attendance.getIn_time();
-                    mClockView.hideClockIn(time);
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, String error_msg) {
-                LogUtils.v("获取失败");
-            }
-        });//上班
-        startStr = str + " 00:00:00";
-        endStr = str + " 23:59:59";
         sort = "2";
         mRepository.getAttendances(context, sort, startStr, endStr, new GsonResponseHandler<RowsNoPage<Attendance>>() {
 
@@ -114,11 +94,12 @@ public class ClockPresenter implements ClockContract.Presenter {
                 List<Attendance> attendances = response.rows;
 
                 if (attendances.size() == 0) {
-
+                    Flag = false;
                 } else {
                     Attendance attendance = attendances.get(0);
                     String time = attendance.getIn_time();
                     mClockView.hideClockOut(time);
+                    Flag = true;
                 }
             }
 
@@ -128,6 +109,32 @@ public class ClockPresenter implements ClockContract.Presenter {
             }
 
         });//下班
+        startStr = str + " 00:00:00";
+        endStr = str + " 23:59:59";
+        sort = "1";
+        mRepository.getAttendances(context, sort,startStr, endStr, new GsonResponseHandler<RowsNoPage<Attendance>>() {
+            @Override
+            public void onSuccess(int statusCode, RowsNoPage<Attendance> response) {
+                List<Attendance> attendances = response.rows;
+
+                if (attendances.size() == 0) {
+                    if(Flag){
+                        mClockView.hideClockInWithUnCheck();
+                    }
+                } else {
+                    Attendance attendance = attendances.get(0);
+                    String time = attendance.getIn_time();
+                    mClockView.hideClockIn(time);
+
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, String error_msg) {
+                LogUtils.v("获取失败");
+            }
+        });//上班
+
     }
 
     @Override

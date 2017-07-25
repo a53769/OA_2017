@@ -46,11 +46,20 @@
                             android:textColor="@color/white"
                             android:visibility="gone"/>
                         <TextView
-                            android:id="@+id/tv_in"
+                            android:id="@+id/hide"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
+                            android:text="未打卡"
+                            android:textSize="16sp"
+                            android:textColor="@color/color_red"
+                            android:visibility="gone"/>
+                        <TextView
+                            android:id="@+id/tv_in"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="上班时间9:00"
+                            android:layout_marginLeft="10dp"
                             android:textSize="16sp"
                             android:textColor="@color/dark_grey"/>
 

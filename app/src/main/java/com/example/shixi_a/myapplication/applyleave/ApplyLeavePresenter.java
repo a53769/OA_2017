@@ -10,7 +10,6 @@ import com.example.shixi_a.myapplication.bean.Leave;
 import com.example.shixi_a.myapplication.leaveType.LeaveTypeActivity;
 import com.example.shixi_a.myapplication.linkMan.LinkManActivity;
 import com.example.shixi_a.myapplication.model.leave.LeaveRepository;
-import com.example.shixi_a.myapplication.util.LogUtils;
 import com.example.shixi_a.myapplication.util.ToastUtils;
 
 import org.json.JSONException;
@@ -33,6 +32,10 @@ public class ApplyLeavePresenter implements ApplyLeaveContract.Presenter {
     private String leaveId;
     private boolean FIRST = true;
 
+    static String extraWorkStart = "";
+    static String extraWorkEnd = "";
+    static String extraWorkContent = "";
+
 
     @Override
     public void result(int requestCode, int resultCode, Intent data) {
@@ -40,13 +43,17 @@ public class ApplyLeavePresenter implements ApplyLeaveContract.Presenter {
             String typeName = data.getStringExtra("value");
             typeId = data.getStringExtra("id");
             mApplyLeaveView.setTypeName(typeName);
+            if(typeId.equals("6")){
+                mApplyLeaveView.showOffset();
+            }else{
+                mApplyLeaveView.hideoffset();
+            }
         }
         if(LinkManActivity.REQUEST_USERS_CODE == requestCode && Activity.RESULT_OK == resultCode){
             handeoverId = data.getStringExtra("id");
             String handeover = data.getStringExtra("name");
             mApplyLeaveView.setHandOver(handeover);
         }
-        LogUtils.v("我是result");
     }
 
     public ApplyLeavePresenter(Leave leave, LeaveRepository repository, ApplyLeaveFragment applyLeaveFragment, Context context) {
@@ -67,12 +74,20 @@ public class ApplyLeavePresenter implements ApplyLeaveContract.Presenter {
                 mApplyLeaveView.initView(leave.getSort_show(),leave.getHandover_name());
                 typeId = leave.getSort();
                 handeoverId = leave.getHandover_aid();
+                if(typeId.equals("6")){
+                    mApplyLeaveView.showOffset();
+                    mApplyLeaveView.initOffset(leave.getOff_start(),leave.getOffset_end(),leave.getOffset_memo());
+
+                }
                 FIRST = false;
             }else if(leave.getOpt().equals("hr_edit")){
+                mApplyLeaveView.initView(leave.getSort_show(),leave.getHandover_name());
+                typeId = leave.getSort();
+                handeoverId = leave.getHandover_aid();
+                FIRST = false;
                 mApplyLeaveView.coverClick();
             }
         }
-        LogUtils.v("我是start");
     }
 
 
@@ -96,7 +111,7 @@ public class ApplyLeavePresenter implements ApplyLeaveContract.Presenter {
 
 
         if(leave == null) {
-            mRepository.applyLeave(context, typeId, stime, etime, is_handle, handeoverId, reason, new JsonResponseHandler() {
+            mRepository.applyLeave(context, typeId, stime, etime, is_handle, handeoverId, reason, extraWorkStart,extraWorkEnd,extraWorkContent,new JsonResponseHandler() {
 
                 @Override
                 public void onSuccess(int statusCode, JSONObject response) throws JSONException {
@@ -132,7 +147,7 @@ public class ApplyLeavePresenter implements ApplyLeaveContract.Presenter {
                 }
             });
         }else if(leave.getOpt().equals("edit")){
-            mRepository.editLeave(context, leaveId,typeId, stime, etime, is_handle, handeoverId, reason, new JsonResponseHandler() {
+            mRepository.editLeave(context, leaveId,typeId, stime, etime, is_handle, handeoverId, reason, extraWorkStart,extraWorkEnd,extraWorkContent,new JsonResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, JSONObject response) throws JSONException {
                     if (response.getBoolean("rt")) {

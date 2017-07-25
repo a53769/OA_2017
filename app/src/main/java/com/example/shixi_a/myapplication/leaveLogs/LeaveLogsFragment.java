@@ -147,10 +147,10 @@ public class LeaveLogsFragment extends Fragment implements LeaveLogsContract.Vie
         public View getView(int position, View convertView, ViewGroup parent) {
             View rowView = convertView;
 
-            if(rowView == null ) {
-                LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-                rowView = inflater.inflate(R.layout.list_item_leave_log, parent, false);
-            }
+
+            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+            rowView = inflater.inflate(R.layout.list_item_leave_log, parent, false);
+
             int Positon = getCount() - position - 1;
 
             Leave.Log log = getItem(Positon);

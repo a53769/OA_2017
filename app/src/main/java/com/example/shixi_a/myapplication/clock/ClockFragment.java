@@ -39,6 +39,7 @@ public class ClockFragment extends Fragment implements ClockContract.View {
     private TextView local_out;
     private TextView tvIn;
     private TextView tvOut;
+    private TextView hide;
     private RelativeLayout rl_clockIn;
     private RelativeLayout rl_clockOut;
     private View line_one;
@@ -130,6 +131,8 @@ public class ClockFragment extends Fragment implements ClockContract.View {
         tvIn = (TextView) root.findViewById(R.id.tv_in);
         tvOut = (TextView) root.findViewById(R.id.tv_out);
 
+        hide = (TextView) root.findViewById(R.id.hide);
+
         final ScrollChildSwipeRefreshLayout swipeRefreshLayout = (ScrollChildSwipeRefreshLayout) root.findViewById(R.id.refresh_layout);
         swipeRefreshLayout.setColorSchemeColors(
                 ContextCompat.getColor(getActivity(), R.color.colorPrimary),
@@ -171,6 +174,19 @@ public class ClockFragment extends Fragment implements ClockContract.View {
             }
         });
     }
+
+    @Override
+    public void hideClockInWithUnCheck() {
+        rl_clockIn.setVisibility(View.GONE);
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) line_one.getLayoutParams();
+        params.height = DrawUtil.dip2px(getContext(),40);
+        line_one.setLayoutParams(params);
+        circleIn.setVisibility(View.GONE);
+        circleInDark.setVisibility(View.VISIBLE);
+        hide.setVisibility(View.VISIBLE);
+        tvIn.setText("(上班时间 09:00)");
+    }
+
     @Override
     public void showWIFI(String location) {
         if(location.equals("true")){

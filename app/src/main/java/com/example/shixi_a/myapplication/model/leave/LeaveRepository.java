@@ -41,7 +41,7 @@ public class LeaveRepository extends BaseModel implements LeaveDataSource {
     }
 
     @Override
-    public void applyLeave(Context context, String typeId, String stime, String etime, String is_handle, String handeoverId, String reason, JsonResponseHandler callback) {
+    public void applyLeave(Context context,  String typeId, String stime, String etime, String is_handle, String handeoverId, String reason, String offset_start, String offset_end, String offset_memo,JsonResponseHandler callback) {
         InitRequest(context,"add");
 
         params.put("need_modify",is_handle);
@@ -49,9 +49,9 @@ public class LeaveRepository extends BaseModel implements LeaveDataSource {
         params.put("off_end",etime);
         params.put("sort",typeId);
         params.put("reason",reason);
-        params.put("offset_start","");
-        params.put("offset_end","");
-        params.put("offset_memo","");
+        params.put("offset_start",offset_start);
+        params.put("offset_end",offset_end);
+        params.put("offset_memo",offset_memo);
         params.put("handover_aid",handeoverId);
 
         sendPostRequest(context,BASE + APPLYLEAVE,params,callback);
@@ -93,7 +93,7 @@ public class LeaveRepository extends BaseModel implements LeaveDataSource {
     }
 
     @Override
-    public void editLeave(Context context, String leaveId, String typeId, String stime, String etime, String is_handle, String handeoverId, String reason, JsonResponseHandler jsonResponseHandler) {
+    public void editLeave(Context context, String leaveId, String typeId, String stime, String etime, String is_handle, String handeoverId, String reason, String offstart, String offend, String offcontent, JsonResponseHandler jsonResponseHandler) {
         InitRequest(context,"edit");
 
         params.put("off_id",leaveId);
@@ -103,9 +103,9 @@ public class LeaveRepository extends BaseModel implements LeaveDataSource {
         params.put("off_end",etime);
         params.put("sort",typeId);
         params.put("reason",reason);
-        params.put("offset_start","");
-        params.put("offset_end","");
-        params.put("offset_memo","");
+        params.put("offset_start",offstart);
+        params.put("offset_end",offend);
+        params.put("offset_memo",offcontent);
         params.put("handover_aid",handeoverId);
 
         sendPostRequest(context,BASE + EDITLEAVE,params,jsonResponseHandler);
