@@ -10,9 +10,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.shixi_a.myapplication.GlobalApp;
 import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.administration.AdministrationActivity;
+import com.example.shixi_a.myapplication.bean.Vathome;
 import com.example.shixi_a.myapplication.tasks.TasksActivity;
+import com.example.shixi_a.myapplication.util.ToastUtils;
 
 /**
  * Created by Shixi-A on 2017/5/17.
@@ -49,9 +52,12 @@ public class Fragment_work extends Fragment implements View.OnClickListener {
                 Toast.makeText(getActivity(),"暂无", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ly_task:
-                Intent intent = new Intent(this.getActivity(), TasksActivity.class);
-                startActivity(intent);
-                //Toast.makeText(getActivity(),"任务", Toast.LENGTH_SHORT).show();
+                if(checkOA()){
+                    Intent intent = new Intent(this.getActivity(), TasksActivity.class);
+                    startActivity(intent);
+                }else{
+                    ToastUtils.showLong(getContext(),"您的小蜜蜂密码和OA密码不一样，请把他们重置为一样，才可以使用任务管理功能");
+                }
                 break;
             case R.id.ly_business:
                 Toast.makeText(getActivity(),"暂无", Toast.LENGTH_SHORT).show();
@@ -62,6 +68,13 @@ public class Fragment_work extends Fragment implements View.OnClickListener {
 //                Toast.makeText(getActivity(),"暂无", Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    private boolean checkOA() {
+        Vathome vathome = GlobalApp.getVathome();
+        if(vathome.rt)
+            return true;
+        return false;
     }
 
 }

@@ -8,6 +8,7 @@ public class Reimbursement {
     String id;
     String serial_code;
     String applicant_id;
+    String applicant_name;
     String admin_id;
     String admin_name;
     String fee_total;
@@ -66,6 +67,14 @@ public class Reimbursement {
 
     public void setApplicant_id(String applicant_id) {
         this.applicant_id = applicant_id;
+    }
+
+    public String getApplicant_name() {
+        return applicant_name;
+    }
+
+    public void setApplicant_name(String applicant_name) {
+        this.applicant_name = applicant_name;
     }
 
     public String getAdmin_id() {

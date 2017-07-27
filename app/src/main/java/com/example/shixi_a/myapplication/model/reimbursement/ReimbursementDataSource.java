@@ -16,5 +16,7 @@ public interface ReimbursementDataSource {
 
     void getReimburseType(Context context, JsonResponseHandler jsonResponseHandler);
 
-    void appluReimbursement(Context context, JsonResponseHandler callback);
+    void applyReimbursement(Context context, String realId, String typeId, String time, String cost, String bills, String detail, JsonResponseHandler callback);
+
+    void getReimburse(Context context, String reimburseId, GsonResponseHandler<Reimbursement> gsonResponseHandler);
 }

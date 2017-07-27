@@ -28,4 +28,8 @@ public class StringUtils {
         return str.substring(5,str.length() - 3);
     }
 
+    public static String SubTime(String str){
+        return str.substring(0,str.length() - 9);
+    }
+
 }

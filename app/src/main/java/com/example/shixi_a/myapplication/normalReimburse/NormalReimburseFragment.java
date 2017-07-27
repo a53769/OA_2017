@@ -106,7 +106,7 @@ public class NormalReimburseFragment extends Fragment implements NormalReimburse
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.applyReimbursement();
+                mPresenter.applyReimbursement(getTime(),getCost(),getDetail(),getBills());
             }
         });
 
@@ -135,5 +135,26 @@ public class NormalReimburseFragment extends Fragment implements NormalReimburse
 
     public void setRealName(String realName) {
         real_name.setText(realName);
+    }
+
+    public String getTime() {
+        return time.getText().toString();
+    }
+
+    public String getCost() {
+        return cost.getText().toString().trim();
+    }
+
+    public String getDetail() {
+        return detail.getText().toString().trim();
+    }
+
+    public String getBills() {
+        return bills.getText().toString().trim();
+    }
+
+    @Override
+    public void showReimburse() {
+        getActivity().finish();
     }
 }

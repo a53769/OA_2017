@@ -79,8 +79,9 @@
         <activity android:name=".linkMan.LinkManActivity"/>
         <activity android:name=".reimbursement.ReimbursementActivity"/>
         <activity android:name=".reimburseType.ReimburseTypeActivity"/>
-        <activity android:name=".normalReimburse.NormalReimburseActivity"/>
+        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".normalReimburse.NormalReimburseActivity"/>
         <activity android:name=".extraWork.ExtraWorkActivity"/>
+        <activity android:name=".reimburseDetail.ReimburseDetailActivity"/>
     </application>
 
 </manifest>

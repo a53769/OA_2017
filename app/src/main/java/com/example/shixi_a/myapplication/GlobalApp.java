@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.multidex.MultiDexApplication;
 
+import com.example.shixi_a.myapplication.bean.Vathome;
 import com.example.shixi_a.myapplication.service.DemoIntentService;
 import com.example.shixi_a.myapplication.service.DemoPushService;
 import com.igexin.sdk.PushManager;
@@ -22,6 +23,8 @@ public class GlobalApp extends MultiDexApplication {
     public String user_token;
     public String vathome_token;
     public String userName;
+
+    public static Vathome vathome;
 
     public static GlobalApp getInstance(){
         return instance;
@@ -71,5 +74,13 @@ public class GlobalApp extends MultiDexApplication {
         if(userName==null)
             return sp.getString("name","");
         return userName;
+    }
+
+    public static Vathome getVathome() {
+        return vathome;
+    }
+
+    public static void setVathome(Vathome vathome) {
+        GlobalApp.vathome = vathome;
     }
 }

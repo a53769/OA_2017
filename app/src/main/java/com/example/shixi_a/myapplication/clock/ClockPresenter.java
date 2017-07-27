@@ -63,16 +63,19 @@ public class ClockPresenter implements ClockContract.Presenter {
         loadLocation();
         loadAttendance();
         mClockView.setLoadingIndicator(false);
-        setLocation();
+//        setLocation();
     }
 
     private void loadLocation() {
         mRepository.getLocation(context, new JsonResponseHandler() {
             @Override
             public void onSuccess(int statusCode, JSONObject response) throws JSONException {
-                LogUtils.v("获取成功");
-                String location = response.getString("local");
-                mClockView.showWIFI(location);
+                if(response.getBoolean("rt")) {
+                    String location = response.getString("local");
+                    mClockView.showWIFI(location);
+                }else{
+                    ToastUtils.showShort(context,response.getString("error"));
+                }
             }
 
             @Override
@@ -121,7 +124,7 @@ public class ClockPresenter implements ClockContract.Presenter {
                 List<Attendance> attendances = response.rows;
 
                 if (attendances.size() == 0) {
-                    if(Flag){
+                    if(Flag) {
                         mClockView.hideClockInWithUnCheck();
                     }
                 } else {
@@ -153,8 +156,8 @@ public class ClockPresenter implements ClockContract.Presenter {
             provider = LocationManager.NETWORK_PROVIDER;
 
         } else {
-//            mClockView.getPermission();
-            ToastUtils.showShort(context, "没有可用的位置提供器");
+            mClockView.getPermission();
+//            ToastUtils.showShort(context, "没有可用的位置提供器");
             return;
         }
         Location location = locationManager.getLastKnownLocation(provider);
@@ -165,7 +168,7 @@ public class ClockPresenter implements ClockContract.Presenter {
             altitude = location.getAltitude();
         }
         else{
-            locationManager.requestLocationUpdates("gps", 1000, 0, locationListener);
+            locationManager.requestLocationUpdates(provider, 1000, 0, locationListener);
         }
         locationManager.requestLocationUpdates(provider, 30000, 50, locationListener);
 
@@ -174,6 +177,31 @@ public class ClockPresenter implements ClockContract.Presenter {
 
     @Override
     public void checkOn(String s) {
+        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        //获取当前可用的位置控制器
+        List<String> list = locationManager.getProviders(true);
+
+        if (list.contains(LocationManager.GPS_PROVIDER)) {
+            //是否为GPS位置控制器
+            provider = LocationManager.GPS_PROVIDER;
+        } else if (list.contains(LocationManager.NETWORK_PROVIDER)) {
+            //是否为网络位置控制器
+            provider = LocationManager.NETWORK_PROVIDER;
+
+        }  else {
+            mClockView.getPermission();
+//            ToastUtils.showShort(context, "没有可用的位置提供器");
+            return;
+        }
+        Location location = locationManager.getLastKnownLocation(provider);
+        if (location != null) {
+
+            longitude = location.getLongitude();
+            latitude = location.getLatitude();
+            altitude = location.getAltitude();
+        }
+
+
 
         mRepository.AddAttendance(context,s,String.valueOf(longitude),String.valueOf(latitude),String.valueOf(altitude), new RawResponseHandler() {
             @Override
@@ -184,11 +212,15 @@ public class ClockPresenter implements ClockContract.Presenter {
 
             @Override
             public void onFailure(int statusCode, String error_msg) {
-                ToastUtils.showShort(context,error_msg);
+                if(error_msg.length()>10){
+                    ToastUtils.showShort(context, "请连接网络");
+                }else {
+                    ToastUtils.showShort(context, error_msg);
+                }
             }
         });
 
-
+//        locationManager.requestLocationUpdates(provider, 30000, 50, locationListener);
     }
 
     private final LocationListener locationListener = new LocationListener() {

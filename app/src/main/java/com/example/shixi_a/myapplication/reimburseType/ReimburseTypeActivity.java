@@ -78,7 +78,7 @@ public class ReimburseTypeActivity extends AppCompatActivity implements Reimburs
     private void showApplyReimbursement(String typeId) {
         switch (typeId){
             case "1":
-                showNormalReimburse();
+                showNormalReimburse("1");
                 break;
             case "2":
                 break;
@@ -87,13 +87,13 @@ public class ReimburseTypeActivity extends AppCompatActivity implements Reimburs
             case "4":
                 break;
             case "5":
-                showNormalReimburse();
+                showNormalReimburse("5");
                 break;
             case "6":
-                showNormalReimburse();
+                showNormalReimburse("6");
                 break;
             case "7":
-                showNormalReimburse();
+                showNormalReimburse("7");
                 break;
             default:
                 break;
@@ -101,8 +101,9 @@ public class ReimburseTypeActivity extends AppCompatActivity implements Reimburs
 
     }
 
-    private void showNormalReimburse() {
+    private void showNormalReimburse(String typeId) {
         Intent intent = new Intent(this, NormalReimburseActivity.class);
+        intent.putExtra("type",typeId);
         startActivity(intent);
         finish();
     }

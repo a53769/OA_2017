@@ -12,11 +12,12 @@ import com.example.shixi_a.myapplication.base.BaseView;
 public interface NormalReimburseContract {
     interface View extends BaseView<Presenter> {
 
+        void showReimburse();
     }
     interface Presenter extends BasePresenter {
 
         void result(int requestCode, int resultCode, Intent data);
 
-        void applyReimbursement();
+        void applyReimbursement(String time, String cost, String detail, String bills);
     }
 }

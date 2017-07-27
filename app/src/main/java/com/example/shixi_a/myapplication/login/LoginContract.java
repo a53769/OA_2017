@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.shixi_a.myapplication.base.BasePresenter;
 import com.example.shixi_a.myapplication.base.BaseView;
+import com.example.shixi_a.myapplication.bean.Vathome;
 
 /**
  * Created by Shixi-A on 2017/6/1.
@@ -25,6 +26,8 @@ public interface LoginContract {
         void setToken2(String token);
 
         void setUsername();
+
+        void setVathome(Vathome vathome);
     }
 }
 

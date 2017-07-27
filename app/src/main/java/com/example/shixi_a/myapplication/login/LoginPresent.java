@@ -7,10 +7,7 @@ import com.example.shixi_a.myapplication.GlobalApp;
 import com.example.shixi_a.myapplication.bean.Result;
 import com.example.shixi_a.myapplication.bean.Vathome;
 import com.example.shixi_a.myapplication.model.user.UserRepository;
-import com.example.shixi_a.myapplication.util.LogUtils;
 import com.example.shixi_a.myapplication.util.StringUtils;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by Shixi-A on 2017/6/1.
@@ -47,20 +44,20 @@ public class LoginPresent implements LoginContract.Presenter {
         mUserRepository.userLogin(context, name, password, new GsonResponseHandler<Result<Vathome>>() {
             @Override
             public void onSuccess(int statusCode, Result<Vathome> response) {
-
-                LogUtils.v(TAG, statusCode + " " + response.vathome.token);
-
                 mLoginView.setToken(response.vathome.token);
                 mLoginView.setToken2(response.token);
                 mLoginView.setUsername();
-                LogUtils.v("token", response.token);
+                mLoginView.setVathome(response.vathome);
                 mLoginView.showSucceed();
             }
 
             @Override
             public void onFailure(int statusCode, String error_msg) {
-                LogUtils.v(TAG, statusCode + " " + error_msg);
-                mLoginView.showError("用户名或密码不正确");
+                if (error_msg.equals("fail status=401")){
+                    mLoginView.showError("用户名或密码错误");
+                }else {
+                    mLoginView.showError("请检查网络连接");
+                }
             }
         });
 

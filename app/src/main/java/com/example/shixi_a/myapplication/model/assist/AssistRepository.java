@@ -29,11 +29,11 @@ public class AssistRepository extends BaseModel implements AssistDataSource {
     @Override
     public void getLocation(Context context, String latitude, String longitude, RawResponseHandler jsonResponseHandler) {
         params = new RequestParams();
+        String url = "http://api.map.baidu.com/geocoder/v2/?output=json&ak=iYgosUpwQYpyYU8odmR3Z4U00DdbOCgE&pois=0&location="+latitude+","+longitude;
 
-        sendPostRequest(context,
-                "http://api.map.baidu.com/geocoder/v2/?ak=iYgosUpwQYpyYU8odmR3Z4U00DdbOCgE&callback=renderReverse&location="
-                        +latitude+","+longitude+"&output=json&pois=0",
-                params,
-                jsonResponseHandler);
+//        String url =  "http://api.map.baidu.com/geocoder/v2/?ak=iYgosUpwQYpyYU8odmR3Z4U00DdbOCgE&callback=renderReverse&location="
+//                +latitude+","+longitude+"&output=json&pois=0";
+
+        sendPostRequest(context,url,params,jsonResponseHandler);
     }
 }

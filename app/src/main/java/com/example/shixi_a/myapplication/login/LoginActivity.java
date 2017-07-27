@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.shixi_a.myapplication.GlobalApp;
+import com.example.shixi_a.myapplication.bean.Vathome;
 import com.example.shixi_a.myapplication.home.MainActivity;
 import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.util.ToastUtils;
@@ -108,6 +109,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         app.setUserName(getName());
         editor.putString("name",getName());
         editor.commit();
+    }
+
+    @Override
+    public void setVathome(Vathome vathome) {
+
+        GlobalApp.setVathome(vathome);
     }
 
     public String getName() {

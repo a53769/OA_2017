@@ -26,6 +26,7 @@ public class NormalReimburseActivity extends AppCompatActivity {
 //            title.setText("编辑请假");
 //        }
 
+        String typeId = getIntent().getStringExtra("type");
 
         NormalReimburseFragment normalReimburseFragment = (NormalReimburseFragment) getSupportFragmentManager().findFragmentById(R.id.normal_reimburse_container);
         if (normalReimburseFragment == null){
@@ -34,6 +35,6 @@ public class NormalReimburseActivity extends AppCompatActivity {
         }
         mRepository = new ReimbursementRepository();
 
-        mPresenter = new NormalReimbursePresenter( mRepository, normalReimburseFragment,getApplicationContext());
+        mPresenter = new NormalReimbursePresenter( typeId,mRepository, normalReimburseFragment,getApplicationContext());
     }
 }

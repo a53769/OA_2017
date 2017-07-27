@@ -66,7 +66,7 @@ public class CheckOutPresenter implements CheckOutContract.Presenter {
             provider = LocationManager.NETWORK_PROVIDER;
 
         } else {
-            ToastUtils.showShort(context, "请检查网路连接或开启网络定位权限");
+            ToastUtils.showShort(context, "请检查网路连接并开启定位权限");
             return;
         }
         Location location = locationManager.getLastKnownLocation(provider);

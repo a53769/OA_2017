@@ -10,11 +10,8 @@
         android:layout_height="match_parent"
         android:clickable="true"
         android:orientation="vertical">
-
-
-
         <ScrollView
-            android:id="@+id/sv_leave_detail"
+            android:id="@+id/sv_reimburse_detail"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -26,7 +23,7 @@
                 android:paddingBottom="60dp">
 
                 <LinearLayout
-                    android:id="@+id/leave_log"
+                    android:id="@+id/reimburse_log"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:background="@drawable/menu_item_bg"
@@ -39,7 +36,7 @@
                         style="@style/textTitle"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="请假日志"
+                        android:text="报销日志"
                         android:textColor="@color/dark_grey"/>
 
 
@@ -63,33 +60,7 @@
                         style="@style/textTitle"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="请假人"
-                        android:textColor="@color/dark_grey"/>
-
-                    <TextView
-                        android:id="@+id/person"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="@style/textTitle"
-                        android:text="杨会娟"
-                        android:textColor="@color/gray"
-                        android:layout_marginRight="10dp"/>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:background="@drawable/menu_item_bg"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        style="@style/textTitle"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="请假状态"
+                        android:text="报销状态"
                         android:textColor="@color/dark_grey"/>
 
                     <TextView
@@ -97,13 +68,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/textTitle"
-                        android:text="审批未通过"
+                        android:text="部门经理审核"
                         android:textColor="@color/color_red"
                         android:layout_marginRight="10dp"/>
 
 
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
@@ -117,19 +87,17 @@
                         style="@style/textTitle"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="请假开始时间"
+                        android:text="报销人"
                         android:textColor="@color/dark_grey"/>
 
                     <TextView
-                        android:id="@+id/Stime"
+                        android:id="@+id/person"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/textTitle"
-                        android:text="请选择"
+                        android:text="秦思宇"
                         android:textColor="@color/gray"
                         android:layout_marginRight="10dp"/>
-
-
 
                 </LinearLayout>
                 <LinearLayout
@@ -145,21 +113,21 @@
                         style="@style/textTitle"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="请假结束时间"
+                        android:text="实际报销人"
                         android:textColor="@color/dark_grey"/>
 
                     <TextView
-                        android:id="@+id/Etime"
+                        android:id="@+id/real_person"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/textTitle"
-                        android:text="请选择"
+                        android:text="秦思宇"
                         android:textColor="@color/gray"
                         android:layout_marginRight="10dp"/>
 
-
-
                 </LinearLayout>
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
@@ -173,7 +141,7 @@
                         style="@style/textTitle"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="请假类型"
+                        android:text="报销类别"
                         android:textColor="@color/dark_grey"/>
 
                     <TextView
@@ -181,7 +149,175 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/textTitle"
-                        android:text="请选择"
+                        android:text="一般报销"
+                        android:textColor="@color/gray"
+                        android:layout_marginRight="10dp"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@drawable/menu_item_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        style="@style/textTitle"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="客户用户名"
+                        android:textColor="@color/dark_grey"/>
+
+                    <TextView
+                        android:id="@+id/custom_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/textTitle"
+                        android:text="暂无"
+                        android:textColor="@color/gray"
+                        android:layout_marginRight="10dp"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@drawable/menu_item_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        style="@style/textTitle"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="花费日期"
+                        android:textColor="@color/dark_grey"/>
+
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/textTitle"
+                        android:text="2017-07-25"
+                        android:textColor="@color/gray"
+                        android:layout_marginRight="10dp"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@drawable/menu_item_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        style="@style/textTitle"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="费用明细"
+                        android:textColor="@color/dark_grey"/>
+
+                    <TextView
+                        android:id="@+id/cost_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/textTitle"
+                        android:text="hhh"
+                        android:textColor="@color/gray"
+                        android:layout_marginRight="10dp"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@drawable/menu_item_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        style="@style/textTitle"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="总费用（元）"
+                        android:textColor="@color/dark_grey"/>
+
+                    <TextView
+                        android:id="@+id/cost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/textTitle"
+                        android:text="100"
+                        android:textColor="@color/gray"
+                        android:layout_marginRight="10dp"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@drawable/menu_item_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        style="@style/textTitle"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="单据张数（张）"
+                        android:textColor="@color/dark_grey"/>
+
+                    <TextView
+                        android:id="@+id/bills"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/textTitle"
+                        android:text="2"
+                        android:textColor="@color/gray"
+                        android:layout_marginRight="10dp"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@drawable/menu_item_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        style="@style/textTitle"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="月已报销总额（元）"
+                        android:textColor="@color/dark_grey"/>
+
+                    <TextView
+                        android:id="@+id/month_fee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/textTitle"
+                        android:text="100"
                         android:textColor="@color/gray"
                         android:layout_marginRight="10dp"/>
 
@@ -279,106 +415,6 @@
 
 
                     </LinearLayout>
-                </LinearLayout>
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="补交当前时间之前的请假需人事修改否则不需要"
-                    android:textColor="@color/gray"
-                    android:layout_margin="10dp"/>
-
-                <LinearLayout
-                    android:id="@+id/leave_renshi_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:background="@drawable/menu_item_bg"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        style="@style/textTitle"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="人事修改"
-                        android:textColor="@color/dark_grey"/>
-
-                    <TextView
-                        android:id="@+id/renshi_change"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="@style/textTitle"
-                        android:text="不需要"
-                        android:textColor="@color/gray"
-                        android:layout_marginRight="10dp"/>
-
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="请假超过三天时需填写"
-                    android:textColor="@color/gray"
-                    android:layout_margin="10dp"/>
-
-                <LinearLayout
-                    android:id="@+id/leave_turnover"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:background="@drawable/menu_item_bg"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        style="@style/textTitle"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="工作交接人"
-                        android:textColor="@color/dark_grey"/>
-
-                    <TextView
-                        android:id="@+id/over_person"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="@style/textTitle"
-                        android:text="请选择"
-                        android:textColor="@color/gray"
-                        android:layout_marginRight="10dp"/>
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:background="@drawable/menu_item_bg"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        style="@style/textTitle"
-                        android:layout_height="wrap_content"
-                        android:text="请假原因"
-                        android:textColor="@color/dark_grey"/>
-
-                    <TextView
-                        android:id="@+id/leave_reason"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:hint="放假了"
-                        android:textColorHint="@color/gray"
-                        android:background="@drawable/normal_bg"
-                        android:textSize="16sp"/>
-
-
                 </LinearLayout>
 
             </LinearLayout>

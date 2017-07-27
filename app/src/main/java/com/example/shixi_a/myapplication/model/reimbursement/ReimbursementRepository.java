@@ -8,6 +8,8 @@ import com.example.shixi_a.myapplication.bean.Reimbursement;
 import com.example.shixi_a.myapplication.bean.RowsNoPage;
 import com.example.shixi_a.myapplication.model.BaseModel;
 
+import static com.example.shixi_a.myapplication.util.StringUtils.SubTime;
+
 /**
  * Created by a5376 on 2017/7/24.
  */
@@ -35,7 +37,41 @@ public class ReimbursementRepository extends BaseModel implements ReimbursementD
     }
 
     @Override
-    public void appluReimbursement(Context context, JsonResponseHandler callback) {
+    public void applyReimbursement(Context context, String realId, String typeId, String time, String cost, String bills, String detail, JsonResponseHandler callback) {
+        InitRequest(context,"add");
 
+        time = SubTime(time);
+
+        params.put("applicant_id",realId);
+        params.put("type",typeId);
+        params.put("dttime",time);
+        params.put("fee_total",cost);
+        params.put("bill_num",bills);
+        params.put("memo",detail);
+
+        params.put("user_name[0]","");
+        params.put("out_id","");
+        params.put("start_place","");
+        params.put("end_place","");
+        params.put("outcity_traffic_by","");
+        params.put("outcity_traffic_fee","");
+        params.put("boarding_fee","");
+        params.put("accomdation_fee","");
+        params.put("incity_traffic_by","");
+        params.put("incity_traffic_fee","");
+        params.put("serve_num","");
+
+        sendPostRequest(context,BASE + APPLYREIMBURSE,params,callback);
+
+    }
+
+    @Override
+    public void getReimburse(Context context, String reimburseId, GsonResponseHandler<Reimbursement> gsonResponseHandler) {
+        InitRequest(context,"row");
+
+        params.put("reimburse_id",reimburseId);
+        params.put("show_log","1");
+
+        sendPostRequest(context,BASE + GETREIMBURSEDETAIL,params,gsonResponseHandler);
     }
 }

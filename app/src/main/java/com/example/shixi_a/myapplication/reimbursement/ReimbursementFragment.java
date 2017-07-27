@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.bean.Reimbursement;
+import com.example.shixi_a.myapplication.reimburseDetail.ReimburseDetailActivity;
 import com.example.shixi_a.myapplication.reimburseType.ReimburseTypeActivity;
 import com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout;
 
@@ -198,10 +199,16 @@ public class ReimbursementFragment extends Fragment implements ReimbursementCont
     ReimburseItemListener mItemListener = new ReimburseItemListener() {
         @Override
         public void onReimburseClick(Reimbursement clickedReimburse) {
-
+            showReimburseDetail(clickedReimburse.getId());
         }
 
     };
+
+    private void showReimburseDetail(String id) {
+        Intent intent = new Intent(getActivity(), ReimburseDetailActivity.class);
+        intent.putExtra("id",id);
+        startActivity(intent);
+    }
 
     public interface ReimburseItemListener {
 

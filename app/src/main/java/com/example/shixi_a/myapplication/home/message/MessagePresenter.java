@@ -46,7 +46,11 @@ public class MessagePresenter implements MessageContract.Presenter {
 
             @Override
             public void onFailure(int statusCode, String error_msg) {
-                ToastUtils.showShort(context,"加载消息列表失败");
+                if(error_msg.length()>10){
+                    ToastUtils.showShort(context, "请检查网络连接");
+                }else {
+                    ToastUtils.showShort(context, "加载消息列表失败");
+                }
             }
         });
     }

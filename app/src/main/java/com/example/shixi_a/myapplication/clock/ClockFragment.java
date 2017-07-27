@@ -103,22 +103,14 @@ public class ClockFragment extends Fragment implements ClockContract.View {
         rl_clockIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(LOCAL){
-                    mPresenter.checkOn("1");
-                }else {
-                    ToastUtils.showShort(getContext(),"请先连接Wi-Fi网络");
-                }
+                mPresenter.checkOn("1");
             }
         });
         rl_clockOut = (RelativeLayout) root.findViewById(R.id.rl_clock_out);
         rl_clockOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(LOCAL){
-                    mPresenter.checkOn("2");
-                }else{
-                    ToastUtils.showShort(getContext(),"请先连接Wi-Fi网络");
-                }
+                mPresenter.checkOn("2");
             }
         });
 
