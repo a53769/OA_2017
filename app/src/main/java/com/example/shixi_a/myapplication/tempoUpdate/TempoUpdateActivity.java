@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.shixi_a.myapplication.R;
@@ -55,6 +56,18 @@ public class TempoUpdateActivity extends AppCompatActivity implements TempoUpdat
                 mPresent.saveChange(context,taskId, bubbleSeekBar.getProgress(), getMemo());
             }
         });
+
+        //终止任务
+        ImageView stop = (ImageView) findViewById(R.id.stop_task);
+        stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresent.saveChange(context,taskId,-1,getMemo());
+            }
+        });
+
+
+
         context = getApplicationContext();
 
     }

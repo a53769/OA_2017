@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -20,10 +19,11 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.shixi_a.myapplication.processAddEdit.ProcessAddEditActivity;
-import com.example.shixi_a.myapplication.processAddEdit.ProcessAddEditFragment;
 import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.bean.Process;
+import com.example.shixi_a.myapplication.processAddEdit.ProcessAddEditActivity;
+import com.example.shixi_a.myapplication.processAddEdit.ProcessAddEditFragment;
+import com.example.shixi_a.myapplication.util.ToastUtils;
 import com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout;
 
 import java.util.ArrayList;
@@ -194,7 +194,8 @@ public class ProcessFragment extends Fragment implements ProcessContract.View {
     }
 
     private void showMessage(String message) {
-        Snackbar.make(getView(), message, Snackbar.LENGTH_LONG).show();
+//        Snackbar.make(getView(), message, Snackbar.LENGTH_LONG).show();
+        ToastUtils.showShort(getContext(),message);
     }
 
     private class ProcessAdapter extends BaseAdapter {

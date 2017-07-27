@@ -6,16 +6,19 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.myokhttp.response.GsonResponseHandler;
-import com.example.myokhttp.response.RawResponseHandler;
-import com.example.shixi_a.myapplication.contacts.ContactsActivity;
-import com.example.shixi_a.myapplication.process.ProcessActivity;
-import com.example.shixi_a.myapplication.util.LogUtils;
-import com.example.shixi_a.myapplication.util.ToastUtils;
+import com.example.myokhttp.response.JsonResponseHandler;
 import com.example.shixi_a.myapplication.bean.Assessment;
 import com.example.shixi_a.myapplication.bean.Logs;
 import com.example.shixi_a.myapplication.bean.RowsNoPage;
 import com.example.shixi_a.myapplication.bean.Task;
+import com.example.shixi_a.myapplication.contacts.ContactsActivity;
 import com.example.shixi_a.myapplication.model.task.TaskRepository;
+import com.example.shixi_a.myapplication.process.ProcessActivity;
+import com.example.shixi_a.myapplication.util.LogUtils;
+import com.example.shixi_a.myapplication.util.ToastUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -30,13 +33,14 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter{
     private TaskRepository mRepository;
     private TaskDetailFragment mTaskDetailView;
     private Context context;
+    private String taskId;
     private Task task;
     private String userId="";//转接人ID
     private String stepId = "";//拒绝步骤
     private List<String> mList;
 
 
-    public TaskDetailPresenter(Task task, TaskRepository repository, TaskDetailFragment taskDetailFragment, Context context) {
+    public TaskDetailPresenter(String taskId, TaskRepository repository, TaskDetailFragment taskDetailFragment, Context context) {
 
         mRepository = repository;
 
@@ -46,7 +50,7 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter{
 
         this.context = context;
 
-        this.task = checkNotNull(task);
+        this.taskId = checkNotNull(taskId);
     }
 
     @Override
@@ -65,33 +69,22 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter{
         }
     }
 
-    @Override
-    public String getTempo() {
-        return task.getStep_tempo();
-    }
 
-    @Override
-    public void refuseProcess() {
-        mTaskDetailView.refuseProcess(task.getId());
-    }
 
     @Override
     public void start() {
         mTaskDetailView.setLoadingIndicator(true);
         loadTask();
         loadLog();
-        //换成switch应该效率高一点
-        if(task.getStatus().equals("10")){//完成
-            loadAssess();
-        }else if(task.getStatus().equals("1")){//待接收
-            mTaskDetailView.showNoAccessView();
-        }else if(task.getStatus().equals("8")){//待验收
-            mTaskDetailView.showNoAssessView();
-        }else if(task.getStatus().equals("4")||task.getStatus().equals("3")){//进行中
-            mTaskDetailView.showDoing();
-        }else if(task.getStatus().equals("9")){
-            mTaskDetailView.showNoScoreView();
-        }
+//        else if(task.getStatus().equals("1")){//待接收
+//            mTaskDetailView.showNoAccessView();
+//        }else if(task.getStatus().equals("8")){//待验收
+//            mTaskDetailView.showNoAssessView();
+//        }else if(task.getStatus().equals("4")||task.getStatus().equals("3")){//进行中
+//            mTaskDetailView.showDoing();
+//        }else if(task.getStatus().equals("9")){
+//            mTaskDetailView.showNoScoreView();
+//        }
         mTaskDetailView.setLoadingIndicator(false);
 
 
@@ -114,7 +107,55 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter{
 
     @Override
     public void loadTask() {
+        mRepository.getTask(context, taskId, new GsonResponseHandler<Task>() {
+            @Override
+            public void onSuccess(int statusCode, Task response) {
+                Task taskdetail = response;
+                processTask(taskdetail);
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, String error_msg) {
+                LogUtils.v("详情获取失败");
+            }
+        });
+
+    }
+
+    private void processTask(Task taskdetail) {
+        task = taskdetail;
         mTaskDetailView.initView(task.getTitle(),task.getTarget_desc(),task.getExec_method(),task.getCreater_name(),task.getCreate_time(),task.getStatus());
+
+        if(task.getOpts().contains("refresh")){//更新
+            mTaskDetailView.showDoing();
+        }else if(task.getOpts().contains("deal")){//待接收
+            mTaskDetailView.showNoAccessView();
+        }else if(task.getOpts().contains("acceptance")){//待验收
+            mTaskDetailView.showNoAssessView();
+        }else if(task.getOpts().contains("evaluate")){//待评价
+            mTaskDetailView.showNoScoreView();
+        }else{
+            mTaskDetailView.showNoOpt();
+        }
+        if(task.getStatus().equals("10")){//完成
+            loadAssess();
+        }
+    }
+
+    @Override
+    public String getTempo() {
+        return task.getStep_tempo();
+    }
+
+    @Override
+    public void refuseProcess() {
+        mTaskDetailView.refuseProcess(task.getId());
+    }
+
+    @Override
+    public String getStatus() {
+        return task.getStatus();
     }
 
     @Override
@@ -127,10 +168,16 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter{
         }else{
             tunrnId = userId;
         }
-        mRepository.dealTask(context,task.getId(),action, tunrnId,new RawResponseHandler() {
+        mRepository.dealTask(context,task.getId(),action, tunrnId,new JsonResponseHandler() {
             @Override
-            public void onSuccess(int statusCode, String response) {
-                ToastUtils.showShort(context,"操作成功");
+            public void onSuccess(int statusCode, JSONObject response) throws JSONException {
+                if(response.getBoolean("rt")){
+                    ToastUtils.showShort(context,"操作成功");
+                    mTaskDetailView.showTaskDetail();
+                }else{
+                    ToastUtils.showShort(context,response.getString("error"));
+                }
+
             }
 
             @Override
@@ -148,10 +195,15 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter{
         }else{
             turnId = stepId;
         }
-        mRepository.acceptanceTask(context,task.getId(),action,turnId, new RawResponseHandler() {
+        mRepository.acceptanceTask(context,task.getId(),action,turnId, new JsonResponseHandler() {
             @Override
-            public void onSuccess(int statusCode, String response) {
-                ToastUtils.showShort(context,"操作成功");
+            public void onSuccess(int statusCode, JSONObject response) throws JSONException {
+                if(response.getBoolean("rt")){
+                    ToastUtils.showShort(context,"操作成功");
+                    mTaskDetailView.showTaskDetail();
+                }else{
+                    ToastUtils.showShort(context,response.getString("error"));
+                }
             }
 
             @Override
@@ -163,18 +215,18 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter{
 
     @Override
     public void showScore() {
-        mTaskDetailView.showScore(task.getId());
+        mTaskDetailView.showScore(taskId);
     }
 
     @Override
     public void showUpdateTempo() {
-        mTaskDetailView.showUpdateTempo(task.getId(),task.getStep_tempo());
+        mTaskDetailView.showUpdateTempo(taskId,task.getStep_tempo());
     }
 
     @Override
     public void loadLog() {
 
-        mRepository.getLogs(context, task.getId(), new GsonResponseHandler<RowsNoPage<Logs>>() {
+        mRepository.getLogs(context, taskId, new GsonResponseHandler<RowsNoPage<Logs>>() {
             @Override
             public void onSuccess(int statusCode, RowsNoPage<Logs> response) {
                 List<Logs> logs;

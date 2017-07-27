@@ -6,8 +6,8 @@ package com.example.shixi_a.myapplication.model;
 
 public interface IBaseModel {
     // 服务器地址
-    String BASEURL			= "http://test.api.xmf.com";
-    String BASE             = "https://test2.api.cdnunion.com";
+    String BASEURL			= "http://test.api.xmf.com";//https://app.cdnunion.com/
+    String BASE             = "https://test2.api.cdnunion.com";//http://api.vathome.cn/
 
     String LOGIN			    = "/admin/index/login";//登录
     String LOGOUT			    = "/admin/index/logout";//登出

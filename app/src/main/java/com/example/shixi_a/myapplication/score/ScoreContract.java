@@ -16,5 +16,6 @@ public interface ScoreContract {
     }
     interface View extends BaseView<Presenter> {
 
+        void showTasks();
     }
 }

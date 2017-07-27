@@ -27,7 +27,7 @@ public class TaskRepository extends BaseModel implements TaskDataSource {
         params.put("creater_id", creater_id);
         params.put("filter_status", status);
         params.put("page_num","1");
-        params.put("per_page","25");
+        params.put("per_page","50");
         params.put("priority","");
         params.put("project_id","");
         params.put("step_status","");
@@ -139,7 +139,7 @@ public class TaskRepository extends BaseModel implements TaskDataSource {
     }
 
     @Override
-    public void dealTask(Context context, String id, String action, String turn_id, RawResponseHandler callback) {
+    public void dealTask(Context context, String id, String action, String turn_id, JsonResponseHandler callback) {
         initRequest(context,"deal");
 
         params.put("task_id",id);
@@ -152,7 +152,7 @@ public class TaskRepository extends BaseModel implements TaskDataSource {
     }
 
     @Override
-    public void acceptanceTask(Context context, String id, String action, String turnId, RawResponseHandler callback) {
+    public void acceptanceTask(Context context, String id, String action, String turnId, JsonResponseHandler callback) {
         initRequest(context,"acceptance");
 
         params.put("task_id",id);

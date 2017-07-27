@@ -19,6 +19,8 @@ public interface ClockContract {
         void setLoadingIndicator(final boolean active);
 
         void hideClockInWithUnCheck();
+
+        void getPermission();
     }
     interface Presenter extends BasePresenter {
 

@@ -22,12 +22,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.shixi_a.myapplication.R;
+import com.example.shixi_a.myapplication.bean.Task;
 import com.example.shixi_a.myapplication.taskAddEdit.TaskAddEditActivity;
 import com.example.shixi_a.myapplication.taskAddEdit.TaskAddEditFragment;
 import com.example.shixi_a.myapplication.taskDetail.TaskDetailActivity;
-import com.example.shixi_a.myapplication.taskDetail.TaskDetailFragment;
 import com.example.shixi_a.myapplication.util.ToastUtils;
-import com.example.shixi_a.myapplication.bean.Task;
 import com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout;
 
 import java.util.ArrayList;
@@ -244,9 +243,10 @@ public class TasksFragment extends Fragment implements TasksContract.View {
     @Override
     public void showTaskDetail(Task task) {
         Intent intent = new Intent(getActivity(),TaskDetailActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(TaskDetailFragment.ARGUMENT_DETAIL_TASK,task);
-        intent.putExtras(bundle);
+        intent.putExtra("task_id",task.getId());
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable(TaskDetailFragment.ARGUMENT_DETAIL_TASK,task);
+//        intent.putExtras(bundle);
         startActivity(intent);
     }
 

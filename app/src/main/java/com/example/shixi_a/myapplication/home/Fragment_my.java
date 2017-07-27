@@ -76,6 +76,34 @@ public class Fragment_my extends Fragment {
             }
         });
 
+        //考勤
+        LinearLayout attendance = (LinearLayout) view.findViewById(R.id.attendance);
+        attendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AttendanceActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //帮助与反馈
+        LinearLayout help = (LinearLayout) view .findViewById(R.id.help);
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showShort(context,"暂未开发");
+            }
+        });
+
+        //设置
+        LinearLayout set = (LinearLayout) view.findViewById(R.id.set);
+        set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showShort(context,"暂未开发");
+            }
+        });
+
         //注销
         LinearLayout logout = (LinearLayout) view.findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -98,15 +126,7 @@ public class Fragment_my extends Fragment {
             }
         });
 
-        //考勤
-        LinearLayout attendance = (LinearLayout) view.findViewById(R.id.attendance);
-        attendance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), AttendanceActivity.class);
-                startActivity(intent);
-            }
-        });
+
         return view;
     }
 

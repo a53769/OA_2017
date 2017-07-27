@@ -37,9 +37,9 @@ public interface TaskDataSource {
 
     void getAssessInfo(Context context, String id, GsonResponseHandler<Assessment> callback);
 
-    void dealTask(Context context, String id, String action,String turn_id, RawResponseHandler rawResponseHandler);
+    void dealTask(Context context, String id, String action, String turn_id, JsonResponseHandler callback);
 
-    void acceptanceTask(Context context, String id, String action, String turnId, RawResponseHandler rawResponseHandler);
+    void acceptanceTask(Context context, String id, String action, String turnId, JsonResponseHandler callback);
 
     void evaluateTask(Context context, String taskId, String s, String s1, String s2, String memo, RawResponseHandler rawResponseHandler);
 

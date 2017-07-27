@@ -64,4 +64,8 @@ public class ScoreActivity extends AppCompatActivity implements ScoreContract.Vi
     }
 
 
+    @Override
+    public void showTasks() {
+        finish();
+    }
 }

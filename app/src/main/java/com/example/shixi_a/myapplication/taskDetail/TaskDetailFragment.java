@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.support.test.espresso.core.deps.guava.base.Preconditions.checkNotNull;
+import static com.example.shixi_a.myapplication.util.StringUtils.getSubDate;
 
 /**
  * Created by a5376 on 2017/6/28.
@@ -236,6 +237,7 @@ public class TaskDetailFragment extends Fragment implements TaskDetailContract.V
         Intent intent = new Intent(getActivity(), ScoreActivity.class);
         intent.putExtra(ScoreActivity.ARGUMENT_TASK_ID,taskId);
         startActivity(intent);
+        getActivity().finish();
     }//跳转评价
 
     @Override
@@ -249,6 +251,16 @@ public class TaskDetailFragment extends Fragment implements TaskDetailContract.V
         intent.putExtra(ProcessActivity.EXTRA_TASK_ID,id);
         intent.putExtra("refuse", id);
         startActivityForResult(intent,ProcessActivity.REQUEST_PROCESS_CODE);
+    }
+
+    @Override
+    public void showTaskDetail() {
+        getActivity().finish();
+    }
+
+    @Override
+    public void showNoOpt() {
+        lv_Button.setVisibility(View.GONE);
     }
 
     @Override
@@ -299,9 +311,9 @@ public class TaskDetailFragment extends Fragment implements TaskDetailContract.V
                 if(mPresenter.getTempo().equals("100")){
                     lv_Button.setVisibility(View.GONE);
                 }else {
-                    bt_first.setText("更新");
-                    bt_second.setVisibility(View.GONE);
-                    bt_first.setOnClickListener(new View.OnClickListener() {
+                    bt_second.setText("更新");
+                    bt_first.setVisibility(View.GONE);
+                    bt_second.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {mPresenter.showUpdateTempo();
                         }
@@ -309,11 +321,12 @@ public class TaskDetailFragment extends Fragment implements TaskDetailContract.V
                 }
                 break;
             case 4:
-                bt_first.setText("评价");
-                bt_second.setVisibility(View.GONE);
-                bt_first.setOnClickListener(new View.OnClickListener() {
+                bt_second.setText("评价");
+                bt_first.setVisibility(View.GONE);
+                bt_second.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        mPresenter.showScore();
                         mPresenter.showScore();
                     }
                 });
@@ -372,13 +385,18 @@ public class TaskDetailFragment extends Fragment implements TaskDetailContract.V
     public void showProcess(String id) {
         Intent intent = new Intent(getActivity(), ProcessActivity.class);
         intent.putExtra(ProcessActivity.EXTRA_TASK_ID, id);
-        intent.putExtra("detail", id);
+        if(mPresenter.getStatus().equals("10")) {
+            intent.putExtra("detail", id);
+        }
         startActivity(intent);
     }
 
+    private void refreshchildView() {
+        listView.collapseGroup(0);
+        listView.expandGroup(0);
+    }
 
-
-    private static class MyExpandableListAdapter extends BaseExpandableListAdapter {
+    private class MyExpandableListAdapter extends BaseExpandableListAdapter {
 
         private List<Logs> mLogs;
 
@@ -393,7 +411,10 @@ public class TaskDetailFragment extends Fragment implements TaskDetailContract.V
         public void repalceData(List<Logs> logs) {
             setlist(logs);
             notifyDataSetChanged();//通知内容改变重新生成页面 目前没有效果需要重新展开页来刷新
+            refreshchildView();
         }
+
+
 
         @Override
         public int getGroupCount() {
@@ -455,7 +476,7 @@ public class TaskDetailFragment extends Fragment implements TaskDetailContract.V
             TextView time = (TextView) rowView.findViewById(R.id.time);
             title.setText(log.getUser_name() + log.getAction_show());
             content.setText(log.getMemo());
-            time.setText(log.getIn_time());
+            time.setText(getSubDate(log.getIn_time()));
 
             ArcProgress progressBar = (ArcProgress) rowView.findViewById(R.id.progrssbar);
             progressBar.setProgress(Integer.parseInt(log.getTempo()));

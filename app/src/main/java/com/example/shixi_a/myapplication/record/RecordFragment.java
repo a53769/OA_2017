@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.support.test.espresso.core.deps.guava.base.Preconditions.checkNotNull;
+import static com.example.shixi_a.myapplication.util.StringUtils.getSubDate;
 
 /**
  * Created by a5376 on 2017/7/7.
@@ -154,7 +155,7 @@ public class RecordFragment extends Fragment implements RecordContract.View {
             TextView state = (TextView) rowView.findViewById(R.id.state);
             state.setText(getState(attendance.getSort()));
             TextView time = (TextView) rowView.findViewById(R.id.time);
-            time.setText(attendance.getIn_time());
+            time.setText(getSubDate(attendance.getIn_time()));
 
             return rowView;
         }

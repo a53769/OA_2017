@@ -3,12 +3,9 @@
     android:shape="rectangle">
 
 
-    <solid android:color="@color/white" />
+    <solid android:color="@color/defaultBack" />
 
-    <stroke
-    android:width="2dp"
-    android:color="@color/colorPrimaryDark"
-    android:dashWidth="10dp" />
+
 
     <corners
     android:radius="8dp"

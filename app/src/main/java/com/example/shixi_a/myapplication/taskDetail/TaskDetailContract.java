@@ -42,6 +42,10 @@ public interface TaskDetailContract {
         void showTasks();
 
         void refuseProcess(String id);
+
+        void showTaskDetail();
+
+        void showNoOpt();
     }
     interface Presenter extends BasePresenter {
 
@@ -64,6 +68,8 @@ public interface TaskDetailContract {
         String getTempo();
 
         void refuseProcess();
+
+        String getStatus();
     }
 
 }

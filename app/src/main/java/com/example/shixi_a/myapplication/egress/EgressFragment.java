@@ -1,8 +1,6 @@
 package com.example.shixi_a.myapplication.egress;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -162,9 +160,9 @@ public class EgressFragment extends Fragment implements EgressContract.View {
 
     public void showPopupWindow() {
         View popupView = getActivity().getLayoutInflater().inflate(R.layout.popupwindow, null);
-        final PopupWindow window = new PopupWindow(popupView, 350, 300);//大小
+        final PopupWindow window = new PopupWindow(popupView, 350, 350);//大小
         window.setAnimationStyle(R.style.popup_window_anim);//动画
-        window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#F8F8F8")));//背景色
+//        window.setBackgroundDrawable(new ColorDrawable(R.color.defaultBack));//背景色
         window.setFocusable(true);// 设置可以获取焦点
         window.setOutsideTouchable(true); // 设置可以触摸弹出框以外的区域
         window.update();//更新popupwindow的状态

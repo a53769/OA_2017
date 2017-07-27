@@ -8,8 +8,8 @@
     <ListView
         android:id="@+id/popupList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@color/white"
+        android:layout_height="wrap_content"
+        android:divider="@color/defaultBack"
         android:scrollbars="none">
 
     </ListView>

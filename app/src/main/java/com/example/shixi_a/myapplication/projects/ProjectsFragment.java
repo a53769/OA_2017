@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -18,10 +17,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.shixi_a.myapplication.projectAddEdit.ProjectAddEditActivity;
-import com.example.shixi_a.myapplication.projectAddEdit.ProjectAddEditFragment;
 import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.bean.Project;
+import com.example.shixi_a.myapplication.projectAddEdit.ProjectAddEditActivity;
+import com.example.shixi_a.myapplication.projectAddEdit.ProjectAddEditFragment;
+import com.example.shixi_a.myapplication.util.ToastUtils;
 import com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout;
 
 import java.util.ArrayList;
@@ -179,7 +179,8 @@ public class ProjectsFragment extends Fragment implements ProjectsContract.View 
     }
 
     private void showMessage(String message) {
-        Snackbar.make(getView(), message, Snackbar.LENGTH_LONG).show();
+//        Snackbar.make(getView(), message, Snackbar.LENGTH_LONG).show();
+        ToastUtils.showShort(getContext(),message);
     }
 
     private static class ProjectsAdapter extends BaseAdapter {

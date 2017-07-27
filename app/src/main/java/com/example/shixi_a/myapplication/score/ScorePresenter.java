@@ -33,6 +33,7 @@ public class ScorePresenter implements ScoreContract.Presenter {
                     @Override
                     public void onSuccess(int statusCode, String response) {
                         ToastUtils.showShort(context,"操作成功");
+                        mScoreView.showTasks();
                     }
 
                     @Override

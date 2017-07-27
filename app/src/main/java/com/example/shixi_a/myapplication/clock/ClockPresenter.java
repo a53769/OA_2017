@@ -2,7 +2,9 @@ package com.example.shixi_a.myapplication.clock;
 
 import android.content.Context;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Bundle;
 
 import com.example.myokhttp.response.GsonResponseHandler;
 import com.example.myokhttp.response.JsonResponseHandler;
@@ -42,7 +44,7 @@ public class ClockPresenter implements ClockContract.Presenter {
     private double latitude = 0;
     private double altitude = 0;
 
-    private static boolean Flag = false;
+    private boolean Flag = false;
 
 
     public ClockPresenter(AttendanceRepository mAttendanceRepository, ClockFragment clockFragment, Context context) {
@@ -61,6 +63,7 @@ public class ClockPresenter implements ClockContract.Presenter {
         loadLocation();
         loadAttendance();
         mClockView.setLoadingIndicator(false);
+        setLocation();
     }
 
     private void loadLocation() {
@@ -137,8 +140,7 @@ public class ClockPresenter implements ClockContract.Presenter {
 
     }
 
-    @Override
-    public void checkOn(String s) {
+    private void setLocation() {
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         //获取当前可用的位置控制器
         List<String> list = locationManager.getProviders(true);
@@ -151,15 +153,27 @@ public class ClockPresenter implements ClockContract.Presenter {
             provider = LocationManager.NETWORK_PROVIDER;
 
         } else {
-            ToastUtils.showShort(context, "请检查网路连接或开启网络定位权限");
+//            mClockView.getPermission();
+            ToastUtils.showShort(context, "没有可用的位置提供器");
             return;
         }
         Location location = locationManager.getLastKnownLocation(provider);
         if (location != null) {
+
             longitude = location.getLongitude();
             latitude = location.getLatitude();
             altitude = location.getAltitude();
         }
+        else{
+            locationManager.requestLocationUpdates("gps", 1000, 0, locationListener);
+        }
+        locationManager.requestLocationUpdates(provider, 30000, 50, locationListener);
+
+    }
+
+
+    @Override
+    public void checkOn(String s) {
 
         mRepository.AddAttendance(context,s,String.valueOf(longitude),String.valueOf(latitude),String.valueOf(altitude), new RawResponseHandler() {
             @Override
@@ -173,6 +187,34 @@ public class ClockPresenter implements ClockContract.Presenter {
                 ToastUtils.showShort(context,error_msg);
             }
         });
+
+
     }
+
+    private final LocationListener locationListener = new LocationListener() {
+
+        public void onLocationChanged(Location location) {
+            longitude = location.getLongitude();
+            latitude = location.getLatitude();
+            altitude = location.getAltitude();
+        }
+
+        public void onProviderDisabled(String provider) {
+           LogUtils.v("位置改变但没有可用的位置提供器");
+        }
+        public void onProviderEnabled(String provider) {
+        }
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+        }
+    };
+
+    protected void onDestroy() {
+        if (locationManager != null) {
+            // 关闭程序时将监听器移除
+            locationManager.removeUpdates(locationListener);
+        }
+    }
+
+
 }
 
