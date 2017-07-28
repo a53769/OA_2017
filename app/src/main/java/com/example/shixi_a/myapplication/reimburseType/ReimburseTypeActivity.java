@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.shixi_a.myapplication.R;
+import com.example.shixi_a.myapplication.chooseEgress.ChooseEgressActivity;
 import com.example.shixi_a.myapplication.model.reimbursement.ReimbursementRepository;
 import com.example.shixi_a.myapplication.normalReimburse.NormalReimburseActivity;
 
@@ -81,6 +82,7 @@ public class ReimburseTypeActivity extends AppCompatActivity implements Reimburs
                 showNormalReimburse("1");
                 break;
             case "2":
+                showEgressRecord();
                 break;
             case "3":
                 break;
@@ -98,6 +100,13 @@ public class ReimburseTypeActivity extends AppCompatActivity implements Reimburs
             default:
                 break;
         }
+
+    }
+
+    private void showEgressRecord() {
+        Intent intent = new Intent(this, ChooseEgressActivity.class);
+        startActivity(intent);
+        finish();
 
     }
 

@@ -113,8 +113,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void setVathome(Vathome vathome) {
-
-        GlobalApp.setVathome(vathome);
+        GlobalApp app = (GlobalApp) getApplicationContext();
+        app.setVathome(vathome);
+        editor.putString("vathomert", String.valueOf(vathome.isRt()));
+        editor.commit();
     }
 
     public String getName() {

@@ -1,4 +1,4 @@
-package com.example.shixi_a.myapplication.normalReimburse;
+package com.example.shixi_a.myapplication.trafficReimburse;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.linkMan.LinkManActivity;
+import com.example.shixi_a.myapplication.trafficTool.TrafficToolActivity;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -23,12 +24,16 @@ import java.util.Date;
 import static com.example.shixi_a.myapplication.util.StringUtils.getDate;
 
 /**
- * Created by a5376 on 2017/7/24.
+ * Created by a5376 on 2017/7/28.
  */
 
-public class NormalReimburseFragment extends Fragment implements NormalReimburseContract.View {
+public class TrafficReimburseFragment extends Fragment implements TrafficReimburseContract.View{
 
-    private NormalReimburseContract.Presenter mPresenter;
+    private TrafficReimburseContract.Presenter mPresenter;
+
+    private TextView address;
+
+    private TextView trafficTool;
 
     private TextView admin_name;
 
@@ -36,21 +41,26 @@ public class NormalReimburseFragment extends Fragment implements NormalReimburse
 
     private TextView time;
 
+    private TextView visit_custom;
+
+    private EditText start_address;
+
+    private EditText traffic_cost;
+
     private EditText cost;
 
     private EditText detail;
 
     private EditText bills;
 
+    public TrafficReimburseFragment(){}
 
-    public NormalReimburseFragment(){}
-
-    public static NormalReimburseFragment newInstance() {
-        return new NormalReimburseFragment();
+    public static TrafficReimburseFragment newInstance() {
+        return new TrafficReimburseFragment();
     }
 
     @Override
-    public void setPresenter(NormalReimburseContract.Presenter presenter) {
+    public void setPresenter(TrafficReimburseContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -68,7 +78,7 @@ public class NormalReimburseFragment extends Fragment implements NormalReimburse
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.normal_reimburse_content, container, false);
+        View root = inflater.inflate(R.layout.traffic_reimburse_content, container, false);
 
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -78,14 +88,28 @@ public class NormalReimburseFragment extends Fragment implements NormalReimburse
             }
         });
 
+        address = (TextView) root.findViewById(R.id.end_addr);
+
         admin_name = (TextView) root.findViewById(R.id.admin_name);
+
         real_name = (TextView) root.findViewById(R.id.real_person);
+
         time = (TextView) root.findViewById(R.id.cost_time);
+
+        visit_custom = (TextView) root.findViewById(R.id.visit_custom);
+
+        start_address = (EditText) root.findViewById(R.id.begin_address);
+
+        traffic_cost = (EditText) root.findViewById(R.id.traffic_cost);
+
         cost = (EditText) root.findViewById(R.id.total_cost);
+
         detail = (EditText) root.findViewById(R.id.cost_detail);
+
         bills = (EditText) root.findViewById(R.id.bills_count);
 
         LinearLayout lv1 = (LinearLayout) root.findViewById(R.id.lv_real_person);
+
         LinearLayout lv2 = (LinearLayout) root.findViewById(R.id.lv_cost_time);
 
         lv1.setOnClickListener(new View.OnClickListener() {
@@ -102,15 +126,30 @@ public class NormalReimburseFragment extends Fragment implements NormalReimburse
             }
         });
 
+        LinearLayout tool = (LinearLayout) root.findViewById(R.id.lv_traffic_tool);
+        tool.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTrafficTool();
+            }
+        });
+        trafficTool = (TextView) tool.findViewById(R.id.traffic_tool);
+
+
         Button submit = (Button) root.findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.applyReimbursement(getTime(),getCost(),getDetail(),getBills());
+                mPresenter.submitTrafficReimburse(getStartAddress(),getTrafficCost(),getTime(),getCost(),getDetail(),getBills());
             }
         });
 
         return root;
+    }
+
+    private void showTrafficTool() {
+        Intent intent = new Intent(getActivity(), TrafficToolActivity.class);
+        startActivityForResult(intent, TrafficToolActivity.REQUEST_TOOL_CODE);
     }
 
     private void showLinkMan() {
@@ -127,6 +166,20 @@ public class NormalReimburseFragment extends Fragment implements NormalReimburse
         }).setLabel("","月","日","时","分","秒").build();
         pvTime.setDate(Calendar.getInstance());
         pvTime.show();
+    }
+
+    @Override
+    public void initAddress(String address) {
+        this.address.setText(address);
+    }
+
+    @Override
+    public void showReimbursement() {
+        getActivity().finish();
+    }
+
+    public void setTraffic(String traffic) {
+        trafficTool.setText(traffic);
     }
 
     public void setName(String name) {
@@ -153,8 +206,12 @@ public class NormalReimburseFragment extends Fragment implements NormalReimburse
         return bills.getText().toString().trim();
     }
 
-    @Override
-    public void showReimburse() {
-        getActivity().finish();
+
+    public String getTrafficCost() {
+        return traffic_cost.getText().toString().trim();
+    }
+
+    public String getStartAddress() {
+        return start_address.getText().toString().trim();
     }
 }

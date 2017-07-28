@@ -24,7 +24,7 @@ public class GlobalApp extends MultiDexApplication {
     public String vathome_token;
     public String userName;
 
-    public static Vathome vathome;
+    public Vathome vathome;
 
     public static GlobalApp getInstance(){
         return instance;
@@ -38,8 +38,6 @@ public class GlobalApp extends MultiDexApplication {
         PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
         // DemoIntentService 为第三方自定义的推送服务事件接收类
         PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), DemoIntentService.class);
-
-
 
         setUser_token(null); // 初始化全局变量
         sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -76,11 +74,17 @@ public class GlobalApp extends MultiDexApplication {
         return userName;
     }
 
-    public static Vathome getVathome() {
-        return vathome;
+    public String getVathomeRt() {
+        if(vathome == null)
+            return sp.getString("vathomert","");
+        return String.valueOf(vathome.rt);
     }
 
-    public static void setVathome(Vathome vathome) {
-        GlobalApp.vathome = vathome;
+    public Vathome getVathome(){
+        return this.vathome;
+    }
+
+    public void setVathome(Vathome vathome) {
+        this.vathome = vathome;
     }
 }

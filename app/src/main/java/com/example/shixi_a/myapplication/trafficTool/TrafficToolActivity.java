@@ -1,4 +1,4 @@
-package com.example.shixi_a.myapplication.leaveType;
+package com.example.shixi_a.myapplication.trafficTool;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,34 +11,36 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.shixi_a.myapplication.R;
-import com.example.shixi_a.myapplication.model.leave.LeaveRepository;
+import com.example.shixi_a.myapplication.model.reimbursement.ReimbursementRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by a5376 on 2017/7/18.
+ * Created by a5376 on 2017/7/28.
  */
 
-public class LeaveTypeActivity extends AppCompatActivity implements LeaveTypeContract.View {
+public class TrafficToolActivity extends AppCompatActivity implements TrafficToolContract.View{
 
-    public static final int REQUEST_TYPE_CODE = 6;
+    public static int REQUEST_TOOL_CODE = 8;
 
-    private LeaveTypeContract.Presenter mPresenter;
-    private LeaveRepository mRepository;
+    private ReimbursementRepository mRepository;
+    private TrafficToolContract.Presenter mPresenter;
+
     private ListView listView;
+
     private String typeId;
 
     @Override
-    public void setPresenter(LeaveTypeContract.Presenter presenter) {
+    public void setPresenter(TrafficToolContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_leave_type);
-
+        setContentView(R.layout.activity_traffic_tool);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,13 +52,12 @@ public class LeaveTypeActivity extends AppCompatActivity implements LeaveTypeCon
         listView = (ListView) findViewById(R.id.list_type);
 //        listView.setAdapter(adapter);
 
-        mRepository = new LeaveRepository();
+        mRepository = new ReimbursementRepository();
 
-        mPresenter = new LeaveTypePresenter(mRepository,this,getApplicationContext());
+        mPresenter = new TrafficToolPresenter(mRepository,this,getApplicationContext());
 
         mPresenter.start();
     }
-
 
     @Override
     public void showTypes(final Map<String, String> valueMap) {
@@ -70,7 +71,7 @@ public class LeaveTypeActivity extends AppCompatActivity implements LeaveTypeCon
                 for(Map.Entry entry:valueMap.entrySet()){
                     if(value.equals(entry.getValue())) {
                         typeId = (String) entry.getKey();
-                        showApplyLeave(typeId,value);
+                        showTrafficReimburse(typeId,value);
                     }
                 }
 
@@ -78,11 +79,13 @@ public class LeaveTypeActivity extends AppCompatActivity implements LeaveTypeCon
         });
     }
 
-    private void showApplyLeave(String typeId,String value) {
+    private void showTrafficReimburse(String typeId, String value) {
         Intent intent = new Intent();
         intent.putExtra("id", typeId);
         intent.putExtra("value", value);
         setResult(Activity.RESULT_OK, intent);
         finish();
     }
+
+
 }

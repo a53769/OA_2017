@@ -82,6 +82,9 @@
         <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".normalReimburse.NormalReimburseActivity"/>
         <activity android:name=".extraWork.ExtraWorkActivity"/>
         <activity android:name=".reimburseDetail.ReimburseDetailActivity"/>
+        <activity android:name=".chooseEgress.ChooseEgressActivity"/>
+        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".trafficReimburse.TrafficReimburseActivity"/>
+        <activity android:name=".trafficTool.TrafficToolActivity"/>
     </application>
 
 </manifest>

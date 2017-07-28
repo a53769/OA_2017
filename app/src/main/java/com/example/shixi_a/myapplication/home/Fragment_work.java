@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.example.shixi_a.myapplication.GlobalApp;
 import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.administration.AdministrationActivity;
-import com.example.shixi_a.myapplication.bean.Vathome;
 import com.example.shixi_a.myapplication.tasks.TasksActivity;
 import com.example.shixi_a.myapplication.util.ToastUtils;
 
@@ -71,8 +70,8 @@ public class Fragment_work extends Fragment implements View.OnClickListener {
     }
 
     private boolean checkOA() {
-        Vathome vathome = GlobalApp.getVathome();
-        if(vathome.rt)
+        String rt = GlobalApp.getInstance().getVathomeRt();
+        if(rt.equals("true"))
             return true;
         return false;
     }

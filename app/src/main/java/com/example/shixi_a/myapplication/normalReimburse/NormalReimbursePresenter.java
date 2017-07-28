@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import com.example.myokhttp.response.JsonResponseHandler;
+import com.example.shixi_a.myapplication.GlobalApp;
 import com.example.shixi_a.myapplication.linkMan.LinkManActivity;
 import com.example.shixi_a.myapplication.model.reimbursement.ReimbursementRepository;
 import com.example.shixi_a.myapplication.util.ToastUtils;
@@ -52,8 +52,9 @@ public class NormalReimbursePresenter implements NormalReimburseContract.Present
     }
 
     private void loadName() {
-        sp = PreferenceManager.getDefaultSharedPreferences(context);
-        String name = sp.getString("name","");
+//        sp = PreferenceManager.getDefaultSharedPreferences(context);
+//        String name = sp.getString("name","");
+        String name = GlobalApp.getInstance().getUserName();
         mNormalReimbursView.setName(name);
     }
 

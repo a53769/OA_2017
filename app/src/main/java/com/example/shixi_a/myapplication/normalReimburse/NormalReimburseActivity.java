@@ -23,7 +23,7 @@ public class NormalReimburseActivity extends AppCompatActivity {
 //
 //        Leave leave = (Leave) getIntent().getSerializableExtra("leave");
 //        if(leave != null){
-//            title.setText("编辑请假");
+//            title.setText("编辑外出");
 //        }
 
         String typeId = getIntent().getStringExtra("type");

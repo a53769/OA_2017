@@ -6,11 +6,11 @@ package com.example.shixi_a.myapplication.model;
 
 public interface IBaseModel {
     // 服务器地址
-    String BASEURL			= "http://test.api.xmf.com";
-    String BASE             = "https://test2.api.cdnunion.com";
+//    String BASEURL			= "http://test.api.xmf.com";
+//    String BASE             = "https://test2.api.cdnunion.com";
 
-//    String BASEURL			= "http://api.vathome.cn";
-//    String BASE             = "https://app.cdnunion.com";
+    String BASEURL			= "http://api.vathome.cn";
+    String BASE             = "https://app.cdnunion.com";
 
     String LOGIN			    = "/admin/index/login";//登录
     String LOGOUT			    = "/admin/index/logout";//登出
@@ -85,6 +85,7 @@ public interface IBaseModel {
     String GETREIMBURSEDETAIL   ="/admin/my/reimburse";//获取报销详情
     String GETREIMBURSETYPE     ="/admin/my/reimburse";//获取报销类型列表
     String APPLYREIMBURSE       ="/admin/my/reimburse";//申请报销
+    String GETTRAFFICTOOL       ="/admin/my/reimburse";//获取交通工具
 
 
     String UPLOADTOKEN           = "/admin/index/upload_token";// 关联token

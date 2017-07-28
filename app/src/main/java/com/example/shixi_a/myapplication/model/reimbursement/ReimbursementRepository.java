@@ -74,4 +74,39 @@ public class ReimbursementRepository extends BaseModel implements ReimbursementD
 
         sendPostRequest(context,BASE + GETREIMBURSEDETAIL,params,gsonResponseHandler);
     }
+
+    @Override
+    public void getTrafficTools(Context context, JsonResponseHandler jsonResponseHandler) {
+        InitRequest(context,"incity_traffic_show");
+
+        sendPostRequest(context,BASE + GETTRAFFICTOOL,params,jsonResponseHandler);
+    }
+
+    @Override
+    public void applyReimbursement1(Context context, String realId, String s, String outId, String toolId, String time, String startAddress, String trafficCost, String cost, String detail, String bills, String endAddress, JsonResponseHandler jsonResponseHandler) {
+        InitRequest(context,"add");
+
+        time = SubTime(time);
+
+        params.put("applicant_id",realId);
+        params.put("type",s);
+        params.put("dttime",time);
+        params.put("fee_total",cost);
+        params.put("bill_num",bills);
+        params.put("memo",detail);
+
+        params.put("user_name[0]","");
+        params.put("out_id",outId);
+        params.put("start_place",startAddress);
+        params.put("end_place",endAddress);
+        params.put("outcity_traffic_by","");
+        params.put("outcity_traffic_fee","");
+        params.put("boarding_fee","");
+        params.put("accomdation_fee","");
+        params.put("incity_traffic_by",toolId);
+        params.put("incity_traffic_fee",trafficCost);
+        params.put("serve_num","");
+
+        sendPostRequest(context,BASE + APPLYREIMBURSE,params,jsonResponseHandler);
+    }
 }

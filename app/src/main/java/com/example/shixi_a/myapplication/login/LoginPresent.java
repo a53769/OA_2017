@@ -56,7 +56,7 @@ public class LoginPresent implements LoginContract.Presenter {
                 if (error_msg.equals("fail status=401")){
                     mLoginView.showError("用户名或密码错误");
                 }else {
-                    mLoginView.showError("请检查网络连接");
+                    mLoginView.showError(error_msg);
                 }
             }
         });
