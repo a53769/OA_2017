@@ -18,9 +18,14 @@ import android.widget.TextView;
 import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.bean.Message;
 import com.example.shixi_a.myapplication.checkOut.CheckOutActivity;
+import com.example.shixi_a.myapplication.entertainmentReimburseDetail.EntertainmentReimburseDetailActivity;
 import com.example.shixi_a.myapplication.leaveDetail.LeaveDetailActivity;
 import com.example.shixi_a.myapplication.model.message.MessageRepository;
+import com.example.shixi_a.myapplication.normalReimburseDetail.NormalReimburseDetailActivity;
+import com.example.shixi_a.myapplication.trafficReimburseDetail.TrafficReimburseDetailActivity;
+import com.example.shixi_a.myapplication.tripReimburseDetail.TripReimburseDetailActivity;
 import com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout;
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +40,12 @@ public class Fragment_message extends Fragment implements MessageContract.View{
 
     private MessageContract.Presenter mPresenter;
     private MessageAdapter mAdapter;
+    public static final int REQUEST_CODE = 12;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mPresenter.result(requestCode, resultCode, data);
+    }
 
     @Override
     public void onResume(){
@@ -58,6 +69,15 @@ public class Fragment_message extends Fragment implements MessageContract.View{
         MessageRepository mRepository = new MessageRepository();
 
         mPresenter = new MessagePresenter(mRepository,this, getContext());
+
+        TextView scanQRCode = (TextView) root.findViewById(R.id.scan_qrcode);
+        scanQRCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CaptureActivity.class);
+                startActivityForResult(intent,REQUEST_CODE);
+            }
+        });
 
         ListView listView = (ListView) root.findViewById(R.id.message_list);
         listView.setAdapter(mAdapter);
@@ -105,6 +125,31 @@ public class Fragment_message extends Fragment implements MessageContract.View{
         mAdapter.replaceData(messages);
     }
 
+    @Override
+    public void showReimburseDetail(String id, String type) {
+        switch (type){
+            case "2":
+                Intent intent1 = new Intent(getActivity(), TrafficReimburseDetailActivity.class);
+                intent1.putExtra("id",id);
+                startActivity(intent1);
+                break;
+            case "3":
+                Intent intent2 = new Intent(getActivity(), EntertainmentReimburseDetailActivity.class);
+                intent2.putExtra("id",id);
+                startActivity(intent2);
+                break;
+            case "4":
+                Intent intent3 = new Intent(getActivity(), TripReimburseDetailActivity.class);
+                intent3.putExtra("id",id);
+                startActivity(intent3);
+                break;
+            default:
+                Intent intent = new Intent(getActivity(), NormalReimburseDetailActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
+        }
+    }
+
     private class MessageAdapter extends BaseAdapter{
 
         List<Message> mList;
@@ -139,10 +184,10 @@ public class Fragment_message extends Fragment implements MessageContract.View{
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View rowView = convertView;
-            if(rowView == null){
-                LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-                rowView = inflater.inflate(R.layout.list_item_message, parent, false);
-            }
+
+            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+            rowView = inflater.inflate(R.layout.list_item_message, parent, false);
+
 
             final Message message = getItem(position);
             ImageView imageView = (ImageView) rowView.findViewById(R.id.Im_title);
@@ -172,6 +217,12 @@ public class Fragment_message extends Fragment implements MessageContract.View{
                     break;
                 case "oa_reimburse":
                     imageView.setImageResource(R.drawable.baoxiao);
+                    rowView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            getReimburseDetail(message.getTab_id());
+                        }
+                    });
                     break;
                 default:
                     imageView.setImageResource(R.drawable.waichu);
@@ -187,6 +238,10 @@ public class Fragment_message extends Fragment implements MessageContract.View{
         }
 
 
+    }
+
+    private void getReimburseDetail(String id) {
+        mPresenter.getReimburseDetail(id);//我也不知道当初为啥要拆开写详情页 现在也懒得改了 只能先获取一次 看看是啥类别
     }
 
     private void showcheckOut( String tab_id,String tabName) {

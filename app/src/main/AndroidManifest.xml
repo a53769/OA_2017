@@ -22,6 +22,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 震动权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" /> <!-- 使用照相机权限 -->
+    <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 自动聚焦权限 -->
+
     <application
         android:name=".GlobalApp"
         android:allowBackup="true"
@@ -80,11 +85,21 @@
         <activity android:name=".reimbursement.ReimbursementActivity"/>
         <activity android:name=".reimburseType.ReimburseTypeActivity"/>
         <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".normalReimburse.NormalReimburseActivity"/>
-        <activity android:name=".extraWork.ExtraWorkActivity"/>
-        <activity android:name=".reimburseDetail.ReimburseDetailActivity"/>
+        <activity android:name=".normalReimburseDetail.NormalReimburseDetailActivity"/>
         <activity android:name=".chooseEgress.ChooseEgressActivity"/>
         <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".trafficReimburse.TrafficReimburseActivity"/>
         <activity android:name=".trafficTool.TrafficToolActivity"/>
+        <activity android:name=".reimburseLog.ReimburseLogActivity"/>
+        <activity android:name=".trafficReimburseDetail.TrafficReimburseDetailActivity"/>
+        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".tripReimburse.TripReimburseActivity"/>
+        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".entertainmentReimburse.EntertainmentReimburseActivity"/>
+        <activity android:name=".entertainmentReimburseDetail.EntertainmentReimburseDetailActivity"/>
+        <activity android:name=".tripReimburseDetail.TripReimburseDetailActivity"/>
+        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".financeAudit.FinanceAuditActivity"/>
+        <activity android:name=".financeType.FinanceTypeActivity"/>
+        <activity android:name=".financeDetail.FinanceDetailActivity"/>
+        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".cashierAudit.CashierAuditActivity"/>
+        <activity android:name=".payment.PaymentActivity"/>
     </application>
 
 </manifest>

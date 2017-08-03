@@ -13,6 +13,7 @@ import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.chooseEgress.ChooseEgressActivity;
 import com.example.shixi_a.myapplication.model.reimbursement.ReimbursementRepository;
 import com.example.shixi_a.myapplication.normalReimburse.NormalReimburseActivity;
+import com.example.shixi_a.myapplication.tripReimburse.TripReimburseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,11 +83,13 @@ public class ReimburseTypeActivity extends AppCompatActivity implements Reimburs
                 showNormalReimburse("1");
                 break;
             case "2":
-                showEgressRecord();
+                showEgressRecord("2");
                 break;
             case "3":
+                showEgressRecord("3");
                 break;
             case "4":
+                showTripReimburse();
                 break;
             case "5":
                 showNormalReimburse("5");
@@ -103,8 +106,15 @@ public class ReimburseTypeActivity extends AppCompatActivity implements Reimburs
 
     }
 
-    private void showEgressRecord() {
+    private void showTripReimburse() {
+        Intent intent = new Intent(this, TripReimburseActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void showEgressRecord(String s) {
         Intent intent = new Intent(this, ChooseEgressActivity.class);
+        intent.putExtra("type",s);
         startActivity(intent);
         finish();
 

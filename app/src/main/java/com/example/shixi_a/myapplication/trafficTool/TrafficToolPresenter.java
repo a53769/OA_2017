@@ -22,13 +22,16 @@ public class TrafficToolPresenter implements TrafficToolContract.Presenter {
     private TrafficToolActivity mToolView;
     private Context context;
 
+    private String flag;
+
     private Map<String, String> valueMap;
 
-    public TrafficToolPresenter(ReimbursementRepository repository, TrafficToolActivity trafficToolActivity, Context context) {
+    public TrafficToolPresenter(String flag, ReimbursementRepository repository, TrafficToolActivity trafficToolActivity, Context context) {
         mRepository = repository;
         mToolView = trafficToolActivity;
         mToolView.setPresenter(this);
         this.context = context;
+        this.flag = flag;
     }
 
     @Override
@@ -37,28 +40,54 @@ public class TrafficToolPresenter implements TrafficToolContract.Presenter {
     }
 
     private void loadTools() {
-        mRepository.getTrafficTools(context, new JsonResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, JSONObject response) throws JSONException {
-                JSONObject jsonObject;
-                jsonObject = new JSONObject(response.getString("incity_traffic_arr"));
-                Iterator<String> keyIter= jsonObject.keys();
-                String key;
-                String value ;
-                valueMap = new LinkedHashMap<String, String>();
-                while (keyIter.hasNext()) {
-                    key = keyIter.next();
-                    value = (String) jsonObject.get(key);
-                    valueMap.put(key, value);
+        if(flag.equals("out")){
+            mRepository.getTrafficOutTools(context, new JsonResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, JSONObject response) throws JSONException {
+                    JSONObject jsonObject;
+                    jsonObject = new JSONObject(response.getString("outcity_traffic_arr"));
+                    Iterator<String> keyIter= jsonObject.keys();
+                    String key;
+                    String value ;
+                    valueMap = new LinkedHashMap<String, String>();
+                    while (keyIter.hasNext()) {
+                        key = keyIter.next();
+                        value = (String) jsonObject.get(key);
+                        valueMap.put(key, value);
+                    }
+                    process(valueMap);
                 }
-                process(valueMap);
-            }
 
-            @Override
-            public void onFailure(int statusCode, String error_msg) {
+                @Override
+                public void onFailure(int statusCode, String error_msg) {
 
-            }
-        });
+                }
+            });
+        }else if(flag.equals("in")){
+            mRepository.getTrafficTools(context, new JsonResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, JSONObject response) throws JSONException {
+                    JSONObject jsonObject;
+                    jsonObject = new JSONObject(response.getString("incity_traffic_arr"));
+                    Iterator<String> keyIter= jsonObject.keys();
+                    String key;
+                    String value ;
+                    valueMap = new LinkedHashMap<String, String>();
+                    while (keyIter.hasNext()) {
+                        key = keyIter.next();
+                        value = (String) jsonObject.get(key);
+                        valueMap.put(key, value);
+                    }
+                    process(valueMap);
+                }
+
+                @Override
+                public void onFailure(int statusCode, String error_msg) {
+
+                }
+            });
+        }
+
     }
 
     private void process(Map<String, String> valueMap) {

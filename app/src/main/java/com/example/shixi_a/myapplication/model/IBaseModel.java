@@ -6,14 +6,16 @@ package com.example.shixi_a.myapplication.model;
 
 public interface IBaseModel {
     // 服务器地址
-//    String BASEURL			= "http://test.api.xmf.com";
-//    String BASE             = "https://test2.api.cdnunion.com";
+    String BASEURL			= "http://test.api.xmf.com";
+    String BASE             = "https://test2.api.cdnunion.com";
 
-    String BASEURL			= "http://api.vathome.cn";
-    String BASE             = "https://app.cdnunion.com";
+//    String BASEURL			= "https://xmfapi.cdnunion.com";
+//    String BASE             = "https://app.cdnunion.com";
 
     String LOGIN			    = "/admin/index/login";//登录
     String LOGOUT			    = "/admin/index/logout";//登出
+    String LOGINCHECK           ="/admin/index/login_vcode";//检查登录名
+    String QRCODE               ="/admin/index/qrcode_login";//验证二维码
 
     String ADDPROJECT        = "/user/task/project";//添加项目
     String EDITPROJECT       = "/user/task/project";// 项目信息修改
@@ -86,7 +88,11 @@ public interface IBaseModel {
     String GETREIMBURSETYPE     ="/admin/my/reimburse";//获取报销类型列表
     String APPLYREIMBURSE       ="/admin/my/reimburse";//申请报销
     String GETTRAFFICTOOL       ="/admin/my/reimburse";//获取交通工具
-
+    String CANCELREIMBURSE      ="/admin/my/reimburse";//取消报销申请
+    String AUDITREIMBURSE       ="/admin/my/reimburse";//审批报销申请
+    String GETFINANCETYPE       ="/admin/my/reimburse";//财务报销类别
+    String GETPAYMENT           ="/admin/my/reimburse";//获取支付方式
+    String EDITREIMBURSE        ="/admin/my/reimburse";//编辑报销
 
     String UPLOADTOKEN           = "/admin/index/upload_token";// 关联token
 }

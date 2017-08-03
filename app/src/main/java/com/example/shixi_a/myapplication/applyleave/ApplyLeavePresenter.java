@@ -70,7 +70,7 @@ public class ApplyLeavePresenter implements ApplyLeaveContract.Presenter {
             //分类ID和转接ID分离
             mApplyLeaveView.InitView( leave.getOff_start(), leave.getOff_end(), leave.getNeed_modify(), leave.getReason());
             leaveId = leave.getId();
-            if(leave.getOpt().equals("edit")&& FIRST){
+            if(FIRST){
                 mApplyLeaveView.initView(leave.getSort_show(),leave.getHandover_name());
                 typeId = leave.getSort();
                 handeoverId = leave.getHandover_aid();
@@ -80,12 +80,6 @@ public class ApplyLeavePresenter implements ApplyLeaveContract.Presenter {
 
                 }
                 FIRST = false;
-            }else if(leave.getOpt().equals("hr_edit")){
-                mApplyLeaveView.initView(leave.getSort_show(),leave.getHandover_name());
-                typeId = leave.getSort();
-                handeoverId = leave.getHandover_aid();
-                FIRST = false;
-                mApplyLeaveView.coverClick();
             }
         }
     }
@@ -128,25 +122,7 @@ public class ApplyLeavePresenter implements ApplyLeaveContract.Presenter {
                     ToastUtils.showShort(context, "提交失败");
                 }
             });
-        }else if(leave.getOpt().equals("hr_edit")){
-            String opt = "1";
-            mRepository.editHRLeave(context,leaveId,opt,stime,etime, new JsonResponseHandler() {
-                @Override
-                public void onSuccess(int statusCode, JSONObject response) throws JSONException {
-                    if (response.getBoolean("rt")) {
-                        ToastUtils.showShort(context, "修改成功");
-                        mApplyLeaveView.showLeaveDetail();
-                    } else {
-                        ToastUtils.showShort(context, response.getString("error"));
-                    }
-                }
-
-                @Override
-                public void onFailure(int statusCode, String error_msg) {
-                    ToastUtils.showShort(context, "修改失败");
-                }
-            });
-        }else if(leave.getOpt().equals("edit")){
+        }else {
             mRepository.editLeave(context, leaveId,typeId, stime, etime, is_handle, handeoverId, reason, extraWorkStart,extraWorkEnd,extraWorkContent,new JsonResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, JSONObject response) throws JSONException {

@@ -80,19 +80,6 @@ public class LeaveRepository extends BaseModel implements LeaveDataSource {
     }
 
     @Override
-    public void editHRLeave(Context context, String leaveId, String opt, String stime, String etime, JsonResponseHandler jsonResponseHandler) {
-        InitRequest(context,"edit");
-
-        params.put("off_id",leaveId);
-        params.put("need_modify",opt);
-        params.put("off_start",stime);
-        params.put("off_end",etime);
-
-        sendPostRequest(context,BASE + EDITLEAVE,params,jsonResponseHandler);
-
-    }
-
-    @Override
     public void editLeave(Context context, String leaveId, String typeId, String stime, String etime, String is_handle, String handeoverId, String reason, String offstart, String offend, String offcontent, JsonResponseHandler jsonResponseHandler) {
         InitRequest(context,"edit");
 

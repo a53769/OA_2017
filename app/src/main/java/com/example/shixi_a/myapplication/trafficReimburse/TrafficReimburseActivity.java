@@ -2,8 +2,10 @@ package com.example.shixi_a.myapplication.trafficReimburse;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.example.shixi_a.myapplication.R;
+import com.example.shixi_a.myapplication.bean.Reimbursement;
 import com.example.shixi_a.myapplication.model.reimbursement.ReimbursementRepository;
 import com.example.shixi_a.myapplication.util.ActivityUtils;
 
@@ -19,8 +21,16 @@ public class TrafficReimburseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_traffic_reimburse);
 
+        TextView title = (TextView) findViewById(R.id.toolbarTitle);
+
         String out_id = getIntent().getStringExtra("id");
         String address = getIntent().getStringExtra("addr");
+        String custom = getIntent().getStringExtra("person");
+
+        Reimbursement reimbursement = (Reimbursement) getIntent().getSerializableExtra("reimbursement");
+        if(reimbursement != null){
+            title.setText("编辑报销");
+        }
 
         TrafficReimburseFragment trafficReimburseFragment = (TrafficReimburseFragment) getSupportFragmentManager().findFragmentById(R.id.traffic_reimburse_container);
         if(trafficReimburseFragment == null){
@@ -29,7 +39,7 @@ public class TrafficReimburseActivity extends AppCompatActivity {
         }
 
         mRepository = new ReimbursementRepository();
-        mPresenter = new TrafficReimbursePresenter(out_id,address,mRepository,trafficReimburseFragment,getApplicationContext());
+        mPresenter = new TrafficReimbursePresenter(reimbursement,custom,out_id,address,mRepository,trafficReimburseFragment,getApplicationContext());
     }
 
 }

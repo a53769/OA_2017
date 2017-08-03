@@ -24,7 +24,5 @@ public interface LeaveDataSource {
 
     void AuditLeave(Context context, String leaveId, String status, String s, JsonResponseHandler jsonResponseHandler);
 
-    void editHRLeave(Context context, String leaveId, String opt, String stime, String etime, JsonResponseHandler jsonResponseHandler);
-
     void editLeave(Context context, String leaveId, String typeId, String stime, String etime, String is_handle, String handeoverId, String reason, String offstart, String offend, String offcontent, JsonResponseHandler jsonResponseHandler);
 }

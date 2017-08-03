@@ -8,6 +8,7 @@ import com.example.shixi_a.myapplication.bean.Vathome;
 import com.example.shixi_a.myapplication.service.DemoIntentService;
 import com.example.shixi_a.myapplication.service.DemoPushService;
 import com.igexin.sdk.PushManager;
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 /**
  * Created by Shixi-A on 2017/5/31.
@@ -38,6 +39,9 @@ public class GlobalApp extends MultiDexApplication {
         PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
         // DemoIntentService 为第三方自定义的推送服务事件接收类
         PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), DemoIntentService.class);
+
+        //初始化Google Zxing框架扫描二维码
+        ZXingLibrary.initDisplayOpinion(this);
 
         setUser_token(null); // 初始化全局变量
         sp = PreferenceManager.getDefaultSharedPreferences(this);

@@ -19,6 +19,8 @@ public class ChooseEgressActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_egress);
 
+        String type = getIntent().getStringExtra("type");
+
         ChooseEgressFragment chooseEgressFragment = (ChooseEgressFragment) getSupportFragmentManager().findFragmentById(R.id.choose_out_container);
         if(chooseEgressFragment == null){
             chooseEgressFragment = ChooseEgressFragment.newInstance();
@@ -27,7 +29,7 @@ public class ChooseEgressActivity extends AppCompatActivity {
 
         mRrepository = new EgressRepository();
 
-        mPresenter = new ChooseEgressPresenter(mRrepository,chooseEgressFragment,getApplicationContext());
+        mPresenter = new ChooseEgressPresenter(type,mRrepository,chooseEgressFragment,getApplicationContext());
 
     }
 }

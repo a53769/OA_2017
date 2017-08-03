@@ -18,7 +18,6 @@ import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.applyleave.ApplyLeaveActivity;
 import com.example.shixi_a.myapplication.bean.Leave;
 import com.example.shixi_a.myapplication.leaveDetail.LeaveDetailActivity;
-import com.example.shixi_a.myapplication.util.LogUtils;
 import com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout;
 
 import java.util.ArrayList;
@@ -187,8 +186,6 @@ public class LeaveFragment extends Fragment implements LeaveContract.View {
             }
             time.setText(leave.getSort_show());
 
-
-
             rowView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -211,15 +208,6 @@ public class LeaveFragment extends Fragment implements LeaveContract.View {
             showLeaveDetail(clickedLeave.getId());
         }
 
-        @Override
-        public void onEditLeaveClick(Leave editLeave) {
-
-        }
-
-        @Override
-        public void onDelLeaveClick(Leave delLeave) {
-
-        }
     };
 
 
@@ -228,8 +216,6 @@ public class LeaveFragment extends Fragment implements LeaveContract.View {
 
         void onLeaveClick(Leave clickedLeave);
 
-        void onEditLeaveClick(Leave editLeave);
 
-        void onDelLeaveClick(Leave delLeave);
     }
 }

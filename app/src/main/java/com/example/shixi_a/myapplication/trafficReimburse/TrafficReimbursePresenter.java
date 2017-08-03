@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 
 import com.example.myokhttp.response.JsonResponseHandler;
 import com.example.shixi_a.myapplication.GlobalApp;
+import com.example.shixi_a.myapplication.bean.Reimbursement;
 import com.example.shixi_a.myapplication.linkMan.LinkManActivity;
 import com.example.shixi_a.myapplication.model.reimbursement.ReimbursementRepository;
 import com.example.shixi_a.myapplication.trafficTool.TrafficToolActivity;
@@ -27,22 +28,17 @@ public class TrafficReimbursePresenter implements TrafficReimburseContract.Prese
     private TrafficReimburseFragment mTrafficView;
     private Context context;
 
+
+    private boolean FIRST = true;
     private String realId;
 
+    private Reimbursement reimbursement;
     private String outId;
     private String address;
+    private String custom;
 
     private String toolId;
 
-
-    @Override
-    public void start() {
-//        sp = PreferenceManager.getDefaultSharedPreferences(context);
-//        String name = sp.getString("name","");
-        String name = GlobalApp.getInstance().getUserName();
-        mTrafficView.setName(name);
-        mTrafficView.initAddress(address);
-    }
 
     @Override
     public void result(int requestCode, int resultCode, Intent data) {
@@ -58,13 +54,37 @@ public class TrafficReimbursePresenter implements TrafficReimburseContract.Prese
         }
     }
 
-    public TrafficReimbursePresenter(String out_id, String address, ReimbursementRepository repository, TrafficReimburseFragment trafficReimburseFragment, Context context) {
+    public TrafficReimbursePresenter(Reimbursement reimbursement, String custom, String out_id, String address, ReimbursementRepository repository, TrafficReimburseFragment trafficReimburseFragment, Context context) {
         mRepository = repository;
         mTrafficView = trafficReimburseFragment;
         mTrafficView.setPresenter(this);
         outId = out_id;
         this.context = context;
         this.address = address;
+        this.custom = custom;
+        this.reimbursement = reimbursement;
+    }
+
+    @Override
+    public void start() {
+        if(reimbursement != null){
+            mTrafficView.InitView(reimbursement.getDttime(),reimbursement.getAddr(),reimbursement.getIncity_traffic_fee(),reimbursement.getFee_total(),reimbursement.getMemo(),reimbursement.getBill_num());
+            if(FIRST){
+                mTrafficView.setRealName(reimbursement.getApplicant_name());
+                mTrafficView.setTraffic(reimbursement.getIncify_traffic_show());
+                realId = reimbursement.getApplicant_id();
+                toolId = reimbursement.getIncity_traffic_by();
+                FIRST = false;
+            }
+        }else{
+            mTrafficView.initAddress(address);
+            mTrafficView.initPerson(custom);
+        }
+
+
+        String name = GlobalApp.getInstance().getUserName();
+        mTrafficView.setName(name);
+
     }
 
     @Override
@@ -76,23 +96,41 @@ public class TrafficReimbursePresenter implements TrafficReimburseContract.Prese
         if(realId == null){
             realId = "-1";
         }
-
-        mRepository.applyReimbursement1(context,realId,"2",outId,toolId,time,startAddress,trafficCost,cost,detail,bills,address, new JsonResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, JSONObject response) throws JSONException {
-                if(response.getBoolean("rt")){
-                    ToastUtils.showShort(context,"提交成功");
-                    mTrafficView.showReimbursement();
-                }else{
-                    ToastUtils.showShort(context,response.getString("error"));
+        if(reimbursement == null) {
+            mRepository.applyReimbursement1(context, realId, "2", outId, toolId, time, startAddress, trafficCost, cost, detail, bills, address, new JsonResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, JSONObject response) throws JSONException {
+                    if (response.getBoolean("rt")) {
+                        ToastUtils.showShort(context, "提交成功");
+                        mTrafficView.showReimbursement();
+                    } else {
+                        ToastUtils.showShort(context, response.getString("error"));
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(int statusCode, String error_msg) {
+                @Override
+                public void onFailure(int statusCode, String error_msg) {
 
-            }
-        });
+                }
+            });
+        }else{
+            mRepository.editReimbursement1(context,reimbursement.getId(),realId,"2",toolId,time,startAddress,trafficCost,cost,detail,bills, new JsonResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, JSONObject response) throws JSONException {
+                    if (response.getBoolean("rt")) {
+                        ToastUtils.showShort(context, "修改成功");
+                        mTrafficView.showReimbursement();
+                    } else {
+                        ToastUtils.showShort(context, response.getString("error"));
+                    }
+                }
+
+                @Override
+                public void onFailure(int statusCode, String error_msg) {
+
+                }
+            });
+        }
     }
 
 

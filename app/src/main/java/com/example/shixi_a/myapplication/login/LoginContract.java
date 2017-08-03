@@ -15,7 +15,11 @@ public interface LoginContract {
 
     interface Presenter extends BasePresenter {
 
-        void login(Context context, String name, String password);
+        void login(Context context, String name, String password, String vcode);
+
+        void checkName(Context context, String name);
+
+        void getVcode(Context context, String name);
     }
 
     interface View extends BaseView<Presenter> {

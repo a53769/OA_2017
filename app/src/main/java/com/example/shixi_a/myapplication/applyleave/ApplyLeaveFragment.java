@@ -122,15 +122,6 @@ public class ApplyLeaveFragment extends Fragment implements ApplyLeaveContract.V
 
         offset = (LinearLayout) root.findViewById(R.id.offset);
 
-        personnel = (LinearLayout) root.findViewById(R.id.leave_renshi_edit);
-        personnel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showListDialog();
-            }
-        });
-        is_personnel = (TextView) root.findViewById(R.id.renshi_change);
-
         handover = (LinearLayout) root.findViewById(R.id.leave_turnover);
         handover.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,6 +155,7 @@ public class ApplyLeaveFragment extends Fragment implements ApplyLeaveContract.V
 
     }
 
+    //功能取消
     private void showListDialog() {
         final String[] items = { "不需要" ,"需要"};
         AlertDialog.Builder listDialog = new AlertDialog.Builder(getActivity());
@@ -309,33 +301,7 @@ public class ApplyLeaveFragment extends Fragment implements ApplyLeaveContract.V
         pvTime.show();
     }
 
-    @Override
-    public void coverClick() {
 
-        reason.setFocusable(false);
-        reason.setKeyListener(null);
-
-
-        //目前没有好的办法取消点击事件的监听 使用空函数覆盖
-        lv_type.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        personnel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        handover.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-    }
 
 
 

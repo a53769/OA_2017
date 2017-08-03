@@ -16,8 +16,11 @@ import android.widget.TextView;
 
 import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.bean.Reimbursement;
-import com.example.shixi_a.myapplication.reimburseDetail.ReimburseDetailActivity;
+import com.example.shixi_a.myapplication.entertainmentReimburseDetail.EntertainmentReimburseDetailActivity;
+import com.example.shixi_a.myapplication.normalReimburseDetail.NormalReimburseDetailActivity;
 import com.example.shixi_a.myapplication.reimburseType.ReimburseTypeActivity;
+import com.example.shixi_a.myapplication.trafficReimburseDetail.TrafficReimburseDetailActivity;
+import com.example.shixi_a.myapplication.tripReimburseDetail.TripReimburseDetailActivity;
 import com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout;
 
 import java.util.ArrayList;
@@ -199,15 +202,52 @@ public class ReimbursementFragment extends Fragment implements ReimbursementCont
     ReimburseItemListener mItemListener = new ReimburseItemListener() {
         @Override
         public void onReimburseClick(Reimbursement clickedReimburse) {
-            showReimburseDetail(clickedReimburse.getId());
+            showReimburseDetail(clickedReimburse.getId(),clickedReimburse.getType());
         }
 
     };
 
-    private void showReimburseDetail(String id) {
-        Intent intent = new Intent(getActivity(), ReimburseDetailActivity.class);
-        intent.putExtra("id",id);
-        startActivity(intent);
+    private void showReimburseDetail(String id,String state) {
+        switch (state){
+            case "1":
+                Intent intent = new Intent(getActivity(), NormalReimburseDetailActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
+                break;
+            case "2":
+                Intent intent4 = new Intent(getActivity(), TrafficReimburseDetailActivity.class);
+                intent4.putExtra("id",id);
+                startActivity(intent4);
+                break;
+            case "3":
+                Intent intent6 = new Intent(getActivity(), EntertainmentReimburseDetailActivity.class);
+                intent6.putExtra("id",id);
+                startActivity(intent6);
+                break;
+            case "4":
+                Intent intent5 = new Intent(getActivity(), TripReimburseDetailActivity.class);
+                intent5.putExtra("id",id);
+                startActivity(intent5);
+                break;
+            case "5":
+                Intent intent1 = new Intent(getActivity(), NormalReimburseDetailActivity.class);
+                intent1.putExtra("id",id);
+                startActivity(intent1);
+                break;
+            case "6":
+                Intent intent2 = new Intent(getActivity(), NormalReimburseDetailActivity.class);
+                intent2.putExtra("id",id);
+                startActivity(intent2);
+                break;
+            case "7":
+                Intent intent3 = new Intent(getActivity(), NormalReimburseDetailActivity.class);
+                intent3.putExtra("id",id);
+                startActivity(intent3);
+                break;
+            default:
+                break;
+        }
+
     }
 
     public interface ReimburseItemListener {

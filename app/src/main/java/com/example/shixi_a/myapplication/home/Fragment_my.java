@@ -49,7 +49,7 @@ public class Fragment_my extends Fragment {
 
             @Override
             public void onFailure(int statusCode, String error_msg) {
-                ToastUtils.showShort(context,"加载用户信息失败");
+                ToastUtils.showShort(context,"加载用户信息失败请重新登录");
             }
         });
     }
@@ -134,5 +134,6 @@ public class Fragment_my extends Fragment {
 
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
+        getActivity().finish();
     }
 }

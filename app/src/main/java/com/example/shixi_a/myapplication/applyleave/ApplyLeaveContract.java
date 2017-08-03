@@ -16,7 +16,6 @@ public interface ApplyLeaveContract {
 
         void InitView(String sort_show, String off_start, String off_end, String need_modify);
 
-        void coverClick();
 
         void initView(String sort_show, String handover_name);
 

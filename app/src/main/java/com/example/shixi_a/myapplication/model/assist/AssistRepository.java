@@ -2,6 +2,7 @@ package com.example.shixi_a.myapplication.model.assist;
 
 import android.content.Context;
 
+import com.example.myokhttp.response.JsonResponseHandler;
 import com.example.myokhttp.response.RawResponseHandler;
 import com.example.myokhttp.util.RequestParams;
 import com.example.shixi_a.myapplication.GlobalApp;
@@ -35,5 +36,17 @@ public class AssistRepository extends BaseModel implements AssistDataSource {
 //                +latitude+","+longitude+"&output=json&pois=0";
 
         sendPostRequest(context,url,params,jsonResponseHandler);
+    }
+
+    @Override
+    public void sendQRCode(Context context, String result, JsonResponseHandler jsonResponseHandler) {
+        params = new RequestParams();
+
+        String token = GlobalApp.getInstance().getVathome_token();
+        params.put("opt","qrcode");
+        params.put("token",token);
+        params.put("qrcode",result);
+
+        sendPostRequest(context,BASE + QRCODE,params,jsonResponseHandler);
     }
 }

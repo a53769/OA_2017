@@ -39,33 +39,43 @@
                 android:ellipsize="end"
                 android:maxLines="1" />
         </LinearLayout>
-        <TextView
-            android:id="@+id/task_timestamp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="陈晨  发布于2016年2月23日14:25"
-            style="@style/textContentt"/>
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/task_timestamp"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="陈晨  发布于2016年2月23日14:25"
+                style="@style/textContentt"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/task_edit"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+
+                android:scaleType="centerInside"
+                android:src="@drawable/edit"/>
+            <ImageView
+
+                android:id="@+id/task_delete"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+
+                android:src="@drawable/delete"/>
+        </LinearLayout>
+
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/task_edit"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="10dp"
-        android:layout_gravity="bottom"
-        android:scaleType="centerInside"
-        android:src="@drawable/edit"/>
-    <ImageView
-        android:id="@+id/task_delete"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_gravity="bottom"
-        android:src="@drawable/delete"/>
+
 
 
 </LinearLayout>

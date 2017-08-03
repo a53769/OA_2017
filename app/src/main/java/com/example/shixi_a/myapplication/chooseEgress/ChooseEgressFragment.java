@@ -16,12 +16,14 @@ import android.widget.TextView;
 
 import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.bean.Egress;
+import com.example.shixi_a.myapplication.entertainmentReimburse.EntertainmentReimburseActivity;
 import com.example.shixi_a.myapplication.trafficReimburse.TrafficReimburseActivity;
 import com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.shixi_a.myapplication.R.id.addr;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -117,10 +119,21 @@ public class ChooseEgressFragment extends Fragment implements ChooseEgressContra
     }
 
     @Override
-    public void showTrafficReimmburse(String id, String addr) {
+    public void showTrafficReimmburse(String id, String addr, String s) {
         Intent intent = new Intent(getActivity(), TrafficReimburseActivity.class);
         intent.putExtra("id",id);
         intent.putExtra("addr",addr);
+        intent.putExtra("person",s);
+        startActivity(intent);
+        getActivity().finish();
+    }
+
+    @Override
+    public void showEntertainmentReimburse(String id, String address, String s) {
+        Intent intent = new Intent(getActivity(), EntertainmentReimburseActivity.class);
+        intent.putExtra("id",id);
+        intent.putExtra("addr",address);
+        intent.putExtra("person",s);
         startActivity(intent);
         getActivity().finish();
     }
@@ -170,7 +183,7 @@ public class ChooseEgressFragment extends Fragment implements ChooseEgressContra
             final Egress egress = getItem(position);
             TextView title = (TextView) rowView.findViewById(R.id.title);
             final TextView address = (TextView) rowView.findViewById(R.id.address);
-            TextView person = (TextView) rowView.findViewById(R.id.person);
+            final TextView person = (TextView) rowView.findViewById(R.id.person);
             title.setText(egress.getAdminname() + "  " + egress.getOut_time());
             if(egress.getStatus().equals("1")||egress.getStatus().equals("2")){
                 address.setText(getString(egress.getAddr()));
@@ -183,7 +196,7 @@ public class ChooseEgressFragment extends Fragment implements ChooseEgressContra
             rowView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mItemListener.onEgressClick(egress.getId(),address.getText().toString());
+                    mItemListener.onEgressClick(egress.getId(),address.getText().toString(),person.getText().toString());
                 }
             });
 
@@ -202,8 +215,8 @@ public class ChooseEgressFragment extends Fragment implements ChooseEgressContra
 
     EgressItemListener mItemListener = new EgressItemListener() {
         @Override
-        public void onEgressClick(String id, String address) {
-            mPresenter.selectedEgress(id,address);
+        public void onEgressClick(String id, String address, String person) {
+            mPresenter.selectedEgress(id,address,person);
         }
 
 
@@ -211,7 +224,7 @@ public class ChooseEgressFragment extends Fragment implements ChooseEgressContra
 
     public interface EgressItemListener {
 
-        void onEgressClick(String id,String address);
+        void onEgressClick(String id, String address, String person);
 
     }
 }

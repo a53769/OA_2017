@@ -19,13 +19,15 @@ public class ChooseEgressPresenter implements ChooseEgressContract.Presenter{
     private EgressRepository mRepository;
     private ChooseEgressFragment mChooseEgressView;
     private Context context;
+    private String type;
 
 
-    public ChooseEgressPresenter(EgressRepository rrepository, ChooseEgressFragment chooseEgressFragment, Context context) {
+    public ChooseEgressPresenter(String type, EgressRepository rrepository, ChooseEgressFragment chooseEgressFragment, Context context) {
         mRepository = rrepository;
         mChooseEgressView = chooseEgressFragment;
         mChooseEgressView.setPresenter(this);
         this.context = context;
+        this.type = type;
     }
 
     @Override
@@ -54,8 +56,12 @@ public class ChooseEgressPresenter implements ChooseEgressContract.Presenter{
     }
 
     @Override
-    public void selectedEgress(String id ,String address) {
-        mChooseEgressView.showTrafficReimmburse(id,address);
+    public void selectedEgress(String id, String address, String s) {
+        if(type.equals("2")) {
+            mChooseEgressView.showTrafficReimmburse(id, address, s);
+        }else if(type.equals("3")){
+            mChooseEgressView.showEntertainmentReimburse(id,address,s);
+        }
     }
 
 

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 
 import com.example.myokhttp.response.JsonResponseHandler;
 import com.example.shixi_a.myapplication.GlobalApp;
+import com.example.shixi_a.myapplication.bean.Reimbursement;
 import com.example.shixi_a.myapplication.linkMan.LinkManActivity;
 import com.example.shixi_a.myapplication.model.reimbursement.ReimbursementRepository;
 import com.example.shixi_a.myapplication.util.ToastUtils;
@@ -25,8 +26,11 @@ public class NormalReimbursePresenter implements NormalReimburseContract.Present
     private NormalReimburseFragment mNormalReimbursView;
     private Context context;
 
+    private boolean FIRST = true;
     private String realId;
     private String typeId;
+
+    private Reimbursement reimbursement;
 
 
     @Override
@@ -38,16 +42,26 @@ public class NormalReimbursePresenter implements NormalReimburseContract.Present
         }
     }
 
-    public NormalReimbursePresenter(String typeId, ReimbursementRepository repository, NormalReimburseFragment normalReimburseFragment, Context context) {
+    public NormalReimbursePresenter(Reimbursement reimbursement, String typeId, ReimbursementRepository repository, NormalReimburseFragment normalReimburseFragment, Context context) {
         mRepository = repository;
         mNormalReimbursView = normalReimburseFragment;
         mNormalReimbursView.setPresenter(this);
         this.context = context;
         this.typeId = typeId;
+        this.reimbursement = reimbursement;
     }
 
     @Override
     public void start() {
+        if (reimbursement != null){
+            mNormalReimbursView.InitView(reimbursement.getDttime(),reimbursement.getFee_total(),reimbursement.getMemo(),reimbursement.getBill_num());
+            typeId = reimbursement.getType();
+            if(FIRST){
+                realId = reimbursement.getApplicant_id();
+                mNormalReimbursView.setRealName(reimbursement.getApplicant_name());
+                FIRST = false;
+            }
+        }
         loadName();
     }
 
@@ -60,22 +74,41 @@ public class NormalReimbursePresenter implements NormalReimburseContract.Present
 
     @Override
     public void applyReimbursement(String time, String cost, String detail, String bills) {
-        mRepository.applyReimbursement(context,realId,typeId,time,cost,bills,detail, new JsonResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, JSONObject response) throws JSONException {
-                if(response.getBoolean("rt")){
-                    ToastUtils.showShort(context,"提交成功");
-                    mNormalReimbursView.showReimburse();
-                }else{
-                    ToastUtils.showShort(context,response.getString("error"));
+        if(reimbursement == null) {
+            mRepository.applyReimbursement(context, realId, typeId, time, cost, bills, detail, new JsonResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, JSONObject response) throws JSONException {
+                    if (response.getBoolean("rt")) {
+                        ToastUtils.showShort(context, "提交成功");
+                        mNormalReimbursView.showReimburse();
+                    } else {
+                        ToastUtils.showShort(context, response.getString("error"));
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(int statusCode, String error_msg) {
-                ToastUtils.showShort(context,"提交失败");
-            }
-        });
+                @Override
+                public void onFailure(int statusCode, String error_msg) {
+                    ToastUtils.showShort(context, "提交失败");
+                }
+            });
+        }else{
+            mRepository.editReimbursement(context,reimbursement.getId(),reimbursement.getType(),realId,time,cost,detail,bills ,new JsonResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, JSONObject response) throws JSONException {
+                    if(response.getBoolean("rt")){
+                        ToastUtils.showShort(context,"修改成功");
+                        mNormalReimbursView.showReimburse();
+                    }else{
+                        ToastUtils.showShort(context,response.getString("error"));
+                    }
+                }
+
+                @Override
+                public void onFailure(int statusCode, String error_msg) {
+
+                }
+            });
+        }
     }
 
 }

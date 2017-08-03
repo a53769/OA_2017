@@ -1,12 +1,22 @@
 package com.example.shixi_a.myapplication.home.message;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 
 import com.example.myokhttp.response.GsonResponseHandler;
+import com.example.myokhttp.response.JsonResponseHandler;
 import com.example.shixi_a.myapplication.bean.Message;
+import com.example.shixi_a.myapplication.bean.Reimbursement;
 import com.example.shixi_a.myapplication.bean.RowsNoPage;
+import com.example.shixi_a.myapplication.model.assist.AssistRepository;
 import com.example.shixi_a.myapplication.model.message.MessageRepository;
+import com.example.shixi_a.myapplication.model.reimbursement.ReimbursementRepository;
 import com.example.shixi_a.myapplication.util.ToastUtils;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -19,6 +29,29 @@ public class MessagePresenter implements MessageContract.Presenter {
     private MessageContract.View mMessageView;
     private MessageRepository messageRepository;
     private Context context;
+
+
+
+    @Override
+    public void result(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Fragment_message.REQUEST_CODE) {
+            if (null != data) {
+                Bundle bundle = data.getExtras();
+                if (bundle == null) {
+                    return;
+                }
+                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                    String result = bundle.getString(CodeUtils.RESULT_STRING);
+                    sendQRcode(result);
+//                    ToastUtils.showShort(context,result);
+                } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
+                    ToastUtils.showShort(context,"解析失败");
+                }
+            }
+        }
+    }
+
+
 
 
     public MessagePresenter(MessageRepository mRepository, Fragment_message fragment_message, Context context) {
@@ -57,4 +90,44 @@ public class MessagePresenter implements MessageContract.Presenter {
     private void processMessage(List<Message> messages) {
         mMessageView.showMessage(messages);
     }
+
+    @Override
+    public void getReimburseDetail(String id) {
+        final ReimbursementRepository repository = new ReimbursementRepository();
+        repository.getReimburse(context, id, new GsonResponseHandler<Reimbursement>() {
+            @Override
+            public void onSuccess(int statusCode, Reimbursement response) {
+                if(response.isRt()) {
+                    mMessageView.showReimburseDetail(response.getId(), response.getType());
+                }else{
+                    ToastUtils.showShort(context,response.getError());
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, String error_msg) {
+
+            }
+        });
+    }
+
+    private void sendQRcode(String result) {
+        AssistRepository repository = new AssistRepository();
+        repository.sendQRCode(context,result, new JsonResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, JSONObject response) throws JSONException {
+                if(response.getInt("rt") == 1) {
+                    ToastUtils.showShort(context,"扫描成功");
+                }else{
+                    ToastUtils.showShort(context,response.getString("error"));
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, String error_msg) {
+
+            }
+        });
+    }
+
 }

@@ -20,7 +20,7 @@ public class MessageRepository extends BaseModel implements MessageDataSource {
     public void getMessage(Context context, GsonResponseHandler<RowsNoPage<Message>> callback) {
         InitRequest(context,"rows");
 
-        String endtime = getDate(getCurrentDate(),"yyyy-MM-dd hh:mm:ss");
+        String endtime = getDate(getCurrentDate(),"yyyy-MM-dd HH:mm:ss");
 
         params.put("admin_id","-1");
         params.put("is_deal","0");

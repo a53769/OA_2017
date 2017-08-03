@@ -2,8 +2,10 @@ package com.example.shixi_a.myapplication.normalReimburse;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.example.shixi_a.myapplication.R;
+import com.example.shixi_a.myapplication.bean.Reimbursement;
 import com.example.shixi_a.myapplication.model.reimbursement.ReimbursementRepository;
 import com.example.shixi_a.myapplication.util.ActivityUtils;
 
@@ -19,12 +21,12 @@ public class NormalReimburseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_normal_reimburse);
 
-//        TextView title = (TextView) findViewById(R.id.toolbarTitle);
-//
-//        Leave leave = (Leave) getIntent().getSerializableExtra("leave");
-//        if(leave != null){
-//            title.setText("编辑外出");
-//        }
+        TextView title = (TextView) findViewById(R.id.toolbarTitle);
+
+        Reimbursement reimbursement = (Reimbursement) getIntent().getSerializableExtra("reimbursement");
+        if(reimbursement != null){
+            title.setText("编辑报销");
+        }
 
         String typeId = getIntent().getStringExtra("type");
 
@@ -35,6 +37,6 @@ public class NormalReimburseActivity extends AppCompatActivity {
         }
         mRepository = new ReimbursementRepository();
 
-        mPresenter = new NormalReimbursePresenter( typeId,mRepository, normalReimburseFragment,getApplicationContext());
+        mPresenter = new NormalReimbursePresenter( reimbursement,typeId,mRepository, normalReimburseFragment,getApplicationContext());
     }
 }

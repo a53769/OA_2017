@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/defaultBack">
+    <ScrollView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="80dp"
+            android:background="@color/defaultBack">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="报销人"
+                    android:textColor="@color/dark_grey"/>
+
+                <TextView
+                    android:id="@+id/admin_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/textTitle"
+                    android:text=""
+                    android:textColor="@color/gray"
+                    android:layout_marginRight="31dp"/>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lv_real_person"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="实际报销人"
+                    android:textColor="@color/dark_grey"/>
+
+                <TextView
+                    android:id="@+id/real_person"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/textTitle"
+                    android:hint="请选择"
+                    android:textColorHint="@color/gray"
+                    android:textColor="@color/gray"/>
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lv_cost_time"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="消费时间"
+                    android:textColor="@color/dark_grey"/>
+
+                <TextView
+                    android:id="@+id/cost_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/textTitle"
+                    android:hint="请选择"
+                    android:textColorHint="@color/gray"
+                    android:textColor="@color/gray"/>
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:text="起始地点"
+                    android:textColor="@color/dark_grey"/>
+
+                <EditText
+                    android:id="@+id/begin_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_margin="15dp"
+                    android:hint="请输入起始地点"
+                    android:textColorHint="@color/gray"
+                    android:background="@drawable/normal_bg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="70dp"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:text="目的地点"
+                    android:textColor="@color/dark_grey"/>
+
+                <EditText
+                    android:id="@+id/end_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_margin="15dp"
+                    android:hint="请输入目的地点"
+                    android:textColorHint="@color/gray"
+                    android:background="@drawable/normal_bg"
+                    android:textSize="16sp"/>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:text="市内交通费（元）"
+                    android:textColor="@color/dark_grey"/>
+
+                <EditText
+                    android:id="@+id/incity_traffic_cost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_margin="10dp"
+                    android:hint="请输入交通费"
+                    android:textColorHint="@color/gray"
+                    android:background="@drawable/normal_bg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/traffic_tool_lv"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="市外交通工具"
+                    android:textColor="@color/dark_grey"/>
+
+                <TextView
+                    android:id="@+id/outcity_traffic_tool"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/textTitle"
+                    android:hint="请选择"
+                    android:textColorHint="@color/gray"
+                    android:textColor="@color/gray"/>
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:text="市外交通费（元）"
+                    android:textColor="@color/dark_grey"/>
+
+                <EditText
+                    android:id="@+id/outcity_traffic_cost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_margin="10dp"
+                    android:hint="请输入交通费"
+                    android:textColorHint="@color/gray"
+                    android:background="@drawable/normal_bg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:text="膳食费（元）"
+                    android:textColor="@color/dark_grey"/>
+
+                <EditText
+                    android:id="@+id/food_cost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_margin="10dp"
+                    android:hint="请输入膳食费"
+                    android:textColorHint="@color/gray"
+                    android:background="@drawable/normal_bg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:text="住宿费（元）"
+                    android:textColor="@color/dark_grey"/>
+
+                <EditText
+                    android:id="@+id/live_cost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_margin="10dp"
+                    android:hint="请输入住宿费"
+                    android:textColorHint="@color/gray"
+                    android:background="@drawable/normal_bg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lv_total_cost"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:text="总费用（元）"
+                    android:textColor="@color/dark_grey"/>
+
+                <EditText
+                    android:id="@+id/total_cost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_margin="10dp"
+                    android:hint="请输入总费用"
+                    android:textColorHint="@color/gray"
+                    android:background="@drawable/normal_bg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lv_cost_detail"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:text="费用明细"
+                    android:textColor="@color/dark_grey"/>
+
+                <EditText
+                    android:id="@+id/cost_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_margin="10dp"
+                    android:hint="请输入费用明细"
+                    android:textColorHint="@color/gray"
+                    android:background="@drawable/normal_bg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lv_bills_count"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:text="单据张数（张）"
+                    android:textColor="@color/dark_grey"/>
+
+                <EditText
+                    android:id="@+id/bills_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_margin="10dp"
+                    android:hint="请输入单据张数"
+                    android:textColorHint="@color/gray"
+                    android:background="@drawable/normal_bg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="提   交"
+            android:textColor="@color/white"
+            android:background="@drawable/button_bg"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/defaultBack">
+    <ScrollView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="60dp"
+            android:background="@color/defaultBack">
+
+            <LinearLayout
+                android:id="@+id/lv_finance_type"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="付款方式"
+                    android:textColor="@color/dark_grey"/>
+
+                <TextView
+                    android:id="@+id/payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/textTitle"
+                    android:hint="请选择"
+                    android:textColorHint="@color/gray"
+                    android:textColor="@color/gray"/>
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lv_pay_date"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="付款日期"
+                    android:textColor="@color/dark_grey"/>
+
+                <TextView
+                    android:id="@+id/pay_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/textTitle"
+                    android:hint="请选择"
+                    android:textColorHint="@color/gray"
+                    android:textColor="@color/gray"/>
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:text="付款手续费"
+                    android:textColor="@color/dark_grey"/>
+
+                <EditText
+                    android:id="@+id/extra_cost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_margin="10dp"
+                    android:hint="请输入付款手续费"
+                    android:textColorHint="@color/gray"
+                    android:background="@drawable/normal_bg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/menu_item_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/textTitle"
+                    android:layout_height="wrap_content"
+                    android:text="审批备注"
+                    android:textColor="@color/dark_grey"/>
+
+                <EditText
+                    android:id="@+id/finance_memo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_margin="10dp"
+                    android:hint="请输入审批备注"
+                    android:textColorHint="@color/gray"
+                    android:background="@drawable/normal_bg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="提   交"
+            android:textColor="@color/white"
+            android:background="@drawable/button_bg"/>
+    </LinearLayout>
+
+</RelativeLayout>

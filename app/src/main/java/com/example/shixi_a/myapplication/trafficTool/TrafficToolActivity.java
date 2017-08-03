@@ -52,9 +52,10 @@ public class TrafficToolActivity extends AppCompatActivity implements TrafficToo
         listView = (ListView) findViewById(R.id.list_type);
 //        listView.setAdapter(adapter);
 
+        String flag = getIntent().getStringExtra("flag");
         mRepository = new ReimbursementRepository();
 
-        mPresenter = new TrafficToolPresenter(mRepository,this,getApplicationContext());
+        mPresenter = new TrafficToolPresenter(flag,mRepository,this,getApplicationContext());
 
         mPresenter.start();
     }

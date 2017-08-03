@@ -10,12 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.shixi_a.myapplication.GlobalApp;
+import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.bean.Vathome;
 import com.example.shixi_a.myapplication.home.MainActivity;
-import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.util.ToastUtils;
+import com.example.shixi_a.myapplication.widget.CountDownTimerUtils;
 
 /**
  * A login screen that offers login via email/password.
@@ -23,13 +25,16 @@ import com.example.shixi_a.myapplication.util.ToastUtils;
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 
     private LoginPresent mLoginPresent;
-    private EditText etName;
-    private EditText etPassword;
-    private Button btLogin;
     private Context context;
 
     private SharedPreferences sp;//缓存用户名与密码实现自动登录
     private SharedPreferences.Editor editor;
+
+
+    private EditText etName;
+    private EditText etPassword;
+    private EditText etVcode;
+    private Button btLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +64,42 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         mLoginPresent = new LoginPresent(this);
 
         etName = (EditText) findViewById(R.id.name);
+        etName.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus) {
+                // 此处为得到焦点时的处理内容
+                } else {
+                // 此处为失去焦点时的处理内容
+                    mLoginPresent.checkName(context,getName());
+                }
+            }
+        });
+
         etPassword = (EditText) findViewById(R.id.password);
+
+        final TextView getVcode = (TextView) findViewById(R.id.get_vcode);
+        final CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(getVcode, 60000, 1000);
+        getVcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(LoginPresent.FLAG) {
+                    mCountDownTimerUtils.start();
+                    mLoginPresent.getVcode(context, getName());
+                }else{
+                    showError("请输入正确的账号");
+                }
+            }
+        });
+
+
+        etVcode = (EditText) findViewById(R.id.vcode);
+
         btLogin = (Button) findViewById(R.id.sign_in_button);
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mLoginPresent.login(context, getName(), getPassword());
+                mLoginPresent.login(context, getName(), getPassword(),getVcode());
             }
         });
 
@@ -90,9 +125,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     public void showSucceed() {
         editor.putBoolean("main",true);
         editor.commit();
+        ToastUtils.showShort(context,"登陆成功");
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        LoginActivity.this.finish();
+        finish();
     }
 
     @Override
@@ -130,6 +166,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void setPresenter(LoginContract.Presenter presenter) {
         mLoginPresent = (LoginPresent) presenter;
+    }
+
+    public String getVcode() {
+        return etVcode.getText().toString().trim();
     }
 }
 

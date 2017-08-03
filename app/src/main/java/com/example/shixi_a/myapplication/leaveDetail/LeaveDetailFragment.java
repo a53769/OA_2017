@@ -86,7 +86,7 @@ public class LeaveDetailFragment extends Fragment implements LeaveDetailContract
         type = (TextView) root.findViewById(R.id.type);
         start_time = (TextView) root.findViewById(R.id.Stime);
         end_time = (TextView) root.findViewById(R.id.Etime);
-        is_personnel = (TextView) root.findViewById(R.id.renshi_change);
+
         turnover_person = (TextView) root.findViewById(R.id.over_person);
         reason = (TextView) root.findViewById(R.id.leave_reason);
 
@@ -211,11 +211,7 @@ public class LeaveDetailFragment extends Fragment implements LeaveDetailContract
         type.setText(leave.getSort_show());
         start_time.setText(leave.getOff_start());
         end_time.setText(leave.getOff_end());
-        if(leave.getNeed_modify().equals("0")){
-            is_personnel.setText("不需要");
-        }else{
-            is_personnel.setText("需要");
-        }
+
         if(leave.getHandover_name() == null || leave.getHandover_name().equals("")){
             turnover_person.setText("无转接人");
         }else {

@@ -13,12 +13,14 @@ import java.util.List;
 public interface ChooseEgressContract {
     interface Presenter extends BasePresenter {
 
-        void selectedEgress(String id,String address);
+        void selectedEgress(String id, String address, String s);
     }
     interface View extends BaseView<Presenter> {
         void setLoadingIndicator(final boolean active);
         void showEgresses(List<Egress> egresses);
 
-        void showTrafficReimmburse(String id, String addr);
+        void showTrafficReimmburse(String id, String addr, String s);
+
+        void showEntertainmentReimburse(String id, String address, String s);
     }
 }

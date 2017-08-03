@@ -18,10 +18,9 @@ import com.example.shixi_a.myapplication.util.LogUtils;
 public class MainActivity extends AppCompatActivity {
 
     private Fragment_message fg1;
-    private Fragment_goal fg2;
-    private Fragment_work fg3;
-    private Fragment_contacts fg4;
-    private Fragment_my fg5;
+    private Fragment_work fg2;
+    private Fragment_contacts fg3;
+    private Fragment_my fg4;
 
     private FragmentManager fragmentManager;
     private AssistRepository mRepository;
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        //navigation.setMode(MODE_FIXD);
+//        navigation.setMode(MODE_FIXD);
 
         fragmentManager = getSupportFragmentManager();
 
@@ -65,17 +64,14 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_message:
                     setChoiceItem(0);
                     return true;
-                case R.id.navigation_goal:
+                case R.id.navigation_work:
                     setChoiceItem(1);
                     return true;
-                case R.id.navigation_work:
+                case R.id.navigation_contacts:
                     setChoiceItem(2);
                     return true;
-                case R.id.navigation_contacts:
-                    setChoiceItem(3);
-                    return true;
                 case R.id.navigation_my:
-                    setChoiceItem(4);
+                    setChoiceItem(3);
                     return true;
             }
             return false;
@@ -99,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 1:
                 if (fg2 == null) {
-                    fg2 = new Fragment_goal();
+                    fg2 = new Fragment_work();
                     //fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.replace(R.id.content, fg2);
                 } else {
@@ -109,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 2:
                 if (fg3 == null) {
-                    fg3 = new Fragment_work();
+                    fg3 = new Fragment_contacts();
                     //fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.replace(R.id.content, fg3);
                 } else {
@@ -119,22 +115,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 3:
                 if (fg4 == null) {
-                    fg4 = new Fragment_contacts();
+                    fg4 = new Fragment_my();
                     //fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.replace(R.id.content, fg4);
                 } else {
                     //fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.replace(R.id.content, fg4);
-                }
-                break;
-            case 4:
-                if (fg5 == null) {
-                    fg5 = new Fragment_my();
-                    //fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.replace(R.id.content, fg5);
-                } else {
-                    //fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.replace(R.id.content, fg5);
                 }
                 break;
         }

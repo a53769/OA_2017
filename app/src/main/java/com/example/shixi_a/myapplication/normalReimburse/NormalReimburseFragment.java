@@ -122,7 +122,7 @@ public class NormalReimburseFragment extends Fragment implements NormalReimburse
         TimePickerView pvTime = new TimePickerView.Builder(getActivity(), new TimePickerView.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
-                time.setText(getDate(date,"yyyy-MM-dd HH:mm:ss"));
+                time.setText(getDate(date,"yyyy-MM-dd"));
             }
         }).setLabel("","月","日","时","分","秒").build();
         pvTime.setDate(Calendar.getInstance());
@@ -156,5 +156,13 @@ public class NormalReimburseFragment extends Fragment implements NormalReimburse
     @Override
     public void showReimburse() {
         getActivity().finish();
+    }
+
+    @Override
+    public void InitView(String dttime, String fee_total, String memo, String bill_num) {
+        time.setText(dttime);
+        cost.setText(fee_total);
+        detail.setText(memo);
+        bills.setText(bill_num);
     }
 }

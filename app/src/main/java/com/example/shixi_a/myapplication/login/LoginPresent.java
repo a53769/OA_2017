@@ -3,11 +3,15 @@ package com.example.shixi_a.myapplication.login;
 import android.content.Context;
 
 import com.example.myokhttp.response.GsonResponseHandler;
+import com.example.myokhttp.response.JsonResponseHandler;
 import com.example.shixi_a.myapplication.GlobalApp;
 import com.example.shixi_a.myapplication.bean.Result;
 import com.example.shixi_a.myapplication.bean.Vathome;
 import com.example.shixi_a.myapplication.model.user.UserRepository;
 import com.example.shixi_a.myapplication.util.StringUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by Shixi-A on 2017/6/1.
@@ -19,6 +23,7 @@ public class LoginPresent implements LoginContract.Presenter {
 
     private UserRepository mUserRepository;
 
+    public static boolean FLAG = false;
     private GlobalApp app;
 
     public LoginPresent(LoginContract.View mLoginView)
@@ -28,7 +33,7 @@ public class LoginPresent implements LoginContract.Presenter {
     }
 
     @Override
-    public void login(Context context, String name, String password) {
+    public void login(Context context, String name, String password, String vcode) {
         if (StringUtils.isEmpty(name))
         {
             mLoginView.showError("请输入账号");
@@ -41,7 +46,11 @@ public class LoginPresent implements LoginContract.Presenter {
             return;
         }
 
-        mUserRepository.userLogin(context, name, password, new GsonResponseHandler<Result<Vathome>>() {
+        if(StringUtils.isEmpty(vcode)){
+            mLoginView.showError("请输入验证码");
+            return;
+        }
+        mUserRepository.userLogin(context, name, password,vcode, new GsonResponseHandler<Result<Vathome>>() {
             @Override
             public void onSuccess(int statusCode, Result<Vathome> response) {
                 mLoginView.setToken(response.vathome.token);
@@ -61,6 +70,46 @@ public class LoginPresent implements LoginContract.Presenter {
             }
         });
 
+    }
+
+    @Override
+    public void checkName(Context context, String name) {
+        if (StringUtils.isEmpty(name))
+        {
+            mLoginView.showError("请输入账号");
+            return;
+        }
+        mUserRepository.checkName(context,name, new JsonResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, JSONObject response) throws JSONException {
+                if(response.getBoolean("rt")){
+                    FLAG = true;
+                }else{
+                    mLoginView.showError("请输入正确的账号");
+                    FLAG = false;
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, String error_msg) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getVcode(Context context, String name) {
+        mUserRepository.getVcode(context,name, new JsonResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, JSONObject response) throws JSONException {
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, String error_msg) {
+
+            }
+        });
     }
 
     @Override

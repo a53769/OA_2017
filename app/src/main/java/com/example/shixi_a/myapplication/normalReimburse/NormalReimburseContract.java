@@ -13,6 +13,8 @@ public interface NormalReimburseContract {
     interface View extends BaseView<Presenter> {
 
         void showReimburse();
+
+        void InitView(String dttime, String fee_total, String memo, String bill_num);
     }
     interface Presenter extends BasePresenter {
 

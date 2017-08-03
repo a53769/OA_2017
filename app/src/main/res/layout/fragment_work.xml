@@ -27,7 +27,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/menu_height"
-        android:background="@drawable/menu_item_bg">
+        android:background="@drawable/menu_item_bg"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="@dimen/menu_margin_image_size"
@@ -120,7 +121,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/menu_height"
-        android:background="@drawable/menu_item_bg">
+        android:background="@drawable/menu_item_bg"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="@dimen/menu_margin_image_size"

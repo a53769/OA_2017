@@ -1,10 +1,15 @@
 package com.example.shixi_a.myapplication.bean;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * Created by a5376 on 2017/7/24.
  */
 
-public class Reimbursement {
+public class Reimbursement implements Serializable{
+    boolean rt;
+    String error;
     String id;
     String serial_code;
     String applicant_id;
@@ -29,7 +34,7 @@ public class Reimbursement {
     String outcity_traffic_show;
     String outcity_traffic_fee;
     String incity_traffic_by;
-    String incity_traffic_show;
+    String incify_traffic_show;
     String incity_traffic_fee;
     String accomdation_fee;
     String boarding_fee;
@@ -42,8 +47,23 @@ public class Reimbursement {
     String opt;
     String sum_month;
 //    String unames;
-//    String logs;
+    List<Log>logs;
 
+    public boolean isRt() {
+        return rt;
+    }
+
+    public void setRt(boolean rt) {
+        this.rt = rt;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
 
     public String getId() {
         return id;
@@ -229,12 +249,12 @@ public class Reimbursement {
         this.incity_traffic_by = incity_traffic_by;
     }
 
-    public String getIncity_traffic_show() {
-        return incity_traffic_show;
+    public String getIncify_traffic_show() {
+        return incify_traffic_show;
     }
 
-    public void setIncity_traffic_show(String incity_traffic_show) {
-        this.incity_traffic_show = incity_traffic_show;
+    public void setIncify_traffic_show(String incify_traffic_show) {
+        this.incify_traffic_show = incify_traffic_show;
     }
 
     public String getIncity_traffic_fee() {
@@ -323,5 +343,79 @@ public class Reimbursement {
 
     public void setSum_month(String sum_month) {
         this.sum_month = sum_month;
+    }
+
+    public List<Log> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(List<Log> logs) {
+        this.logs = logs;
+    }
+
+    public class Log implements Serializable {
+        String id;
+        String admin_id;
+        String rbs_id;
+        String action;
+        String memo;
+        String actime;
+        String admin_name;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getAdmin_id() {
+            return admin_id;
+        }
+
+        public void setAdmin_id(String admin_id) {
+            this.admin_id = admin_id;
+        }
+
+        public String getRbs_id() {
+            return rbs_id;
+        }
+
+        public void setRbs_id(String rbs_id) {
+            this.rbs_id = rbs_id;
+        }
+
+        public String getAction() {
+            return action;
+        }
+
+        public void setAction(String action) {
+            this.action = action;
+        }
+
+        public String getMemo() {
+            return memo;
+        }
+
+        public void setMemo(String memo) {
+            this.memo = memo;
+        }
+
+        public String getActime() {
+            return actime;
+        }
+
+        public void setActime(String actime) {
+            this.actime = actime;
+        }
+
+        public String getAdmin_name() {
+            return admin_name;
+        }
+
+        public void setAdmin_name(String admin_name) {
+            this.admin_name = admin_name;
+        }
     }
 }
