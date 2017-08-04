@@ -1,11 +1,13 @@
 package com.example.shixi_a.myapplication.work.workAdministration.chooseEgress;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +18,9 @@ import android.widget.TextView;
 
 import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.bean.Egress;
+import com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout;
 import com.example.shixi_a.myapplication.work.workAdministration.entertainmentReimburse.EntertainmentReimburseActivity;
 import com.example.shixi_a.myapplication.work.workAdministration.trafficReimburse.TrafficReimburseActivity;
-import com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -215,11 +217,32 @@ public class ChooseEgressFragment extends Fragment implements ChooseEgressContra
     EgressItemListener mItemListener = new EgressItemListener() {
         @Override
         public void onEgressClick(String id, String address, String person) {
-            mPresenter.selectedEgress(id,address,person);
+            showDailog(id,address,person);
+
         }
 
 
     };
+
+    private void showDailog(final String id, final String address, final String person) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("一旦选择就不能修改,你确定选择此次外出记录吗？");
+        builder.setTitle("提示");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mPresenter.selectedEgress(id,address,person);
+            }
+        });
+
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
+    }
 
     public interface EgressItemListener {
 

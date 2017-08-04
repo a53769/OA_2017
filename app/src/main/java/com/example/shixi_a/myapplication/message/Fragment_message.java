@@ -245,6 +245,7 @@ public class Fragment_message extends Fragment implements MessageContract.View{
                     });
                     break;
                 case "miit_command":
+                    imageView.setImageResource(R.drawable.notify);
                     rowView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -254,7 +255,7 @@ public class Fragment_message extends Fragment implements MessageContract.View{
 
                     break;
                 default:
-                    imageView.setImageResource(R.drawable.waichu);
+                    imageView.setImageResource(R.drawable.notify);
                     rowView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -273,7 +274,7 @@ public class Fragment_message extends Fragment implements MessageContract.View{
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(msg + "。因手机暂不支持该功能，请到web上进行操作。");
         builder.setTitle(title);
-        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -283,7 +284,7 @@ public class Fragment_message extends Fragment implements MessageContract.View{
 }
 
     private void getReimburseDetail(String id) {
-        mPresenter.getReimburseDetail(id);//我也不知道当初为啥要拆开写详情页 现在也懒得改了 只能先获取一次 看看是啥类别
+        mPresenter.getReimburseDetail(id);//因为拆开写详情页 现在也懒得改了 只能先获取一次 看看是啥类别
     }
 
     private void showcheckOut( String tab_id,String tabName) {

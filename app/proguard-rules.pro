@@ -57,25 +57,29 @@
 -dontoptimize
 -dontpreverify                       #不进行预校验,Android不需要,可加快混淆速度。
 -ignorewarnings
+-dontobfuscate
 
 #v4包不混淆
 -keep class android.support.v4.app.** { *; }
 -keep interface android.support.v4.app.** { *; }
 
+-keep class android.support.v7.app.** { *; }
+-keep interface android.support.v7.app.** { *; }
+
+
+
+
 -keep class sun.misc.Unsafe { *; }
--keep class com.idea.fifaalarmclock.entity.***
 -keep class com.google.gson.** { *; }
 
--keepclassmembers public class cn.net.duqian.bean.** {
-   void set*(***);
-   *** get*();
-}
 
 -keep public class * extends android.support.v7.app.AppCompatActivity
 -keep public class * extends android.support.multidex.MultiDexApplication
 -keep public class * extends android.app.Service
 
--keepattributes Signature
+-keepattributes Signature #过滤泛型（不写可能出现类型转换错误）
+
+-keepnames class * implements java.io.Serializable #需要序列化和反序列化的类不能被混淆（注：Java反射用到的类也不能被混淆）
 
 -keepclassmembers class * implements java.io.Serializable{
 static final long serialVersionUID;
@@ -87,13 +91,13 @@ java.lang.Object writeReplace();
 java.lang.Object readResolve();
 }
 
+-keepclassmembernames class com.example.shixi_a.myapplication.bean.** { *; }  #转换JSON的JavaBean，类成员名称保护，使其不被混淆
+
 -dontwarn okhttp3.**
 -keep class okhttp3.**{*;}
 -keep interface okhttp3.**{*;}
 
--keepclassmembers class **.R$* {
-   *;
-}
+-keepclassmembers class **.R$* {*;}
 
 -keepclassmembers class * {
    public <init> (org.json.JSONObject);

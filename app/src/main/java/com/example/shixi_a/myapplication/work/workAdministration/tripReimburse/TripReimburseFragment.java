@@ -1,9 +1,11 @@
 package com.example.shixi_a.myapplication.work.workAdministration.tripReimburse;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -149,6 +151,20 @@ public class TripReimburseFragment extends Fragment implements TripReimburseCont
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showDailog();
+            }
+        });
+
+        return root;
+    }
+
+    private void showDailog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("一旦提交就不能修改,你确定此报销填写无误吗？如果是,请点击确定,否则请进行修改。");
+        builder.setTitle("提示");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
                 mPresenter.submitTripReimburse(
                         getStartAddress(),
                         getEndAddress(),
@@ -163,7 +179,13 @@ public class TripReimburseFragment extends Fragment implements TripReimburseCont
             }
         });
 
-        return root;
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
     }
 
     private void showTrafficTool() {

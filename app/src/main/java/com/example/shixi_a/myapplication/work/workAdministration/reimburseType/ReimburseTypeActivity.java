@@ -1,7 +1,9 @@
 package com.example.shixi_a.myapplication.work.workAdministration.reimburseType;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -10,8 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.shixi_a.myapplication.R;
-import com.example.shixi_a.myapplication.work.workAdministration.chooseEgress.ChooseEgressActivity;
 import com.example.shixi_a.myapplication.model.reimbursement.ReimbursementRepository;
+import com.example.shixi_a.myapplication.work.workAdministration.chooseEgress.ChooseEgressActivity;
 import com.example.shixi_a.myapplication.work.workAdministration.normalReimburse.NormalReimburseActivity;
 import com.example.shixi_a.myapplication.work.workAdministration.tripReimburse.TripReimburseActivity;
 
@@ -69,12 +71,32 @@ public class ReimburseTypeActivity extends AppCompatActivity implements Reimburs
                 for(Map.Entry entry:valueMap.entrySet()){
                     if(value.equals(entry.getValue())) {
                         String typeId = (String) entry.getKey();
+                        showDailog(typeId);
 
-                        showApplyReimbursement(typeId);
                     }
                 }
             }
         });
+    }
+
+    private void showDailog(final String typeId) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("一旦选择就不能修改,你确定要选择此报销类型吗？");
+        builder.setTitle("提示");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                showApplyReimbursement(typeId);
+            }
+        });
+
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
     }
 
     private void showApplyReimbursement(String typeId) {

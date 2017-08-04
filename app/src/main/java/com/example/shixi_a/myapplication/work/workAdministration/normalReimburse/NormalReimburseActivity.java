@@ -26,6 +26,7 @@ public class NormalReimburseActivity extends AppCompatActivity {
         Reimbursement reimbursement = (Reimbursement) getIntent().getSerializableExtra("reimbursement");
         if(reimbursement != null){
             title.setText("编辑报销");
+            //编辑功能被废弃 之后有时间把相关代码都删掉
         }
 
         String typeId = getIntent().getStringExtra("type");

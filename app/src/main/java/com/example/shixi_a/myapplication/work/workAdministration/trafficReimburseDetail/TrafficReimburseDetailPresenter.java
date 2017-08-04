@@ -68,9 +68,9 @@ public class TrafficReimburseDetailPresenter implements TrafficReimburseDetailCo
                 );//缺少客户用户名参数
 
         switch (reimbursement.getOpt()){
-            case "edit"://修改
-                mReimburseView.showEdit();
-                break;
+//            case "edit"://修改
+//                mReimburseView.showEdit();
+//                break;
             case "audit"://一般审批
                 mReimburseView.showAudit();
                 break;
