@@ -278,6 +278,7 @@ public class ReimbursementRepository extends BaseModel implements ReimbursementD
         sendPostRequest(context,BASE + EDITREIMBURSE,params,jsonResponseHandler);
     }
 
+    //交通
     @Override
     public void editReimbursement1(Context context, String id, String realId, String s, String toolId, String time, String startAddress, String trafficCost, String cost, String detail, String bills, JsonResponseHandler jsonResponseHandler) {
         InitRequest(context,"edit");
@@ -295,6 +296,29 @@ public class ReimbursementRepository extends BaseModel implements ReimbursementD
 
         sendPostRequest(context,BASE + EDITREIMBURSE,params,jsonResponseHandler);
     }
+
+    //业务招待
+
+    @Override
+    public void editReimbursement2(Context context, String id, String realId, String s, String toolId, String time, String startAddress, String trafficCost, String cost, String detail, String bills, String serveNum, JsonResponseHandler jsonResponseHandler) {
+        InitRequest(context,"edit");
+
+        params.put("reimburse_id",id);
+        params.put("applicant_id",realId);
+        params.put("dttime",time);
+        params.put("fee_total",cost);
+        params.put("bill_num",bills);
+        params.put("type",s);
+        params.put("memo",detail);
+        params.put("start_place",startAddress);
+        params.put("incity_traffic_fee",trafficCost);
+        params.put("incity_traffic_by",toolId);
+        params.put("serve_num",serveNum);
+
+        sendPostRequest(context,BASE + EDITREIMBURSE,params,jsonResponseHandler);
+    }
+
+    //差旅
 
     @Override
     public void editReimbursement3(Context context, String id, String realId, String s, String time, String startAddress, String endAddress, String trafficCost, String outTrafficCost, String foodCost, String liveCost, String cost, String detail, String bills, String toolId, JsonResponseHandler jsonResponseHandler) {
@@ -317,4 +341,6 @@ public class ReimbursementRepository extends BaseModel implements ReimbursementD
 
         sendPostRequest(context,BASE + EDITREIMBURSE,params,jsonResponseHandler);
     }
+
+
 }

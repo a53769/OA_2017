@@ -153,6 +153,7 @@ public class EntertainmentReimburseFragment extends Fragment implements Entertai
 
     private void showTrafficTool() {
         Intent intent = new Intent(getActivity(), TrafficToolActivity.class);
+        intent.putExtra("flag","in");
         startActivityForResult(intent, TrafficToolActivity.REQUEST_TOOL_CODE);
     }
 
@@ -185,6 +186,24 @@ public class EntertainmentReimburseFragment extends Fragment implements Entertai
     @Override
     public void initPerson(String custom) {
         visit_custom.setText(custom);
+    }
+
+    @Override
+    public void InitView(String dttime, String addr, String incity_traffic_fee, String fee_total, String memo, String bill_num, String serveNum) {
+        time.setText(dttime);
+
+        traffic_cost .setText(incity_traffic_fee);
+        cost.setText(fee_total);
+        detail.setText(memo);
+        bills.setText(bill_num);
+
+        String [] temp = null;
+        temp = addr.split("-");
+
+        start_address.setText(temp[0]);
+        address.setText(temp[1]);
+        serve_num.setText(serveNum);
+
     }
 
     public void setTraffic(String traffic) {

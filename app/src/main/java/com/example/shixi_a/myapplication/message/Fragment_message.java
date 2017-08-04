@@ -1,5 +1,6 @@
 package com.example.shixi_a.myapplication.message;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,15 +21,15 @@ import android.widget.TextView;
 
 import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.bean.Message;
+import com.example.shixi_a.myapplication.login.LoginActivity;
+import com.example.shixi_a.myapplication.model.message.MessageRepository;
+import com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout;
 import com.example.shixi_a.myapplication.work.workAdministration.checkOut.CheckOutActivity;
 import com.example.shixi_a.myapplication.work.workAdministration.entertainmentReimburseDetail.EntertainmentReimburseDetailActivity;
 import com.example.shixi_a.myapplication.work.workAdministration.leaveDetail.LeaveDetailActivity;
-import com.example.shixi_a.myapplication.login.LoginActivity;
-import com.example.shixi_a.myapplication.model.message.MessageRepository;
 import com.example.shixi_a.myapplication.work.workAdministration.normalReimburseDetail.NormalReimburseDetailActivity;
 import com.example.shixi_a.myapplication.work.workAdministration.trafficReimburseDetail.TrafficReimburseDetailActivity;
 import com.example.shixi_a.myapplication.work.workAdministration.tripReimburseDetail.TripReimburseDetailActivity;
-import com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 
 import java.util.ArrayList;
@@ -242,6 +244,15 @@ public class Fragment_message extends Fragment implements MessageContract.View{
                         }
                     });
                     break;
+                case "miit_command":
+                    rowView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showDialog(message.getTitle(),message.getMsg());
+                        }
+                    });
+
+                    break;
                 default:
                     imageView.setImageResource(R.drawable.waichu);
                     rowView.setOnClickListener(new View.OnClickListener() {
@@ -257,6 +268,19 @@ public class Fragment_message extends Fragment implements MessageContract.View{
 
 
     }
+
+    private void showDialog(String title, String msg) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(msg + "。因手机暂不支持该功能，请到web上进行操作。");
+        builder.setTitle(title);
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
+}
 
     private void getReimburseDetail(String id) {
         mPresenter.getReimburseDetail(id);//我也不知道当初为啥要拆开写详情页 现在也懒得改了 只能先获取一次 看看是啥类别

@@ -48,4 +48,6 @@ public interface ReimbursementDataSource {
     void editReimbursement1(Context context, String id, String realId, String s, String toolId, String time, String startAddress, String trafficCost, String cost, String detail, String bills, JsonResponseHandler jsonResponseHandler);
 
     void editReimbursement3(Context context, String id, String realId, String s, String time, String startAddress, String endAddress, String trafficCost, String outTrafficCost, String foodCost, String liveCost, String cost, String detail, String bills, String toolId, JsonResponseHandler jsonResponseHandler);
+
+    void editReimbursement2(Context context, String id, String realId, String s, String toolId, String time, String startAddress, String trafficCost, String cost, String detail, String bills, String serveNum, JsonResponseHandler jsonResponseHandler);
 }

@@ -18,6 +18,8 @@ public interface EntertainmentReimburseContract {
         void showReimbursement();
 
         void initPerson(String custom);
+
+        void InitView(String dttime, String addr, String incity_traffic_fee, String fee_total, String memo, String bill_num, String serve_num);
     }
     interface Presenter extends BasePresenter {
 

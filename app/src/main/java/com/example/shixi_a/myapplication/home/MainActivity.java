@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        navigation.findViewById(R.id.navigation_message).performClick();
+        navigation.findViewById(R.id.navigation_work).performClick();
 
         mRepository = new AssistRepository();
 
