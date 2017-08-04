@@ -8,6 +8,7 @@ import com.example.shixi_a.myapplication.GlobalApp;
 import com.example.shixi_a.myapplication.bean.Result;
 import com.example.shixi_a.myapplication.bean.Vathome;
 import com.example.shixi_a.myapplication.model.user.UserRepository;
+import com.example.shixi_a.myapplication.util.LogUtils;
 import com.example.shixi_a.myapplication.util.StringUtils;
 
 import org.json.JSONException;
@@ -85,7 +86,7 @@ public class LoginPresent implements LoginContract.Presenter {
                 if(response.getBoolean("rt")){
                     FLAG = true;
                 }else{
-                    mLoginView.showError("请输入正确的账号");
+                    mLoginView.showError("您的后台OA帐户个人资料不完整,请赶紧完善才能登录哦!!!");
                     FLAG = false;
                 }
             }

@@ -289,9 +289,31 @@ public class ReimbursementRepository extends BaseModel implements ReimbursementD
         params.put("bill_num",bills);
         params.put("type",s);
         params.put("memo",detail);
-        params.put("end_place",startAddress);
+        params.put("start_place",startAddress);
         params.put("incity_traffic_fee",trafficCost);
         params.put("incity_traffic_by",toolId);
+
+        sendPostRequest(context,BASE + EDITREIMBURSE,params,jsonResponseHandler);
+    }
+
+    @Override
+    public void editReimbursement3(Context context, String id, String realId, String s, String time, String startAddress, String endAddress, String trafficCost, String outTrafficCost, String foodCost, String liveCost, String cost, String detail, String bills, String toolId, JsonResponseHandler jsonResponseHandler) {
+        InitRequest(context,"edit");
+
+        params.put("reimburse_id",id);
+        params.put("applicant_id",realId);
+        params.put("dttime",time);
+        params.put("fee_total",cost);
+        params.put("bill_num",bills);
+        params.put("type",s);
+        params.put("memo",detail);
+        params.put("start_place",startAddress);
+        params.put("incity_traffic_fee",trafficCost);
+        params.put("outcity_traffic_by",toolId);
+        params.put("end_place",endAddress);
+        params.put("outcity_traffic_fee",outTrafficCost);
+        params.put("boarding_fee",foodCost);
+        params.put("accomdation_fee",liveCost);
 
         sendPostRequest(context,BASE + EDITREIMBURSE,params,jsonResponseHandler);
     }

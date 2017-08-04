@@ -10,9 +10,11 @@ import android.view.MenuItem;
 
 import com.example.myokhttp.response.RawResponseHandler;
 import com.example.shixi_a.myapplication.R;
-import com.example.shixi_a.myapplication.home.message.Fragment_message;
+import com.example.shixi_a.myapplication.message.Fragment_message;
 import com.example.shixi_a.myapplication.model.assist.AssistRepository;
+import com.example.shixi_a.myapplication.my.Fragment_my;
 import com.example.shixi_a.myapplication.util.LogUtils;
+import com.example.shixi_a.myapplication.work.Fragment_work;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        navigation.findViewById(R.id.navigation_work).performClick();
+        navigation.findViewById(R.id.navigation_message).performClick();
 
         mRepository = new AssistRepository();
 
