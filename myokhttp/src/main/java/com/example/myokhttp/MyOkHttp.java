@@ -452,7 +452,7 @@ public class MyOkHttp {
 
         @Override
         public void onFailure(Call call, final IOException e) {
-            LogUtils.e("onFailure", e.toString());
+            LogUtils.e("onFailure", e.getLocalizedMessage());
 
             mHandler.post(new Runnable() {
                 @Override
@@ -465,7 +465,6 @@ public class MyOkHttp {
         @Override
         public void onResponse(Call call, final Response response) throws IOException {
             if(response.isSuccessful()) {
-//
                 final String response_body = response.body().string();
                 LogUtils.v("Monitor:", response_body);
 

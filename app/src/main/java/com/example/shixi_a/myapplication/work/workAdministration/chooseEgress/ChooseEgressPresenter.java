@@ -52,6 +52,9 @@ public class ChooseEgressPresenter implements ChooseEgressContract.Presenter{
     }
 
     private void proccess(List<Egress> egresses) {
+        if(egresses.isEmpty()){
+            ToastUtils.showShort(context,"列表为空");
+        }
         mChooseEgressView.showEgresses(egresses);
     }
 

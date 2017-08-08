@@ -101,6 +101,9 @@ public class MessagePresenter implements MessageContract.Presenter {
 
 
     private void processMessage(List<Message> messages) {
+        if(messages.isEmpty()){
+            ToastUtils.showShort(context,"列表为空");
+        }
         mMessageView.showMessage(messages);
     }
 

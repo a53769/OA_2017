@@ -113,6 +113,8 @@ public class Fragment_my extends Fragment {
                     @Override
                     public void onSuccess(int statusCode, String response) {
                         ToastUtils.showShort(context, "登出成功");
+                        editor.clear();
+                        editor.apply();
                         editor.putBoolean("main",false);
                         editor.apply();
                         showLogin();

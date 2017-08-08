@@ -6,6 +6,7 @@ import com.example.myokhttp.response.GsonResponseHandler;
 import com.example.shixi_a.myapplication.bean.Leave;
 import com.example.shixi_a.myapplication.bean.RowsNoPage;
 import com.example.shixi_a.myapplication.model.leave.LeaveRepository;
+import com.example.shixi_a.myapplication.util.ToastUtils;
 
 import java.util.List;
 
@@ -48,6 +49,9 @@ public class LeavePresenter implements LeaveContract.Presenter{
     }
 
     private void process(List<Leave> leaves) {
+        if(leaves.isEmpty()){
+            ToastUtils.showShort(context,"列表为空");
+        }
         mLeaveView.showLeave(leaves);
     }
 }

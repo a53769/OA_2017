@@ -6,6 +6,7 @@ import com.example.myokhttp.response.GsonResponseHandler;
 import com.example.shixi_a.myapplication.bean.Reimbursement;
 import com.example.shixi_a.myapplication.bean.RowsNoPage;
 import com.example.shixi_a.myapplication.model.reimbursement.ReimbursementRepository;
+import com.example.shixi_a.myapplication.util.ToastUtils;
 
 import java.util.List;
 
@@ -53,6 +54,9 @@ public class ReimbursementPresenter implements ReimbursementContract.Presenter{
     }
 
     private void process(List<Reimbursement> list) {
+        if(list.isEmpty()){
+            ToastUtils.showShort(context,"列表为空");
+        }
         mReimburseView.showReimburses(list);
     }
 }

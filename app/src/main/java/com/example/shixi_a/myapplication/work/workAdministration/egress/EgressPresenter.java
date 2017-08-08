@@ -118,6 +118,9 @@ public class EgressPresenter implements EgressContract.Presenter {
     }
 
     private void processEgress(List<Egress> egresses) {
+        if(egresses.isEmpty()){
+            ToastUtils.showShort(context,"列表为空");
+        }
         mEgressView.showEgress(egresses);
     }
 }

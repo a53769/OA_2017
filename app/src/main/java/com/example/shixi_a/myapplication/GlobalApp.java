@@ -80,7 +80,7 @@ public class GlobalApp extends MultiDexApplication {
 
     public String getVathomeRt() {
         if(vathome == null)
-            return sp.getString("vathomert","");
+            return sp.getString("vathomert","0");
         return String.valueOf(vathome.rt);
     }
 
