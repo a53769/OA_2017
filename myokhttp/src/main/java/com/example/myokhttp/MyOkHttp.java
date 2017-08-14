@@ -453,11 +453,11 @@ public class MyOkHttp {
         @Override
         public void onFailure(Call call, final IOException e) {
             LogUtils.e("onFailure", e.getLocalizedMessage());
-
+            final String msg = "网络连接失败，请检查网络连接";
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    mResponseHandler.onFailure(0, e.toString());
+                    mResponseHandler.onFailure(0, msg);
                 }
             });
         }
@@ -515,17 +515,27 @@ public class MyOkHttp {
                 }
             }
             else{
-                LogUtils.e("onResponse fail status=" + response.code() + "   "+ response.message() + "   "+response.body().toString());
+                final String msg = response.body().string();//只能请求一次body
+                LogUtils.e("onResponse fail status=" + response.code() + "   " + msg);
+                try {
+                    final JSONObject jsonBody = new JSONObject(msg);
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                mResponseHandler.onFailure(response.code(), jsonBody.getString("error"));//这里修改的一点都不健壮很容易崩溃
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mResponseHandler.onFailure(0, "fail status=" + response.code());
-                    }
-                });
+
             }
         }
-
     }
 
     //保存文件

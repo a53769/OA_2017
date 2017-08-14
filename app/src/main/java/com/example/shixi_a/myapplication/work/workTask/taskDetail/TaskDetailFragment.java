@@ -275,6 +275,8 @@ public class TaskDetailFragment extends Fragment implements TaskDetailContract.V
         lv_Button.setVisibility(View.VISIBLE);
         Button bt_first = (Button) lv_Button.findViewById(R.id.button);
         Button bt_second = (Button) lv_Button.findViewById(R.id.button1);
+        bt_first.setVisibility(View.VISIBLE);
+        bt_second.setVisibility(View.VISIBLE);
         switch (i){
             case 1:
                 bt_second.setText("接收");

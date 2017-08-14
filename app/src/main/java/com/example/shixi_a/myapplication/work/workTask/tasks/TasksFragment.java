@@ -1,8 +1,10 @@
 package com.example.shixi_a.myapplication.work.workTask.tasks;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,11 +25,12 @@ import android.widget.TextView;
 
 import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.bean.Task;
+import com.example.shixi_a.myapplication.login.LoginActivity;
+import com.example.shixi_a.myapplication.util.ToastUtils;
+import com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout;
 import com.example.shixi_a.myapplication.work.workTask.taskAddEdit.TaskAddEditActivity;
 import com.example.shixi_a.myapplication.work.workTask.taskAddEdit.TaskAddEditFragment;
 import com.example.shixi_a.myapplication.work.workTask.taskDetail.TaskDetailActivity;
-import com.example.shixi_a.myapplication.util.ToastUtils;
-import com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -263,6 +266,20 @@ public class TasksFragment extends Fragment implements TasksContract.View {
         bundle.putSerializable(TaskAddEditFragment.ARGUMENT_EDIT_TASK, editTask);
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    @Override
+    public void showLogin() {
+        SharedPreferences sp;
+        SharedPreferences.Editor editor;
+        sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        editor = sp.edit();
+        editor.putBoolean("main",false);
+        editor.apply();
+
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
+        getActivity().finish();
     }
 
     private void showMessage(String message) {

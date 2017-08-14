@@ -20,12 +20,17 @@
     <!-- 个推3.0电子围栏功能所需权限 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 浮动通知权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="getui.permission.GetuiService.com.example.shixi_a.myapplication"/>
 
 
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- 震动权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" /> <!-- 使用照相机权限 -->
     <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 自动聚焦权限 -->
+
+
 
     <application
         android:name=".GlobalApp"
@@ -54,7 +59,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.MainActivity" />
+        <activity android:name=".home.MainActivity" android:launchMode="singleTask"/>
         <activity android:name=".work.workTask.tasks.TasksActivity" />
         <activity android:name=".work.workTask.taskAddEdit.TaskAddEditActivity" />
         <activity android:name=".work.workTask.projects.ProjectsActivity" />
@@ -100,6 +105,7 @@
         <activity android:name=".work.workAdministration.financeDetail.FinanceDetailActivity"/>
         <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".work.workAdministration.cashierAudit.CashierAuditActivity"/>
         <activity android:name=".work.workAdministration.payment.PaymentActivity"/>
+        <activity android:name=".scan.MyCaptureActivity"/>
     </application>
 
 </manifest>

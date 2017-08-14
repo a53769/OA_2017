@@ -23,6 +23,7 @@ import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.bean.Message;
 import com.example.shixi_a.myapplication.login.LoginActivity;
 import com.example.shixi_a.myapplication.model.message.MessageRepository;
+import com.example.shixi_a.myapplication.scan.MyCaptureActivity;
 import com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout;
 import com.example.shixi_a.myapplication.work.workAdministration.checkOut.CheckOutActivity;
 import com.example.shixi_a.myapplication.work.workAdministration.entertainmentReimburseDetail.EntertainmentReimburseDetailActivity;
@@ -30,7 +31,6 @@ import com.example.shixi_a.myapplication.work.workAdministration.leaveDetail.Lea
 import com.example.shixi_a.myapplication.work.workAdministration.normalReimburseDetail.NormalReimburseDetailActivity;
 import com.example.shixi_a.myapplication.work.workAdministration.trafficReimburseDetail.TrafficReimburseDetailActivity;
 import com.example.shixi_a.myapplication.work.workAdministration.tripReimburseDetail.TripReimburseDetailActivity;
-import com.uuzuche.lib_zxing.activity.CaptureActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +79,7 @@ public class Fragment_message extends Fragment implements MessageContract.View{
         scanQRCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CaptureActivity.class);
+                Intent intent = new Intent(getActivity(), MyCaptureActivity.class);
                 startActivityForResult(intent,REQUEST_CODE);
             }
         });

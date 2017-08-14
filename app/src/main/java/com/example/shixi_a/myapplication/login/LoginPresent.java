@@ -4,9 +4,11 @@ import android.content.Context;
 
 import com.example.myokhttp.response.GsonResponseHandler;
 import com.example.myokhttp.response.JsonResponseHandler;
+import com.example.myokhttp.response.RawResponseHandler;
 import com.example.shixi_a.myapplication.GlobalApp;
 import com.example.shixi_a.myapplication.bean.Result;
 import com.example.shixi_a.myapplication.bean.Vathome;
+import com.example.shixi_a.myapplication.model.assist.AssistRepository;
 import com.example.shixi_a.myapplication.model.user.UserRepository;
 import com.example.shixi_a.myapplication.util.LogUtils;
 import com.example.shixi_a.myapplication.util.StringUtils;
@@ -34,7 +36,7 @@ public class LoginPresent implements LoginContract.Presenter {
     }
 
     @Override
-    public void login(Context context, String name, String password, String vcode) {
+    public void login(final Context context, String name, String password, String vcode) {
         if (StringUtils.isEmpty(name))
         {
             mLoginView.showError("请输入账号");
@@ -59,18 +61,39 @@ public class LoginPresent implements LoginContract.Presenter {
                 mLoginView.setUsername();
                 mLoginView.setVathome(response.vathome);
                 mLoginView.showSucceed();
+                upIgexinCID(context);
             }
 
             @Override
             public void onFailure(int statusCode, String error_msg) {
-                if (error_msg.equals("fail status=401")){
-                    mLoginView.showError("用户名或密码错误");
+                if (statusCode == 401){
+                    if(error_msg.equals("登录失败")) {
+                        mLoginView.showError("用户名或密码错误");
+                    }else{
+                        mLoginView.showError(error_msg);
+                    }
                 }else {
                     mLoginView.showError(error_msg);
                 }
             }
         });
 
+    }
+
+    private void upIgexinCID(Context context) {
+        AssistRepository mRepository = new AssistRepository();
+
+        mRepository.uploadToken(context, new RawResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, String response) {
+                LogUtils.v("上传Token成功");
+            }
+
+            @Override
+            public void onFailure(int statusCode, String error_msg) {
+                LogUtils.v("上传Token失败");
+            }
+        });
     }
 
     @Override

@@ -32,6 +32,8 @@ public interface TasksContract {
         void showTaskDetail(Task task);
 
         void showEditTask(Task editTask);
+
+        void showLogin();
     }
 
     interface Presenter extends BasePresenter{

@@ -1,19 +1,19 @@
 package com.example.shixi_a.myapplication.home;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 
-import com.example.myokhttp.response.RawResponseHandler;
 import com.example.shixi_a.myapplication.R;
 import com.example.shixi_a.myapplication.message.Fragment_message;
-import com.example.shixi_a.myapplication.model.assist.AssistRepository;
 import com.example.shixi_a.myapplication.my.Fragment_my;
-import com.example.shixi_a.myapplication.util.LogUtils;
 import com.example.shixi_a.myapplication.work.Fragment_work;
 
 
@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     private Fragment_my fg4;
 
     private FragmentManager fragmentManager;
-    private AssistRepository mRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,19 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         navigation.findViewById(R.id.navigation_message).performClick();
 
-        mRepository = new AssistRepository();
 
-        mRepository.uploadToken(getApplicationContext(), new RawResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, String response) {
-                LogUtils.v("上传Token成功");
-            }
-
-            @Override
-            public void onFailure(int statusCode, String error_msg) {
-                LogUtils.v("上传Token失败");
-            }
-        });
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -129,6 +116,43 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit(); // 提交
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setTitle("系统提示");
+            dialog.setMessage("确定要退出吗");
+            dialog.setPositiveButton("确定",listener);
+            dialog.setNegativeButton("取消",listener);
 
+            AlertDialog isExit = dialog.create();
+
+            // 显示对话框
+            isExit.show();
+
+        }
+
+        return false;
+
+    }
+    /**监听对话框里面的button点击事件*/
+    DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener()
+    {
+        public void onClick(DialogInterface dialog, int which)
+        {
+            switch (which)
+            {
+                case AlertDialog.BUTTON_POSITIVE:// "确认"按钮退出程序
+                    finish();
+                    break;
+                case AlertDialog.BUTTON_NEGATIVE:// "取消"第二个按钮取消对话框
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
 }

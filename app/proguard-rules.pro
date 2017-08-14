@@ -103,6 +103,9 @@ java.lang.Object readResolve();
    public <init> (org.json.JSONObject);
 }
 
+-dontwarn com.igexin.**
+-keep c;ass com.igexin.** {*;}
+
 
 
 

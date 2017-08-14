@@ -1,8 +1,12 @@
 package com.example.shixi_a.myapplication.service;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.WindowManager;
 
+import com.example.shixi_a.myapplication.GlobalApp;
 import com.igexin.sdk.GTIntentService;
 import com.igexin.sdk.message.GTCmdMessage;
 import com.igexin.sdk.message.GTTransmitMessage;
@@ -34,6 +38,20 @@ public class DemoIntentService extends GTIntentService {
     @Override
     public void onReceiveMessageData(Context context, GTTransmitMessage gtTransmitMessage) {
 
+        String appid = gtTransmitMessage.getAppid();
+        String pkg = gtTransmitMessage.getPkgName();
+        String cid = gtTransmitMessage.getClientId();
+        String taskid = gtTransmitMessage.getTaskId();
+        String messageid = gtTransmitMessage.getMessageId();
+        byte[] payload = gtTransmitMessage.getPayload();
+//        boolean result = PushManager.getInstance().sendFeedbackMessage(context, taskid, messageid, 90001);
+//        Log.e(TAG, "call sendFeedbackMessage = " + (result ? "success" : "failed"));
+
+        if (payload == null) {
+        } else {
+            String data = new String(payload);
+            GlobalApp.getInstance().send(data,taskid);
+        }
     }
 
     @Override
@@ -44,5 +62,21 @@ public class DemoIntentService extends GTIntentService {
     @Override
     public void onReceiveCommandResult(Context context, GTCmdMessage gtCmdMessage) {
 
+    }
+//目前没有用的全局弹窗
+    private void sendMessage(String data, Context context) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+        dialog.setTitle("通知");
+        dialog.setMessage(data);
+        dialog.setPositiveButton("确定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog alert = dialog.create();
+        alert.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+        alert.show();
     }
 }

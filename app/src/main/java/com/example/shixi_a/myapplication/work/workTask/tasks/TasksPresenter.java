@@ -131,6 +131,11 @@ public class TasksPresenter implements TasksContract.Presenter{
 
             @Override
             public void onFailure(int statusCode, String error_msg) {
+                if (statusCode == 401) {
+                    ToastUtils.showShort(context,"身份验证失败请重新登录");
+                    mTasksView.showLogin();
+                    return;
+                }
                 mTasksView.setLoadingIndicator(false);
                 mTasksView.showLoadingTasksError();
             }
