@@ -16,6 +16,8 @@ public interface CheckOutContract {
         void showMessage();
 
         void setAddress(String address);
+
+        void showToast(String 请检查网络连接并开启定位权限);
     }
     interface Presenter extends BasePresenter {
 

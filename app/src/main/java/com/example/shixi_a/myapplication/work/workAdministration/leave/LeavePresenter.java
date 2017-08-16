@@ -28,6 +28,7 @@ public class LeavePresenter implements LeaveContract.Presenter{
 
     @Override
     public void start() {
+        mLeaveView.setLoadingIndicator(true);
         loadLeave();
         mLeaveView.setLoadingIndicator(false);
     }

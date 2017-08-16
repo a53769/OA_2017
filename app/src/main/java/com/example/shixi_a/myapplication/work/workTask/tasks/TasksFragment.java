@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.shixi_a.myapplication.R.menu.filter_tasks;
+import static com.example.shixi_a.myapplication.util.StringUtils.SubTime;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -347,7 +348,7 @@ public class TasksFragment extends Fragment implements TasksContract.View {
             titleTV.setText(task.getTitle());
 
             TextView descriptionTV = (TextView) rowView.findViewById(R.id.task_timestamp);
-            descriptionTV.setText(task.getCreater_name() + "  发布于" + task.getCreate_time());
+            descriptionTV.setText(task.getCreater_name() + "  发布于" + SubTime(task.getCreate_time()));
 
             ImageView editTask = (ImageView) rowView.findViewById(R.id.task_edit);
             editTask.setOnClickListener(new View.OnClickListener() {

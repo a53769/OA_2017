@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.support.test.espresso.core.deps.guava.base.Preconditions.checkNotNull;
+import static com.example.shixi_a.myapplication.util.StringUtils.SubTime;
 
 
 /**
@@ -231,7 +232,7 @@ public class ProjectsFragment extends Fragment implements ProjectsContract.View 
             titleTV.setText(project.getProject_name());
 
             TextView descriptionTV = (TextView) rowView.findViewById(R.id.timestamp);
-            descriptionTV.setText(project.getIn_time() + "创建");
+            descriptionTV.setText(SubTime(project.getIn_time()) + " 创建");
 
             ImageView editProject = (ImageView) rowView.findViewById(R.id.pro_edit);
             editProject.setOnClickListener(new View.OnClickListener() {

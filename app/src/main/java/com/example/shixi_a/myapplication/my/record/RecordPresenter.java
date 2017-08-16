@@ -29,7 +29,9 @@ public class RecordPresenter implements RecordContract.Presenter{
 
     @Override
     public void start() {
+        mRecordeView.setLoadingIndicator(true);
         loadRecord();
+        mRecordeView.setLoadingIndicator(false);
     }
 
     public void loadRecord() {

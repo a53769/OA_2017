@@ -173,7 +173,7 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter{
             public void onSuccess(int statusCode, JSONObject response) throws JSONException {
                 if(response.getBoolean("rt")){
                     ToastUtils.showShort(context,"操作成功");
-                    mTaskDetailView.showTaskDetail();
+                    mTaskDetailView.showTasks();
                 }else{
                     ToastUtils.showShort(context,response.getString("error"));
                 }
@@ -200,7 +200,7 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter{
             public void onSuccess(int statusCode, JSONObject response) throws JSONException {
                 if(response.getBoolean("rt")){
                     ToastUtils.showShort(context,"操作成功");
-                    mTaskDetailView.showTaskDetail();
+                    mTaskDetailView.showTasks();
                 }else{
                     ToastUtils.showShort(context,response.getString("error"));
                 }

@@ -2,7 +2,9 @@ package com.example.shixi_a.myapplication.work.workAdministration.checkOut;
 
 import android.content.Context;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Bundle;
 
 import com.example.myokhttp.response.GsonResponseHandler;
 import com.example.myokhttp.response.JsonResponseHandler;
@@ -66,15 +68,23 @@ public class CheckOutPresenter implements CheckOutContract.Presenter {
             provider = LocationManager.NETWORK_PROVIDER;
 
         } else {
-            ToastUtils.showShort(context, "请检查网路连接并开启定位权限");
+            mCheckOutView.showToast("请检查网络连接并开启定位权限");
+
+//            ToastUtils.showShort(context, "请检查网路连接并开启定位权限");
             return;
         }
         Location location = locationManager.getLastKnownLocation(provider);
         if (location != null) {
-            longitude = location.getLongitude()+"";
-            latitude = location.getLatitude()+"";
-            altitude = location.getAltitude()+"";//必要时替换成String.valueOf()
+            showLocation(location);
         }
+        locationManager.requestLocationUpdates(provider, 3000, 50, locationListener);
+    }
+
+
+    private void showLocation(Location location) {
+        longitude = location.getLongitude()+"";
+        latitude = location.getLatitude()+"";
+        altitude = location.getAltitude()+"";//必要时替换成String.valueOf()
 
         AssistRepository repository = new AssistRepository();
         repository.getLocation(context,latitude,longitude, new RawResponseHandler() {
@@ -101,10 +111,42 @@ public class CheckOutPresenter implements CheckOutContract.Presenter {
                 ToastUtils.showShort(context,"获取地理位置失败");
             }
         });
-
-
     }
 
+
+    LocationListener locationListener =  new LocationListener() {
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle arg2) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+
+        @Override
+        public void onLocationChanged(Location location) {
+            //如果位置发生变化,重新显示
+            showLocation(location);
+        }
+    };
+
+
+    void onDestroy() {
+        if(locationManager!=null){
+            //移除监听器
+            locationManager.removeUpdates(locationListener);
+        }
+    }
+
+    //目前没啥用
     private void loadEgress() {
         mRepository.getEgressDetail(context,outId, new GsonResponseHandler<Egress>() {
             @Override
@@ -119,7 +161,7 @@ public class CheckOutPresenter implements CheckOutContract.Presenter {
             }
         });
     }
-
+    //这个也没有
     private void process(Egress egress) {
         mCheckOutView.initView(egress.getOut_time(),egress.getAddr());
     }
@@ -128,7 +170,6 @@ public class CheckOutPresenter implements CheckOutContract.Presenter {
     public void checkOut(String memo) {
         if(address == null)
             address = "";
-
         mRepository.checkOut(context,memo, longitude,latitude,altitude,address, tabname,outId,new JsonResponseHandler() {
             @Override
             public void onSuccess(int statusCode, JSONObject response) throws JSONException {

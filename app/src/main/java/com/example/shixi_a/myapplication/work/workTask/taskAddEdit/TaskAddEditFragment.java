@@ -13,12 +13,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.example.shixi_a.myapplication.R;
@@ -108,13 +106,13 @@ public class TaskAddEditFragment extends Fragment implements TaskAddEditContract
             }
         });
 
-        ImageView extra = (ImageView) root.findViewById(R.id.link);
-        extra.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(),"添加附件", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        ImageView extra = (ImageView) root.findViewById(R.id.link);
+//        extra.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getActivity(),"添加附件", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         //项目
         LinearLayout project = (LinearLayout) root.findViewById(R.id.task_item_pro);

@@ -99,14 +99,14 @@
                         android:layout_below="@id/textView9"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="10dp"/>
-                    <ImageView
-                        android:id="@+id/link"
-                        android:layout_below="@id/textView10"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_marginBottom="5dp"
-                        android:contentDescription="zhijiu"
-                        android:src="@drawable/link" />
+                    <!--<ImageView-->
+                        <!--android:id="@+id/link"-->
+                        <!--android:layout_below="@id/textView10"-->
+                        <!--android:layout_width="25dp"-->
+                        <!--android:layout_height="25dp"-->
+                        <!--android:layout_marginBottom="5dp"-->
+                        <!--android:contentDescription="zhijiu"-->
+                        <!--android:src="@drawable/link" />-->
 
                 </RelativeLayout>
 
@@ -130,7 +130,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="查看流程"
-                            android:textSize="18sp"/>
+                            android:textSize="16sp"/>
 
                         <ImageView
                             android:layout_width="11dp"

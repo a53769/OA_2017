@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shixi_a.myapplication.R;
 
@@ -25,7 +28,7 @@ public class CheckOutFragment extends Fragment implements CheckOutContract.View 
 
     private TextView time;
 
-    private TextView address;
+    private EditText address;
 
     private EditText memo;
     //git
@@ -63,8 +66,19 @@ public class CheckOutFragment extends Fragment implements CheckOutContract.View 
 
         time = (TextView) root.findViewById(R.id.check_out_time);
         time.setText(getCurrentTime());
-        address = (TextView) root.findViewById(R.id.check_out_addr);
+        address = (EditText) root.findViewById(R.id.check_out_addr);
+        address.setFocusable(false);
+        address.setFocusableInTouchMode(false);
 
+        ImageView edit = (ImageView) root.findViewById(R.id.edit);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                address.setFocusable(true);
+                address.setFocusableInTouchMode(true);
+                address.requestFocus();
+            }
+        });
 
         memo = (EditText) root.findViewById(R.id.memo);
 
@@ -93,6 +107,13 @@ public class CheckOutFragment extends Fragment implements CheckOutContract.View 
     @Override
     public void setAddress(String addr) {
         address.setText(addr);
+    }
+
+    @Override
+    public void showToast(String s) {
+        Toast toast = Toast.makeText(getContext(), s, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
     }
 
 

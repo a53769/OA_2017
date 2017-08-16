@@ -31,6 +31,7 @@ import java.util.List;
 
 import static android.support.test.espresso.core.deps.guava.base.Preconditions.checkNotNull;
 import static com.example.shixi_a.myapplication.R.id.process_list;
+import static com.example.shixi_a.myapplication.util.StringUtils.SubTime;
 
 /**
  * Created by Shixi-A on 2017/6/12.
@@ -246,8 +247,8 @@ public class ProcessFragment extends Fragment implements ProcessContract.View {
 
             TextView titleTV = (TextView) rowView.findViewById(R.id.process_goal);
             titleTV.setText(process.getTitle());
-            if(process.getIs_done() != 1){
-                titleTV.setTextColor(getResources().getColor(R.color.dark_grey));
+            if(process.getIs_done() == 1){
+                titleTV.setTextColor(R.color.dark_grey);
                 fiber.setImageResource(R.drawable.ic_fiber_d_24dp);
             }
 
@@ -258,7 +259,7 @@ public class ProcessFragment extends Fragment implements ProcessContract.View {
             executorTV.setText(process.getUser_name());
 
             TextView descriptionTV = (TextView) rowView.findViewById(R.id.deadline_content);
-            descriptionTV.setText(process.getEstimate_etime());
+            descriptionTV.setText(SubTime(process.getEstimate_etime()));
             if(getActivity().getIntent().hasExtra("refuse")) {
                 rowView.setOnClickListener(new View.OnClickListener() {
                     @Override

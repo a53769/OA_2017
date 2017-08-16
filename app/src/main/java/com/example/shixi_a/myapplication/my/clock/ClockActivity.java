@@ -36,6 +36,10 @@ public class ClockActivity extends AppCompatActivity {
         mClockPresenter = new ClockPresenter(mAttendanceRepository, clockFragment,getApplicationContext());
 
     }
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mClockPresenter.onDestroy();
+    }
 
 }

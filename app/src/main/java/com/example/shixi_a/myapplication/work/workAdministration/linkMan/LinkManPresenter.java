@@ -29,6 +29,7 @@ public class LinkManPresenter implements LinkManContract.Presenter{
 
     @Override
     public void start() {
+        mLinkManView.setLoadingIndicator(true);
         loadUsers();
         mLinkManView.setLoadingIndicator(false);
     }

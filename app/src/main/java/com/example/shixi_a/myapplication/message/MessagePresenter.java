@@ -72,6 +72,7 @@ public class MessagePresenter implements MessageContract.Presenter {
 
     @Override
     public void start() {
+        mMessageView.setLoadingIndicator(true);
         loadMessage();
         mMessageView.setLoadingIndicator(false);
     }
@@ -87,7 +88,7 @@ public class MessagePresenter implements MessageContract.Presenter {
 
             @Override
             public void onFailure(int statusCode, String error_msg) {
-                if (error_msg.equals("fail status=401")){
+                if (statusCode == 401){
                     mMessageView.showLogin();
                 }else if(error_msg.length()>10){
                     ToastUtils.showShort(context, "请检查网络连接");
@@ -132,10 +133,9 @@ public class MessagePresenter implements MessageContract.Presenter {
         repository.sendQRCode(context,result, new JsonResponseHandler() {
             @Override
             public void onSuccess(int statusCode, JSONObject response) throws JSONException {
-                if(response.getInt("rt") == 1) {
+                if(response.getBoolean("rt")) {
                     ToastUtils.showShort(context,"扫描成功");
                     checkOnWork();//检查上班打卡
-
                 }else{
                     ToastUtils.showShort(context,response.getString("error"));
                 }

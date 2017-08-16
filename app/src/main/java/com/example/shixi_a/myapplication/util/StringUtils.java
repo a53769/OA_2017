@@ -29,7 +29,7 @@ public class StringUtils {
     }
 
     public static String SubTime(String str){
-        return str.substring(0,str.length() - 9);
+        return str.substring(0,str.length() - 3);
     }
 
 }

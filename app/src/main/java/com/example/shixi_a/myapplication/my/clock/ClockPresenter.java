@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 import static android.support.test.espresso.core.deps.guava.base.Preconditions.checkNotNull;
+import static com.igexin.push.core.g.s;
 
 /**
  * Created by a5376 on 2017/7/5.
@@ -165,13 +166,15 @@ public class ClockPresenter implements ClockContract.Presenter {
         }
         Location location = locationManager.getLastKnownLocation(provider);
         if (location != null) {
-
-            longitude = location.getLongitude();
-            latitude = location.getLatitude();
-            altitude = location.getAltitude();
+            showLocation(location);
         }
+        locationManager.requestLocationUpdates(provider, 3000, 50, locationListener);
+    }
 
-
+    private void showLocation(Location location) {
+        longitude = location.getLongitude();
+        latitude = location.getLatitude();
+        altitude = location.getAltitude();
 
         mRepository.AddAttendance(context,s,String.valueOf(longitude),String.valueOf(latitude),String.valueOf(altitude), new RawResponseHandler() {
             @Override
@@ -189,28 +192,22 @@ public class ClockPresenter implements ClockContract.Presenter {
                 }
             }
         });
-
-//        locationManager.requestLocationUpdates(provider, 30000, 50, locationListener);
     }
 
     private final LocationListener locationListener = new LocationListener() {
 
         public void onLocationChanged(Location location) {
-            longitude = location.getLongitude();
-            latitude = location.getLatitude();
-            altitude = location.getAltitude();
+            showLocation(location);
         }
 
         public void onProviderDisabled(String provider) {
            LogUtils.v("位置改变但没有可用的位置提供器");
         }
-        public void onProviderEnabled(String provider) {
-        }
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-        }
+        public void onProviderEnabled(String provider) {}
+        public void onStatusChanged(String provider, int status, Bundle extras) {}
     };
 
-    protected void onDestroy() {
+    void onDestroy() {
         if (locationManager != null) {
             // 关闭程序时将监听器移除
             locationManager.removeUpdates(locationListener);

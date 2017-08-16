@@ -58,15 +58,22 @@
                 android:textColor="@color/gray"
                 />
 
-            <TextView
+            <EditText
                 android:id="@+id/check_out_addr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="未获取到地理位置"
                 android:ellipsize="end"
                 android:maxLines="2"
+                android:background="@drawable/normal_bg"
                 android:layout_marginLeft="10dp"
-                style="@style/textTitle"/>
+                style="@style/textTitle"
+                android:layout_weight="1"/>
+            <ImageView
+                android:id="@+id/edit"
+                android:layout_width="50dp"
+                android:layout_height="20dp"
+                android:src="@drawable/edit_address"/>
         </LinearLayout>
 
     </LinearLayout>

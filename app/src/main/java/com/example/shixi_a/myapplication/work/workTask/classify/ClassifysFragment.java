@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.support.test.espresso.core.deps.guava.base.Preconditions.checkNotNull;
+import static com.example.shixi_a.myapplication.util.StringUtils.SubTime;
 
 /**
  * Created by Shixi-A on 2017/6/9.
@@ -222,7 +223,7 @@ public class ClassifysFragment extends Fragment implements ClassifysContract.Vie
             titleTV.setText(classify.getTarget_name());
 
             TextView descriptionTV = (TextView) rowView.findViewById(R.id.timestamp);
-            descriptionTV.setText(classify.getIn_time() + "创建");
+            descriptionTV.setText(SubTime(classify.getIn_time()) + " 创建");
 
             ImageView editCla = (ImageView) rowView.findViewById(R.id.cla_edit);
             editCla.setOnClickListener(new View.OnClickListener() {

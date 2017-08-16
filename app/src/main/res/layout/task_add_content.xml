@@ -71,14 +71,14 @@
                 android:inputType="textMultiLine"
                 android:background="@drawable/normal_bg"/>
 
-            <ImageView
-                android:id="@+id/link"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="10dp"
-                android:contentDescription="zhijiu"
-                android:src="@drawable/link" />
+            <!--<ImageView-->
+                <!--android:id="@+id/link"-->
+                <!--android:layout_width="25dp"-->
+                <!--android:layout_height="25dp"-->
+                <!--android:layout_marginBottom="5dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:contentDescription="zhijiu"-->
+                <!--android:src="@drawable/link" />-->
 
             <View
                 android:layout_width="match_parent"

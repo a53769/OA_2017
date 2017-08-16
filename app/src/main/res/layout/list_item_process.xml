@@ -4,12 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="160dp"
     android:padding="10dp"
-    android:background="@drawable/task_item_bg">
+    android:background="@color/white">
 
     <RelativeLayout
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="10dp"
         android:layout_weight="1"
         android:orientation="horizontal">
         <ImageView
@@ -38,6 +37,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:text="Dssdsd"
+            android:textColor="@color/gray"
             android:layout_marginBottom="5dp"/>
         <TextView
             android:id="@+id/executor"
@@ -46,6 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="执行人:"
+            android:textColor="@color/gray"
             android:layout_marginBottom="5dp"
             android:layout_marginRight="5dp"/>
         <TextView
@@ -55,6 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="截止时间:"
+            android:textColor="@color/gray"
             android:layout_marginBottom="5dp"
             android:layout_marginRight="5dp"/>
         <TextView
@@ -63,14 +65,16 @@
             android:layout_alignBottom="@id/executor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="人事"/>
+            android:text="人事"
+            android:textColor="@color/gray"/>
         <TextView
             android:id="@+id/deadline_content"
             android:layout_toRightOf="@id/deadline"
             android:layout_alignBottom="@id/deadline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2017-05-20 11:53:00"/>
+            android:text="2017-05-20 11:53:00"
+            android:textColor="@color/gray"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -89,7 +93,7 @@
             android:layout_width="0dp"
             android:layout_height="25dp"
             android:layout_weight="1"
-            android:src="@drawable/delete"
+            android:src="@drawable/cancel"
             android:scaleType="centerInside"/>
     </LinearLayout>
 

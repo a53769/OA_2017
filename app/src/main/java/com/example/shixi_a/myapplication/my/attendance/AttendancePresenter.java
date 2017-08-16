@@ -24,6 +24,7 @@ public class AttendancePresenter implements AttendanceContract.Presenter {
 
     @Override
     public void start() {
+        mAttendanceView.setLoadingIndicator(true);
         loadAttendance();
         mAttendanceView.setLoadingIndicator(false);
     }

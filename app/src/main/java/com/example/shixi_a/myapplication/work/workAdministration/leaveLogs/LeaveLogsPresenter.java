@@ -27,6 +27,7 @@ public class LeaveLogsPresenter implements LeaveLogsContract.Presenter {
 
     @Override
     public void start() {
+        mLeaveLogsView.setLoadingIndicator(true);
         process(logs);
         mLeaveLogsView.setLoadingIndicator(false);
     }

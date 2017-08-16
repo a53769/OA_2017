@@ -21,21 +21,22 @@ import android.widget.TextView;
 
 import com.czp.library.ArcProgress;
 import com.czp.library.OnTextCenter;
-import com.example.shixi_a.myapplication.work.workTask.contacts.ContactsActivity;
-import com.example.shixi_a.myapplication.work.workTask.process.ProcessActivity;
 import com.example.shixi_a.myapplication.R;
-import com.example.shixi_a.myapplication.work.workTask.score.ScoreActivity;
-import com.example.shixi_a.myapplication.work.workTask.tempoUpdate.TempoUpdateActivity;
-import com.example.shixi_a.myapplication.util.ScrollViewUtil;
 import com.example.shixi_a.myapplication.bean.Assessment;
 import com.example.shixi_a.myapplication.bean.Logs;
+import com.example.shixi_a.myapplication.util.ScrollViewUtil;
 import com.example.shixi_a.myapplication.widget.ScrollChildSwipeRefreshLayout;
+import com.example.shixi_a.myapplication.work.workTask.contacts.ContactsActivity;
+import com.example.shixi_a.myapplication.work.workTask.process.ProcessActivity;
+import com.example.shixi_a.myapplication.work.workTask.score.ScoreActivity;
+import com.example.shixi_a.myapplication.work.workTask.tempoUpdate.TempoUpdateActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static android.support.test.espresso.core.deps.guava.base.Preconditions.checkNotNull;
-import static com.example.shixi_a.myapplication.util.StringUtils.getSubDate;
+import static com.example.shixi_a.myapplication.util.StringUtils.SubTime;
+import static com.example.shixi_a.myapplication.util.StringUtils.isEmpty;
 
 /**
  * Created by a5376 on 2017/6/28.
@@ -197,7 +198,14 @@ public class TaskDetailFragment extends Fragment implements TaskDetailContract.V
         efficient.setProgress(Integer.parseInt(assess.getEfficient()));
         attitude.setProgress(Integer.parseInt(assess.getAttitude()));
         TextView memo = (TextView) lv_Assess.findViewById(R.id.memo_content);
-        memo.setText(assess.getMemo());
+        memo.setText(getContent(assess.getMemo()));
+    }
+
+    private String getContent(String memo) {
+        if(isEmpty(memo)){
+            return "暂无";
+        }
+        return memo;
     }
 
     @Override
@@ -251,11 +259,6 @@ public class TaskDetailFragment extends Fragment implements TaskDetailContract.V
         intent.putExtra(ProcessActivity.EXTRA_TASK_ID,id);
         intent.putExtra("refuse", id);
         startActivityForResult(intent,ProcessActivity.REQUEST_PROCESS_CODE);
-    }
-
-    @Override
-    public void showTaskDetail() {
-        getActivity().finish();
     }
 
     @Override
@@ -342,7 +345,7 @@ public class TaskDetailFragment extends Fragment implements TaskDetailContract.V
         goal.setText(Goal);
         method.setText(exec_method);
         creater.setText(creater_name);
-        time.setText("发布于" + create_time);
+        time.setText("发布于" + SubTime(create_time));
         setToolbar(status);
     }
 
@@ -478,7 +481,7 @@ public class TaskDetailFragment extends Fragment implements TaskDetailContract.V
             TextView time = (TextView) rowView.findViewById(R.id.time);
             title.setText(log.getUser_name() + log.getAction_show());
             content.setText(log.getMemo());
-            time.setText(getSubDate(log.getIn_time()));
+            time.setText(SubTime(log.getIn_time()));
 
             ArcProgress progressBar = (ArcProgress) rowView.findViewById(R.id.progrssbar);
             progressBar.setProgress(Integer.parseInt(log.getTempo()));

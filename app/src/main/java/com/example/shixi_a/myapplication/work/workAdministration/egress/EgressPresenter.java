@@ -36,6 +36,7 @@ public class EgressPresenter implements EgressContract.Presenter {
 
     @Override
     public void start() {
+        mEgressView.setLoadingIndicator(true);
         loadEgress();
         mEgressView.setLoadingIndicator(false);
     }

@@ -6,8 +6,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.shixi_a.myapplication.R;
+import com.example.shixi_a.myapplication.util.ToastUtils;
 import com.uuzuche.lib_zxing.activity.CaptureFragment;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by a5376 on 2017/8/8.
@@ -41,14 +45,25 @@ public class MyCaptureActivity extends AppCompatActivity {
      */
     CodeUtils.AnalyzeCallback analyzeCallback = new CodeUtils.AnalyzeCallback() {
         @Override
-        public void onAnalyzeSuccess(Bitmap mBitmap, String result) {
-            Intent resultIntent = new Intent();
-            Bundle bundle = new Bundle();
-            bundle.putInt(CodeUtils.RESULT_TYPE, CodeUtils.RESULT_SUCCESS);
-            bundle.putString(CodeUtils.RESULT_STRING, result);
-            resultIntent.putExtras(bundle);
-            MyCaptureActivity.this.setResult(RESULT_OK, resultIntent);
-            MyCaptureActivity.this.finish();
+        public void onAnalyzeSuccess(Bitmap mBitmap, final String result) {
+            ToastUtils.showShort(MyCaptureActivity.this,"扫描成功");
+            Timer timer = new Timer();
+            TimerTask task = new TimerTask(){
+                public void run(){
+                    Intent resultIntent = new Intent();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(CodeUtils.RESULT_TYPE, CodeUtils.RESULT_SUCCESS);
+                    bundle.putString(CodeUtils.RESULT_STRING, result);
+                    resultIntent.putExtras(bundle);
+                    MyCaptureActivity.this.setResult(RESULT_OK, resultIntent);
+
+                    MyCaptureActivity.this.finish();
+
+                }
+            };
+            timer.schedule(task, 1000);
+
+
         }
 
         @Override

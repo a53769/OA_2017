@@ -34,4 +34,10 @@ public class CheckOutActivity extends AppCompatActivity{
         mPresenter = new CheckOutPresenter(out_id,out_name,mRepository,checkOutFragment,getApplicationContext());
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestroy();
+    }
 }

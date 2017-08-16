@@ -11,13 +11,13 @@
         <View
             android:layout_width="1dp"
             android:layout_height="50dp"
-            android:background="@color/dark_grey"
+            android:background="@color/gray"
             android:layout_centerHorizontal="true"
             android:id="@+id/viewtop" />
         <View
             android:layout_width="1dp"
             android:layout_height="50dp"
-            android:background="@color/dark_grey"
+            android:background="@color/gray"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/viewtop"
             android:id="@+id/viewbottom" />

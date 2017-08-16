@@ -32,6 +32,7 @@ public class ChooseEgressPresenter implements ChooseEgressContract.Presenter{
 
     @Override
     public void start() {
+        mChooseEgressView.setLoadingIndicator(true);
         loadEgress();
         mChooseEgressView.setLoadingIndicator(false);
     }
