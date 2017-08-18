@@ -1,10 +1,12 @@
 package com.example.shixi_a.myapplication.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by a5376 on 2017/7/7.
  */
 
-public class UserInfo {
+public class UserInfo implements Serializable{
     public boolean rt;
     public Row row;
 
@@ -24,7 +26,7 @@ public class UserInfo {
         this.row = row;
     }
 
-    public class Row {
+    public class Row implements Serializable{
         public String id;
         public String name;
         public String real_name;

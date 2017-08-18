@@ -12,9 +12,10 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 
 import com.example.shixi_a.myapplication.R;
-import com.example.shixi_a.myapplication.message.Fragment_message;
-import com.example.shixi_a.myapplication.my.Fragment_my;
-import com.example.shixi_a.myapplication.work.Fragment_work;
+import com.example.shixi_a.myapplication.home.contacts.Fragment_contacts;
+import com.example.shixi_a.myapplication.home.message.Fragment_message;
+import com.example.shixi_a.myapplication.home.my.Fragment_my;
+import com.example.shixi_a.myapplication.home.work.Fragment_work;
 
 
 public class MainActivity extends AppCompatActivity {

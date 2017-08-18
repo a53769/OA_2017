@@ -1,15 +1,18 @@
 package com.example.shixi_a.myapplication.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by Shixi-A on 2017/6/2.
  */
 
-public class User {
+public class User implements Serializable{
     public String id;
     public String name;
     public String admin_name_show;
     public String email;
     public String mobile;
+    public String join_date;
     public Storge storge;
     public String token;
 
@@ -68,6 +71,14 @@ public class User {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public String getJoin_date() {
+        return join_date;
+    }
+
+    public void setJoin_date(String join_date) {
+        this.join_date = join_date;
     }
 
     public String getToken() {

@@ -79,5 +79,13 @@ public class UserRepository extends BaseModel implements UserDataSource {
         sendPostRequest(context,BASE + LOGINCHECK,params,jsonResponseHandler);
     }
 
+    @Override
+    public void getUserInfo(Context context, String user, GsonResponseHandler<UserInfo> callback) {
+        initRequest2(context);
+        params.put("admin_name",user);
+
+        sendPostRequest(context,BASE + USERINFO ,params,callback);
+    }
+
 
 }

@@ -25,4 +25,6 @@ public interface UserDataSource {
     void checkName(Context context, String name, JsonResponseHandler callback);
 
     void getVcode(Context context, String name, JsonResponseHandler jsonResponseHandler);
+
+    void getUserInfo(Context context, String user, GsonResponseHandler<UserInfo> 加载用户信息失败请重新登录);
 }

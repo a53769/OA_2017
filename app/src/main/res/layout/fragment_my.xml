@@ -29,6 +29,7 @@
             android:textSize="16sp" />
     </android.support.v7.widget.Toolbar>
     <LinearLayout
+        android:id="@+id/my_info"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="horizontal"
@@ -63,7 +64,13 @@
                 android:text="email"/>
         </LinearLayout>
 
-
+        <ImageView
+            android:layout_width="11dp"
+            android:layout_height="22dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/arrow_my"
+            android:layout_gravity="center"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/attendance"

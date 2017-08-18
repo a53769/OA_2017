@@ -110,7 +110,7 @@ public class GlobalApp extends MultiDexApplication {
                 .setContentIntent(getDefalutIntent(Notification.FLAG_AUTO_CANCEL)) //设置通知栏点击意图
 //	            .setNumber(number) //设置通知集合的数量
                 .setTicker("您有新的消息，请注意查收")
-                .setFullScreenIntent(getDefalutIntent(Notification.FLAG_AUTO_CANCEL),false)
+//                .setFullScreenIntent(getDefalutIntent(Notification.FLAG_AUTO_CANCEL),false)//悬浮通知部分情况下会导致应用启动
                 .setWhen(System.currentTimeMillis())//通知产生的时间，会在通知信息里显示，一般是系统获取到的时间
                 .setPriority(Notification.PRIORITY_MAX) //设置该通知优先级
                 .setVisibility(Notification.VISIBILITY_PUBLIC)

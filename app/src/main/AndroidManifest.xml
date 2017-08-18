@@ -60,52 +60,56 @@
             </intent-filter>
         </activity>
         <activity android:name=".home.MainActivity" android:launchMode="singleTask"/>
-        <activity android:name=".work.workTask.tasks.TasksActivity" />
-        <activity android:name=".work.workTask.taskAddEdit.TaskAddEditActivity" />
-        <activity android:name=".work.workTask.projects.ProjectsActivity" />
-        <activity android:name=".work.workTask.projectAddEdit.ProjectAddEditActivity" />
-        <activity android:name=".work.workTask.classify.ClassifysActivity" />
-        <activity android:name=".work.workTask.classifyAddEdit.ClassifyAddEditActivity" />
-        <activity android:name=".work.workTask.process.ProcessActivity"/>
-        <activity android:name=".work.workTask.processAddEdit.ProcessAddEditActivity"/>
-        <activity android:name=".work.workTask.contacts.ContactsActivity"/>
-        <activity android:name=".work.workTask.taskDetail.TaskDetailActivity"/>
-        <activity android:name=".work.workTask.tempoUpdate.TempoUpdateActivity"/>
-        <activity android:name=".work.workTask.score.ScoreActivity"/>
-        <activity android:name=".my.clock.ClockActivity"/>
-        <activity android:name=".my.attendance.AttendanceActivity"/>
-        <activity android:name=".my.record.RecordActivity"/>
-        <activity android:name=".work.workAdministration.AdministrationActivity"/>
-        <activity android:name=".work.workAdministration.egress.EgressActivity"/>
-        <activity android:name=".work.workAdministration.applyout.ApplyOutActivity"/>
-        <activity android:name=".work.workAdministration.checkOut.CheckOutActivity"/>
-        <activity android:name=".work.workTask.milestone.MileStoneActivity"/>
-        <activity android:name=".work.workAdministration.egressDetail.EgressDetailActivity"/>
-        <activity android:name=".work.workAdministration.leave.LeaveActivity"/>
-        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".work.workAdministration.applyleave.ApplyLeaveActivity"/>
-        <activity android:name=".work.workAdministration.leaveDetail.LeaveDetailActivity"/>
-        <activity android:name=".work.workAdministration.leaveType.LeaveTypeActivity"/>
-        <activity android:name=".work.workAdministration.leaveLogs.LeaveLogsActivity"/>
-        <activity android:name=".work.workAdministration.linkMan.LinkManActivity"/>
-        <activity android:name=".work.workAdministration.reimbursement.ReimbursementActivity"/>
-        <activity android:name=".work.workAdministration.reimburseType.ReimburseTypeActivity"/>
-        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".work.workAdministration.normalReimburse.NormalReimburseActivity"/>
-        <activity android:name=".work.workAdministration.normalReimburseDetail.NormalReimburseDetailActivity"/>
-        <activity android:name=".work.workAdministration.chooseEgress.ChooseEgressActivity"/>
-        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".work.workAdministration.trafficReimburse.TrafficReimburseActivity"/>
-        <activity android:name=".work.workAdministration.trafficTool.TrafficToolActivity"/>
-        <activity android:name=".work.workAdministration.reimburseLog.ReimburseLogActivity"/>
-        <activity android:name=".work.workAdministration.trafficReimburseDetail.TrafficReimburseDetailActivity"/>
-        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".work.workAdministration.tripReimburse.TripReimburseActivity"/>
-        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".work.workAdministration.entertainmentReimburse.EntertainmentReimburseActivity"/>
-        <activity android:name=".work.workAdministration.entertainmentReimburseDetail.EntertainmentReimburseDetailActivity"/>
-        <activity android:name=".work.workAdministration.tripReimburseDetail.TripReimburseDetailActivity"/>
-        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".work.workAdministration.financeAudit.FinanceAuditActivity"/>
-        <activity android:name=".work.workAdministration.financeType.FinanceTypeActivity"/>
-        <activity android:name=".work.workAdministration.financeDetail.FinanceDetailActivity"/>
-        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".work.workAdministration.cashierAudit.CashierAuditActivity"/>
-        <activity android:name=".work.workAdministration.payment.PaymentActivity"/>
-        <activity android:name=".scan.MyCaptureActivity"/>
+        <activity android:name=".home.work.workTask.tasks.TasksActivity" />
+        <activity android:name=".home.work.workTask.taskAddEdit.TaskAddEditActivity" />
+        <activity android:name=".home.work.workTask.projects.ProjectsActivity" />
+        <activity android:name=".home.work.workTask.projectAddEdit.ProjectAddEditActivity" />
+        <activity android:name=".home.work.workTask.classify.ClassifysActivity" />
+        <activity android:name=".home.work.workTask.classifyAddEdit.ClassifyAddEditActivity" />
+        <activity android:name=".home.work.workTask.process.ProcessActivity"/>
+        <activity android:name=".home.work.workTask.processAddEdit.ProcessAddEditActivity"/>
+        <activity android:name=".home.work.workTask.processDetail.ProcessDetailActivity"/>
+        <activity android:name=".home.work.workTask.contacts.ContactsActivity"/>
+        <activity android:name=".home.work.workTask.taskDetail.TaskDetailActivity"/>
+        <activity android:name=".home.work.workTask.tempoUpdate.TempoUpdateActivity"/>
+        <activity android:name=".home.work.workTask.score.ScoreActivity"/>
+        <activity android:name=".home.my.clock.ClockActivity"/>
+        <activity android:name=".home.my.attendance.AttendanceActivity"/>
+        <activity android:name=".home.my.record.RecordActivity"/>
+        <activity android:name=".home.work.workAdministration.AdministrationActivity"/>
+        <activity android:name=".home.work.workAdministration.egress.EgressActivity"/>
+        <activity android:name=".home.work.workAdministration.applyout.ApplyOutActivity"/>
+        <activity android:name=".home.work.workAdministration.checkOut.CheckOutActivity"/>
+        <activity android:name=".home.work.workTask.milestone.MileStoneActivity"/>
+        <activity android:name=".home.work.workAdministration.egressDetail.EgressDetailActivity"/>
+        <activity android:name=".home.work.workAdministration.leave.LeaveActivity"/>
+        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".home.work.workAdministration.applyleave.ApplyLeaveActivity"/>
+        <activity android:name=".home.work.workAdministration.leaveDetail.LeaveDetailActivity"/>
+        <activity android:name=".home.work.workAdministration.leaveType.LeaveTypeActivity"/>
+        <activity android:name=".home.work.workAdministration.leaveLogs.LeaveLogsActivity"/>
+        <activity android:name=".home.work.workAdministration.linkMan.LinkManActivity"/>
+        <activity android:name=".home.work.workAdministration.reimbursement.ReimbursementActivity"/>
+        <activity android:name=".home.work.workAdministration.reimburseType.ReimburseTypeActivity"/>
+        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".home.work.workAdministration.normalReimburse.NormalReimburseActivity"/>
+        <activity android:name=".home.work.workAdministration.normalReimburseDetail.NormalReimburseDetailActivity"/>
+        <activity android:name=".home.work.workAdministration.chooseEgress.ChooseEgressActivity"/>
+        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".home.work.workAdministration.trafficReimburse.TrafficReimburseActivity"/>
+        <activity android:name=".home.work.workAdministration.trafficTool.TrafficToolActivity"/>
+        <activity android:name=".home.work.workAdministration.reimburseLog.ReimburseLogActivity"/>
+        <activity android:name=".home.work.workAdministration.trafficReimburseDetail.TrafficReimburseDetailActivity"/>
+        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".home.work.workAdministration.tripReimburse.TripReimburseActivity"/>
+        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".home.work.workAdministration.entertainmentReimburse.EntertainmentReimburseActivity"/>
+        <activity android:name=".home.work.workAdministration.entertainmentReimburseDetail.EntertainmentReimburseDetailActivity"/>
+        <activity android:name=".home.work.workAdministration.tripReimburseDetail.TripReimburseDetailActivity"/>
+        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".home.work.workAdministration.financeAudit.FinanceAuditActivity"/>
+        <activity android:name=".home.work.workAdministration.financeType.FinanceTypeActivity"/>
+        <activity android:name=".home.work.workAdministration.financeDetail.FinanceDetailActivity"/>
+        <activity android:windowSoftInputMode="adjustPan|stateHidden" android:name=".home.work.workAdministration.cashierAudit.CashierAuditActivity"/>
+        <activity android:name=".home.work.workAdministration.payment.PaymentActivity"/>
+        <activity android:name=".home.message.scan.MyCaptureActivity"/>
+        <activity android:name=".home.my.myInfo.MyInfoActivity"/>
+        <activity android:name=".home.contacts.userInfo.UserInfoActivity"/>
+        <activity android:name=".home.my.attendance.leaveList.LeaveListActivity"/>
     </application>
 
 </manifest>
